@@ -1,0 +1,39 @@
+$menu-item-padding: 12px;
+$menu-item-gap: 8px;
+$menu-item-border-radius: 8px;
+$menu-item-hover-background-color: #FFF;
+$menu-item-icon-size: 20px;
+$menu-item-color: white;
+$menu-item-font-size: 14px;
+$menu-item-hover-font-color: #3B13D0;
+
+.menuItem {
+
+  &:global(.MuiMenuItem-root) {
+    padding: $menu-item-padding;
+    gap: $menu-item-gap;
+    color: $menu-item-color;
+    font-size: $menu-item-font-size;
+    font-weight: 400;
+  }
+
+  &:global(.MuiMenuItem-root):hover {
+    border-radius: $menu-item-border-radius;
+    background: var(--default-neutral-white, $menu-item-hover-background-color);
+    color: $menu-item-hover-font-color;
+
+    .icon {
+      color: $menu-item-hover-font-color;
+    }
+  }
+
+  .iconWrapper {
+    min-width: unset !important;
+
+    .icon {
+      width: $menu-item-icon-size;
+      height: $menu-item-icon-size;
+      color: $menu-item-color;
+    }
+  }
+}

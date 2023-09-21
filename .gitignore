@@ -1,0 +1,7 @@
+node_modules/
+.env.preview
+.env.production
+.DS_Store
+dist/
+.eslintcache
+.idea/

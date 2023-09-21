@@ -1,0 +1,42 @@
+@import '../common';
+
+$side-menu-flex-gap: 16px;
+$header-margin-bottom: 4px;
+
+.sideMenu {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: $side-menu-flex-gap;
+  white-space: nowrap;
+  transition: $width-transition;
+  box-sizing: border-box;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: $header-margin-bottom;
+
+    .genieWordMarkWrapper {
+      background: #6941FF;
+
+      .genieWordMark {
+        fill: url('images/genie_wordmark_white.png'), lightgray 0px 0px / 144.608% 100% no-repeat;
+      }
+    }
+  }
+
+  [class*=MuiList-root] {
+    padding: unset;
+  }
+}
+
+.closed {
+  [class*='paper'] {
+    width: $side-menu-close-width;
+    overflow-x: hidden;
+    z-index: $side-menu-close-zIndex;
+  }
+}

@@ -1,0 +1,9 @@
+$copy-writing-space: 32px;
+$copy-writing-border-radius: 16px;
+
+.copyWriting {
+  padding: $copy-writing-space;
+  display: flex;
+  flex-direction: column;
+  gap: $copy-writing-space;
+}
