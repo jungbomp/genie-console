@@ -1,0 +1,16 @@
+.copyTypeEditor {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  gap: 12px;
+  align-self: stretch;
+
+  .copyTypeEditorHead {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex: 1 1 0;
+    align-items: flex-start;
+    align-self: stretch;
+  }
+}
