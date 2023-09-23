@@ -4,25 +4,27 @@ import Classnames from 'classnames';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-import { CopyTypeEditorHeadButtonProps } from './CopyTypeEditorHeadButton.types';
+import { CopyTypeEditorButtonProps } from './CopyTypeEditorButton.types';
 
-import styles from './CopyTypeEditorHeadButton.scss';
+import styles from './CopyTypeEditorButton.scss';
 
-const CopyTypeEditorHeadButton: React.FC<CopyTypeEditorHeadButtonProps> = ({
+const CopyTypeEditorButton: React.FC<CopyTypeEditorButtonProps> = ({
   className,
   type = 'HEAD',
   active = false,
   headCopy,
   secondaryCopy,
+  onClick = () => {},
 }) => {
   return (
     <Box
       className={Classnames(
-        styles.copyTypeEditorHeadButton,
+        styles.copyTypeEditorButton,
         styles[`${type.toLowerCase()}Type`],
         { [styles[`${type.toLowerCase()}TypeActive`]]: active },
         className,
       )}
+      onClick={onClick}
     >
       <Typography className={styles.headCopy}>{headCopy}</Typography>
       <Typography className={styles.secondaryCopy}>{secondaryCopy}</Typography>
@@ -30,4 +32,4 @@ const CopyTypeEditorHeadButton: React.FC<CopyTypeEditorHeadButtonProps> = ({
   );
 };
 
-export default CopyTypeEditorHeadButton;
+export default CopyTypeEditorButton;

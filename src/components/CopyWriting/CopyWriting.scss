@@ -1,3 +1,5 @@
+@import './common';
+
 $copy-writing-space: 32px;
 $copy-writing-border-radius: 16px;
 $copy-writing-background-color: #F5F5F8;;
@@ -12,17 +14,58 @@ $copy-writing-icon-color: #9093BF;
   gap: $copy-writing-space;
   width: 658px;
 
-  .autoComplete {
-    background-color: $copy-writing-background-color;
-    border-radius: $copy-writing-border-radius;
+  .autoCompleteWrapper {
+    @include copyWritingChildComponent;
 
-    & :global(.MuiAutocomplete-inputRoot) {
-      .autoCompleteSearchIcon {
-        color: $copy-writing-icon-color;
+    .autoComplete {
+      background-color: $copy-writing-background-color;
+      border-radius: $copy-writing-border-radius;
+
+      & :global(.MuiAutocomplete-inputRoot) {
+        .autoCompleteSearchIcon {
+          color: $copy-writing-icon-color;
+        }
+
+        :global(.MuiOutlinedInput-notchedOutline) {
+          border: none;
+        }
       }
+    }
+  }
 
-      :global(.MuiOutlinedInput-notchedOutline) {
-        border: none;
+  .buttonWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .submitButton {
+      display: flex;
+      padding: 12px 38px 12px 32px;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      border-radius: 30px;
+      background: #8138FF;
+    }
+
+    .resetWrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      color: #6A30D8;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px; /* 150% */
+
+      .resetIcon {
+        width: 16px;
+        height: 16px;
       }
     }
   }

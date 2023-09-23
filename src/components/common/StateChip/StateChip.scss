@@ -1,0 +1,89 @@
+.stateChip {
+  &:global(.MuiChip-root) {
+    border-radius: 30px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    :global(.MuiChip-icon) {
+      margin: unset;
+      color: #000;
+    }
+
+    &.large {
+      padding: 8px 16px;
+    }
+
+    :global(.MuiChip-label) {
+      padding: unset;
+      display: flex;
+      flex: 1 0 0;
+    }
+
+    &.active, &:hover {
+      background: #EFE7FF;
+      .titleWrapper {
+        .title {
+          color: #6A30D8;
+        }
+
+        .subtitle {
+          color: #AE84FF;
+        }
+      }
+
+      .extra {
+        color: #AE84FF;
+      }
+
+      :global(.MuiChip-icon) {
+        color: #6A30D8;
+      }
+    }
+  }
+
+  :global(.MuiTouchRipple-root) [class*='Ripple'] {
+    transition: none;
+    animation: none;
+  }
+
+  .label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1 0 0;
+    align-items: center;
+
+    .titleWrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+
+      .title {
+        color: #000;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 150% */
+      }
+
+      .subtitle {
+        color: #000;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px; /* 150% */
+      }
+    }
+
+    .extra {
+      color: #000;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 18px; /* 150% */
+    }
+  }
+}

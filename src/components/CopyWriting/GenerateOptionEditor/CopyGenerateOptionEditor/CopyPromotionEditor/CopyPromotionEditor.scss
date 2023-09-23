@@ -1,0 +1,13 @@
+@import '/src/components/CopyWriting/common';
+
+.copyPromotionEditor {
+  @include copyWritingChildComponent;
+
+  padding-top: 4px;
+
+  .copyPromotionChipWrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

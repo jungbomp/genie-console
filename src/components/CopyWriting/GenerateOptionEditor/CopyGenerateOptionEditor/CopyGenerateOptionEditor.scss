@@ -1,0 +1,6 @@
+@import 'src/components/CopyWriting/common';
+
+.copyGenerateOptionEditor {
+   @include copyWritingChildComponent;
+
+}

@@ -1,0 +1,7 @@
+ @mixin copyWritingChildComponent {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  gap: 12px;
+  align-self: stretch;
+}
