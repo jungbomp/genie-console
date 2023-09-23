@@ -14,7 +14,7 @@ import styles from './CopyGenerateOptionEditor.scss';
 const CopyGenerateOptionEditor: React.FC<CopyGenerateOptionEditorProps> = ({ className }) => {
   return (
     <Box className={Classnames(styles.copyGenerateOptionEditor, className)}>
-      <FormLabel>생성 옵션</FormLabel>
+      <FormLabel className={styles.label}>생성 옵션</FormLabel>
       <CopyWordCountEditor />
       <CopyPromotionEditor />
     </Box>

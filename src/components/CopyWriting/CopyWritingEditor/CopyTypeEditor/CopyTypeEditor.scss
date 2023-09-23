@@ -3,6 +3,10 @@
 .copyTypeEditor {
   @include copyWritingChildComponent;
 
+  .label {
+    @include copyWritingChildComponentLabel;
+  }
+
   .copyTypeEditorButtons {
     display: flex;
     flex-direction: row;

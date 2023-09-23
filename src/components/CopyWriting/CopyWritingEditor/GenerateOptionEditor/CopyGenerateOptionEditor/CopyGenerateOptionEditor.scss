@@ -3,4 +3,7 @@
 .copyGenerateOptionEditor {
    @include copyWritingChildComponent;
 
+   .label {
+      @include copyWritingChildComponentLabel;
+   }
 }

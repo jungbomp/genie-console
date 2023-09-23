@@ -1,20 +1,26 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Classnames from 'classnames';
 
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import MenuList from '@mui/material/MenuList';
+import Typography from '@mui/material/Typography';
 
 import logo from 'images/ai.svg';
 import genieWordMark from 'images/genie_wordmark_white.png';
 
 import { Settings } from 'src/Icon';
-import type { MenuItemContext } from 'src/types';
+import { userSelector } from 'src/components/redux/selectors';
+import type { MenuItemContext, UserContext } from 'src/types';
 
 import MenuItem from './MenuItem';
 import type { SideMenuProps } from './SideMenu.types';
 import styles from './SideMenu.scss';
 
 const SideMenu: React.FC<SideMenuProps> = ({ className, menuItems }) => {
+  const user: UserContext = useSelector(userSelector);
+
   return (
     <Box className={Classnames(styles.sideMenu, className)}>
       <Box className={styles.menuWrapper}>
@@ -35,7 +41,8 @@ const SideMenu: React.FC<SideMenuProps> = ({ className, menuItems }) => {
         </MenuList>
       </Box>
       <Box className={styles.settingsWrapper}>
-        <Settings />
+        <Typography className={styles.userName}>{user.userName}</Typography>
+        <Button className={styles.settingButton} startIcon={<Settings />} />
       </Box>
     </Box>
   );

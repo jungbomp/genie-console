@@ -13,7 +13,7 @@ import styles from './CopyTypeEditor.scss';
 const CopyTypeEditor: React.FC<CopyTypeEditorProps> = ({ className, value, onClick = () => {} }) => {
   return (
     <Box className={Classnames(styles.copyTypeEditor, className)}>
-      <FormLabel>카피 유형</FormLabel>
+      <FormLabel className={styles.label}>카피 유형</FormLabel>
       <Box className={styles.copyTypeEditorButtons}>
         <CopyTypeEditorButton
           type='HEAD'
@@ -32,7 +32,7 @@ const CopyTypeEditor: React.FC<CopyTypeEditorProps> = ({ className, value, onCli
         <CopyTypeEditorButton
           type='SYNOPSIS'
           active={value === 'SYNOPSIS'}
-          headCopy='시놈시스 요약'
+          headCopy='시놉시스 요약'
           secondaryCopy='원하는 길이로 요약'
           onClick={() => onClick('SYNOPSIS')}
         />

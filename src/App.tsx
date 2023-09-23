@@ -2,6 +2,7 @@ import React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
+import '@fontsource-variable/outfit';
 
 import history from './History';
 import store from './Redux/store';

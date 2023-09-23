@@ -5,3 +5,11 @@
   gap: 12px;
   align-self: stretch;
 }
+
+@mixin copyWritingChildComponentLabel {
+  color: #23116C;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 162.5% */
+}
