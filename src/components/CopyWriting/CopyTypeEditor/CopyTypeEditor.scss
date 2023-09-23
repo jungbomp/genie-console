@@ -1,11 +1,9 @@
-.copyTypeEditor {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 0;
-  gap: 12px;
-  align-self: stretch;
+@import '../common';
 
-  .copyTypeEditorHead {
+.copyTypeEditor {
+  @include copyWritingChildComponent;
+
+  .copyTypeEditorButtons {
     display: flex;
     flex-direction: row;
     gap: 8px;

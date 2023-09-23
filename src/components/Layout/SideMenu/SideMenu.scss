@@ -6,30 +6,46 @@ $header-margin-bottom: 4px;
 .sideMenu {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  gap: $side-menu-flex-gap;
-  white-space: nowrap;
-  transition: $width-transition;
-  box-sizing: border-box;
+  justify-content: space-between;
+  height: 100%;
 
-  .header {
+  .menuWrapper {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    margin-bottom: $header-margin-bottom;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: $side-menu-flex-gap;
+    white-space: nowrap;
+    transition: $width-transition;
+    box-sizing: border-box;
 
-    .genieWordMarkWrapper {
-      background: #6941FF;
+    .header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: $header-margin-bottom;
 
-      .genieWordMark {
-        fill: url('images/genie_wordmark_white.png'), lightgray 0px 0px / 144.608% 100% no-repeat;
+      .genieWordMarkWrapper {
+        background: #6941FF;
+
+        .genieWordMark {
+          fill: url('images/genie_wordmark_white.png'), lightgray 0px 0px / 144.608% 100% no-repeat;
+        }
       }
+    }
+
+    [class*=MuiList-root] {
+      padding: unset;
     }
   }
 
-  [class*=MuiList-root] {
-    padding: unset;
+  .settingsWrapper {
+    display: flex;
+    padding: 10px 12px;
+    align-items: center;
+    gap: 16px;
+    border-radius: 8px;
+    background: var(--default-neutral-white, #FFF);
   }
 }
 
