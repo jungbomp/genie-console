@@ -1,0 +1,16 @@
+@import 'src/components/CopyWriting/common';
+
+.copyWordCountEditor {
+  @include copyWritingChildComponent;
+
+  .copyWordChipWrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

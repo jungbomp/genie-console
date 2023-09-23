@@ -32,12 +32,10 @@ $content-width: 1235px;
     }
 
     .content {
-      transition: $width-transition;
       border-radius: $content-border-radius;
       background-color: $content-background-color;
-      width: $content-width;
-      display: flex;
-      flex-direction: row;
+      flex: 1 0 0;
+      overflow: hidden;
     }
 
     .mainOpenMenu {

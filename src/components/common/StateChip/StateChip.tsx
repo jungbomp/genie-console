@@ -15,7 +15,11 @@ const StateChip: React.FC<StateChipProps> = ({
   title,
   subtitle,
   extra,
+<<<<<<< Updated upstream
   icon: Icon,
+=======
+  icon,
+>>>>>>> Stashed changes
   size = 'medium',
   onClick = () => {},
 }) => {
@@ -36,7 +40,11 @@ const StateChip: React.FC<StateChipProps> = ({
     <Chip
       className={Classnames(styles.stateChip, [styles[size]], className)}
       size={size === 'large' ? undefined : size}
+<<<<<<< Updated upstream
       icon={Icon ? <Icon /> : undefined}
+=======
+      icon={icon}
+>>>>>>> Stashed changes
       label={label}
       onClick={onClick}
     />

@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 @import './common';
 
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 $copy-writing-space: 32px;
 $copy-writing-border-radius: 16px;
 $copy-writing-background-color: #F5F5F8;;
@@ -7,9 +11,11 @@ $copy-writing-border-radius: 8px;
 
 $copy-writing-icon-color: #9093BF;
 
+=======
+>>>>>>> Stashed changes
 .copyWriting {
-  padding: $copy-writing-space;
   display: flex;
+<<<<<<< Updated upstream
   flex-direction: column;
   gap: $copy-writing-space;
   width: 658px;
@@ -69,4 +75,7 @@ $copy-writing-icon-color: #9093BF;
       }
     }
   }
+=======
+  flex-wrap: wrap;
+>>>>>>> Stashed changes
 }

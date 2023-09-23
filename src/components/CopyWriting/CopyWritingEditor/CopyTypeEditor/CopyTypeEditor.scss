@@ -1,0 +1,22 @@
+<<<<<<< Updated upstream:src/components/CopyWriting/CopyTypeEditor/CopyTypeEditor.scss
+@import '../common';
+
+=======
+<<<<<<< Updated upstream:src/components/CopyWriting/CopyTypeEditor/CopyTypeEditor.scss
+=======
+@import 'src/components/CopyWriting/common';
+
+>>>>>>> Stashed changes:src/components/CopyWriting/CopyWritingEditor/CopyTypeEditor/CopyTypeEditor.scss
+>>>>>>> Stashed changes:src/components/CopyWriting/CopyWritingEditor/CopyTypeEditor/CopyTypeEditor.scss
+.copyTypeEditor {
+  @include copyWritingChildComponent;
+
+  .copyTypeEditorButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex: 1 1 0;
+    align-items: flex-start;
+    align-self: stretch;
+  }
+}

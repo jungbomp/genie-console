@@ -1,0 +1,13 @@
+.containedIcon {
+  display: inline-flex;
+  padding: 10px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 30px;
+  background: #F5F5F8;
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}

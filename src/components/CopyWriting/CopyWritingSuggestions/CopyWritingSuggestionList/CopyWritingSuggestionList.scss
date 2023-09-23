@@ -1,0 +1,24 @@
+@import 'src/components/CopyWriting/common';
+
+.copyWritingSuggestionList {
+  @include copyWritingChildComponent;
+
+  .copyWritingSuggestionListWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+  }
+
+  .addButtonWrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 52px;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

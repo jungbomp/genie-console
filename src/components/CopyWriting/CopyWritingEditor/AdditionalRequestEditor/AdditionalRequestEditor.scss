@@ -1,0 +1,110 @@
+@import 'src/components/CopyWriting/common';
+
+.additionalRequestEditor {
+  @include copyWritingChildComponent;
+
+  .titleWrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .title {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+
+      .titleIconWrapper {
+        display: inline-flex;
+        padding: 10px;
+        align-items: center;
+        gap: 8px;
+        border-radius: 30px;
+        background: #F5F5F8;
+
+        .titleIcon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+
+      .titleButton {
+        color: #6A30D8;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 150% */
+
+        &:hover {
+          background-color: unset;
+          color: #6A30D8;
+        }
+      }
+    }
+
+    .closeButton {
+      display: none;
+      padding: 10px;
+      align-items: center;
+      border-radius: 30px;
+      background: #F5F5F8;
+      color: #000;
+      min-width: unset;
+
+      &.closeButtonVisible {
+        display: inline-flex;
+      }
+
+      &:hover {
+        background: #EFE7FF;
+        color: #6A30D8;
+      }
+
+      :global(.MuiButton-startIcon) {
+        margin: unset;
+
+        .icon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+
+  .additionalRequestBodyWrapper {
+    display: none;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 1px solid #E0E1F3;
+
+    &.additionalRequestBodyWrapperVisible {
+      display: flex;
+    }
+
+    .additionalRequestInput {
+      width: 100%;
+      color: #757A9B;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 150% */
+
+      :global(.MuiInputBase-root) {
+        &:before, &:after {
+          border: none;
+        }
+      }
+    }
+
+    .additionalRequestOptionWrapper {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      gap: 8px;
+    }
+  }
+}
