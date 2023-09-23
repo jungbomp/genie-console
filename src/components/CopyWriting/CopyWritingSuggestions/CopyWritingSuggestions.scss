@@ -1,0 +1,18 @@
+@import '../common';
+
+.copyWritingSuggestion {
+  display: flex;
+  padding: 32px;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 0 0;
+  background: #F5F5F8;
+
+  .copyWritingSuggestionList {
+    @include copyWritingChildComponent;
+  }
+
+  &.emptySuggestion {
+    justify-content: center;
+  }
+}

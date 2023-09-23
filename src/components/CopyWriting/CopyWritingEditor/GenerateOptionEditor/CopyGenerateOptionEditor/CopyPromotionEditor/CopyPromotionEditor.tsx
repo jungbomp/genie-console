@@ -17,9 +17,9 @@ const CopyPromotionEditor: React.FC<CopyPromotionEditorProps> = ({ className }) 
       <FormLabel>프로모션 여부 (선택)</FormLabel>
       <Box className={styles.copyPromotionChipWrapper}>
         <StateChip title='무료' size='large' />
-        <StateChip icon={Edit} title='경품・피규어' size='large' />
-        <StateChip icon={Add} title='TV쿠폰' size='large' />
-        <StateChip icon={Add} title='가격 할인' size='large' />
+        <StateChip icon={<Edit className={styles.icon} />} title='경품・피규어' size='large' />
+        <StateChip icon={<Add className={styles.icon} />} title='TV쿠폰' size='large' />
+        <StateChip icon={<Add className={styles.icon} />} title='가격 할인' size='large' />
       </Box>
     </Box>
   );

@@ -1,0 +1,118 @@
+.copyWritingSuggestionItem {
+  display: flex;
+  align-self: stretch;
+  align-items: flex-start;
+  gap: 12px;
+
+  .copyWritingSuggestionCardWrapper {
+    padding: 20px;
+    border-radius: 12px;
+    flex: 1 0 0;
+
+    .cardHeader {
+      padding: 0 0 8px;
+
+      .chip {
+        background: #FF8F6E;
+
+        :global(.MuiChip-label) {
+          color: var(--default-neutral-white, #FFF);
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 18px; /* 150% */
+        }
+      }
+    }
+
+    .cardContent {
+      padding: unset;
+
+      .typography {
+        color: #6A30D8;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 30px; /* 166.667% */
+
+        .pre {
+          margin: unset;
+        }
+      }
+
+      .cardContentText {
+        width: 100%;
+
+        :global(.MuiInputBase-root) {
+          padding: unset;
+          color: #0E0B31;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 30px;
+
+          &:before, &:after {
+            border: none;
+          }
+        }
+      }
+    }
+
+    .cardAction {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      align-self: stretch;
+      padding: 18px 0 0;
+
+      .wordCount {
+        color: #6E7494;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px; /* 150% */
+      }
+
+      .buttonWrapper {
+        display: flex;
+        gap: 4px;
+
+        .buttonIcon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+
+  .copyWritingSuggestionVoteWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+
+    .voteButton {
+      display: inline-flex;
+      padding: 12px;
+      align-items: center;
+      border-radius: 50%;
+      background: var(--default-neutral-white, #FFF);
+      color: #000;
+      min-width: unset;
+
+      &:hover {
+        background: #EFE7FF;
+        color: #6A30D8;
+      }
+
+      :global(.MuiButton-startIcon) {
+        margin: unset;
+
+        .voteButtonIcon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+}

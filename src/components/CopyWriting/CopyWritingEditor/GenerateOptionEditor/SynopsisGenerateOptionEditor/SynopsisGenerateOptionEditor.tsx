@@ -18,7 +18,7 @@ const SynopsisGenerateOptionEditor: React.FC<SynopsisGenerateOptionEditorProps> 
       <StateChip title='30자 내외' subtitle='100 bytes' extra='시놉시스 키즈' size='large' />
       <StateChip title='100자 이내' subtitle='300 bytes' extra='시놉시스 일반' size='large' />
       <StateChip title='200자 이내' subtitle='600 bytes' extra='시놉시스 더 보기' size='large' />
-      <StateChip icon={Add} title='적접입력' size='large' />
+      <StateChip icon={<Add className={styles.icon} />} title='적접입력' size='large' />
     </Box>
   );
 };

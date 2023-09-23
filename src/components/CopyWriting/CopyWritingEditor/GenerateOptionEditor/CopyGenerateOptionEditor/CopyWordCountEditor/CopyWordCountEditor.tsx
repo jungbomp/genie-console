@@ -18,7 +18,7 @@ const CopyWordCountEditor: React.FC<CopyWordCountEditorProps> = ({ className }) 
       <Box className={styles.copyWordChipWrapper}>
         <StateChip title='40자 이내' subtitle='125 byte' size='large' />
         <StateChip title='60자 이내' subtitle='200 byte' size='large' />
-        <StateChip icon={Add} title='적접입력' size='large' />
+        <StateChip icon={<Add className={styles.icon} />} title='적접입력' size='large' />
       </Box>
     </Box>
   );

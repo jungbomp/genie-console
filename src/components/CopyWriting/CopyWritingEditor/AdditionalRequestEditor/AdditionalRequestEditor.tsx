@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Classnames from 'classnames';
 
 import Box from '@mui/material/Box';
@@ -14,6 +14,7 @@ import { AdditionalRequestEditorProps } from './AdditionalRequestEditor.types';
 import styles from './AdditionalRequestEditor.scss';
 
 const AdditionalRequestEditor: React.FC<AdditionalRequestEditorProps> = ({ className }) => {
+  const [displayEdit, setDisplayEdit] = useState(false);
   return (
     <Box className={Classnames(styles.additionalRequestEditor, className)}>
       <Box className={Classnames(styles.titleWrapper)}>
@@ -21,19 +22,23 @@ const AdditionalRequestEditor: React.FC<AdditionalRequestEditorProps> = ({ class
           <Box className={styles.titleIconWrapper}>
             <MagicWandFilled className={styles.titleIcon} />
           </Box>
-          AI 에게 더 요청하기
+          <Button className={styles.titleButton} variant='text' onClick={() => setDisplayEdit(true)}>
+            AI 에게 더 요청하기
+          </Button>
         </FormLabel>
         <Button
-          className={styles.closeButton}
+          className={Classnames(styles.closeButton, { [styles.closeButtonVisible]: displayEdit })}
           variant='contained'
           disableElevation={true}
-          startIcon={<Close />}
-          onClick={() => {
-            console.log('clicked');
-          }}
+          startIcon={<Close className={styles.icon} />}
+          onClick={() => setDisplayEdit(false)}
         />
       </Box>
-      <Box className={styles.additionalRequestBodyWrapper}>
+      <Box
+        className={Classnames(styles.additionalRequestBodyWrapper, {
+          [styles.additionalRequestBodyWrapperVisible]: displayEdit,
+        })}
+      >
         <TextField
           className={styles.additionalRequestInput}
           multiline={true}

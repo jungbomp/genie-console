@@ -1,0 +1,44 @@
+.emptySuggestion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  .titleWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    .logoWrapper {
+      background-color: #6941FF;
+      border-radius: 50%;
+      display: flex;
+      padding: 8px;
+
+      .logo {
+      }
+    }
+
+    .title {
+      color: #000;
+      text-align: center;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+
+  .subtitleWrapper {
+    .subtitle {
+      color: #6E7494;
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 28px; /* 175% */
+    }
+  }
+}

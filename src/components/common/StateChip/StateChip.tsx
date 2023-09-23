@@ -15,7 +15,7 @@ const StateChip: React.FC<StateChipProps> = ({
   title,
   subtitle,
   extra,
-  icon: Icon,
+  icon,
   size = 'medium',
   onClick = () => {},
 }) => {
@@ -36,7 +36,7 @@ const StateChip: React.FC<StateChipProps> = ({
     <Chip
       className={Classnames(styles.stateChip, [styles[size]], className)}
       size={size === 'large' ? undefined : size}
-      icon={Icon ? <Icon /> : undefined}
+      icon={icon}
       label={label}
       onClick={onClick}
     />
