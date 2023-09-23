@@ -1,0 +1,30 @@
+@import 'src/components/CopyWriting/common';
+
+$copy-writing-background-color: #F5F5F8;;
+$copy-writing-border-radius: 8px;
+
+$copy-writing-icon-color: #9093BF;
+
+.contentTitleEditor {
+  @include copyWritingChildComponent;
+  flex: unset;
+
+  .label {
+    @include copyWritingChildComponentLabel;
+  }
+
+  .autoComplete {
+    background-color: $copy-writing-background-color;
+    border-radius: $copy-writing-border-radius;
+
+    & :global(.MuiAutocomplete-inputRoot) {
+      .autoCompleteSearchIcon {
+        color: $copy-writing-icon-color;
+      }
+
+      :global(.MuiOutlinedInput-notchedOutline) {
+        border: none;
+      }
+    }
+  }
+}

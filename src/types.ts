@@ -9,6 +9,11 @@ export interface MenuItemContext {
   component: ElementType;
 }
 
+export interface UserContext {
+  userName: string;
+}
+
 export interface GlobalState {
   menuItem?: MenuItemContext;
+  user: UserContext;
 }

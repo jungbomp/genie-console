@@ -3,7 +3,11 @@ import type { GlobalState } from 'src/types';
 
 import { SET_SELECTED_MENU } from './actionType';
 
-const initialState: GlobalState = {};
+const initialState: GlobalState = {
+  user: {
+    userName: 'Ryan',
+  },
+};
 
 const reducer = (state = initialState, { type, payload }: AnyAction) => {
   switch (type) {

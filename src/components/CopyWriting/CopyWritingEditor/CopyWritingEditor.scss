@@ -1,11 +1,6 @@
 @import '../common';
 
 $copy-writing-space: 32px;
-$copy-writing-border-radius: 16px;
-$copy-writing-background-color: #F5F5F8;;
-$copy-writing-border-radius: 8px;
-
-$copy-writing-icon-color: #9093BF;
 
 .copyWritingEditor {
   padding: $copy-writing-space;
@@ -16,25 +11,12 @@ $copy-writing-icon-color: #9093BF;
   max-width: 660px;
   min-width: 600px;
 
-  .autoCompleteWrapper {
-    @include copyWritingChildComponent;
-
-    flex: unset;
-
-    .autoComplete {
-      background-color: $copy-writing-background-color;
-      border-radius: $copy-writing-border-radius;
-
-      & :global(.MuiAutocomplete-inputRoot) {
-        .autoCompleteSearchIcon {
-          color: $copy-writing-icon-color;
-        }
-
-        :global(.MuiOutlinedInput-notchedOutline) {
-          border: none;
-        }
-      }
-    }
+  .headTitle {
+    color: #6E7494;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
   }
 
   .hideGenerateOptionEditor {

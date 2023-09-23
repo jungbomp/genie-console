@@ -43,9 +43,45 @@ $header-margin-bottom: 4px;
     display: flex;
     padding: 10px 12px;
     align-items: center;
-    gap: 16px;
+    justify-content: space-between;
     border-radius: 8px;
     background: var(--default-neutral-white, #FFF);
+
+    .userName {
+      color: #3B13D0;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 142.857% */
+    }
+
+    .settingButton {
+      display: inline-flex;
+      padding: 0 0 0 16px;
+      align-items: center;
+      background: var(--default-neutral-white, #FFF);
+      color: #3B13D0;
+      min-width: unset;
+
+      border-left-width: 1px;
+      border-left-color: #E0E1F3;
+      border-style: solid;
+      border-radius: unset;
+
+      &:hover {
+        background: unset;
+        color: #6A30D8;
+      }
+
+      :global(.MuiButton-startIcon) {
+        margin: unset;
+
+        .voteButtonIcon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
   }
 }
 
