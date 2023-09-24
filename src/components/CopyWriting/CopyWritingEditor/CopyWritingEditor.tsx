@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 
 import { Rotate, SendAlt } from 'src/Icon';
 
+import type { CopyType, PromotionType } from '../CopyWriting.types';
+
 import ContentTitleEditor from './ContentTitleEditor/ContentTitleEditor';
 import CopyTypeEditor from './CopyTypeEditor/CopyTypeEditor';
 import GenerateOptionEditor from './GenerateOptionEditor/GenerateOptionEditor';
@@ -18,7 +20,17 @@ import { CopyWritingEditorProps } from './CopyWritingEditor.types';
 import styles from './CopyWritingEditor.scss';
 
 const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({ className }) => {
-  const [copyType, setCopyType] = useState<'HEAD' | 'BODY' | 'SYNOPSIS'>();
+  const [copyType, setCopyType] = useState<CopyType>();
+  const [wordCount, setWordCount] = useState<number>();
+  const [promotionType, setPromotionType] = useState<PromotionType>();
+  const [additionalRequest, setAdditionalRequest] = useState<string>();
+
+  const onResetButtonClick = () => {
+    setCopyType(undefined);
+    setWordCount(undefined);
+    setPromotionType(undefined);
+    setAdditionalRequest(undefined);
+  };
 
   return (
     <div className={Classnames(styles.copyWritingEditor, className)}>
@@ -29,20 +41,33 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({ className }) => {
         <ContentTitleEditor />
       </FormControl>
       <FormControl>
-        <CopyTypeEditor value={copyType} onClick={setCopyType} />
+        <CopyTypeEditor value={copyType} onChange={setCopyType} />
       </FormControl>
       <FormControl className={Classnames({ [styles.hideGenerateOptionEditor]: copyType === undefined })}>
-        <GenerateOptionEditor value={copyType} />
+        <GenerateOptionEditor
+          copyType={copyType}
+          wordCount={wordCount}
+          promotionType={promotionType}
+          onWordCountChange={setWordCount}
+          onPromotionTypeChange={setPromotionType}
+        />
       </FormControl>
       <FormControl>
-        <AdditionalRequestEditor />
+        <AdditionalRequestEditor
+          additionalRequest={additionalRequest}
+          onAdditionalRequestChange={setAdditionalRequest}
+        />
       </FormControl>
       <FormControl className={styles.buttonFlexBox}>
         <Box className={styles.buttonWrapper}>
           <Button className={styles.submitButton} variant='contained' startIcon={<SendAlt />}>
             문구 생성하기
           </Button>
-          <Button className={styles.resetWrapper} startIcon={<Rotate className={styles.resetIcon} />}>
+          <Button
+            className={styles.resetWrapper}
+            startIcon={<Rotate className={styles.resetIcon} />}
+            onClick={onResetButtonClick}
+          >
             다시시작
           </Button>
         </Box>

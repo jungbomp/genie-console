@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Classnames from 'classnames';
+import _ from 'lodash';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -13,8 +14,15 @@ import { AdditionalRequestEditorProps } from './AdditionalRequestEditor.types';
 
 import styles from './AdditionalRequestEditor.scss';
 
-const AdditionalRequestEditor: React.FC<AdditionalRequestEditorProps> = ({ className }) => {
-  const [displayEdit, setDisplayEdit] = useState(false);
+const AdditionalRequestEditor: React.FC<AdditionalRequestEditorProps> = ({
+  className,
+  additionalRequest,
+  onAdditionalRequestChange = () => {},
+}) => {
+  const [displayEdit, setDisplayEdit] = useState(_.isEmpty(additionalRequest));
+
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => onAdditionalRequestChange(event.target.value);
+
   return (
     <Box className={Classnames(styles.additionalRequestEditor, className)}>
       <Box className={Classnames(styles.titleWrapper)}>
@@ -44,10 +52,20 @@ const AdditionalRequestEditor: React.FC<AdditionalRequestEditorProps> = ({ class
           multiline={true}
           variant='standard'
           placeholder='AI 지니에게 추가로 원하시는 사항을 자유롭게 이야기 해주세요.'
+          value={additionalRequest}
+          onChange={onChange}
         />
         <Box className={styles.additionalRequestOptionWrapper}>
-          <StateChip title='수식어를 풍성하게' size='large' />
-          <StateChip title='신조어는 제거해줘' size='large' />
+          <StateChip
+            title='수식어를 풍성하게'
+            size='large'
+            onClick={() => onAdditionalRequestChange('수식어를 풍성하게')}
+          />
+          <StateChip
+            title='신조어는 제거해줘'
+            size='large'
+            onClick={() => onAdditionalRequestChange('신조어는 제거해줘')}
+          />
         </Box>
       </Box>
     </Box>

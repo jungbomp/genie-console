@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useMemo, useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Classnames from 'classnames';
-import _ from 'lodash';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -35,8 +35,6 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
     setSuggestionCopyWrite(event.target.value);
   };
 
-  console.log('length: ', _.toLength(copyWrite));
-
   return (
     <Box className={Classnames(styles.copyWritingSuggestionItem, className)}>
       <Card className={styles.copyWritingSuggestionCardWrapper} elevation={0}>
@@ -68,7 +66,9 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
               size='large'
               onClick={() => setIsEditing(true)}
             />
-            <StateChip icon={<Copy className={styles.buttonIcon} />} title='복사하기' size='large' />
+            <CopyToClipboard text={suggestionCopyWrite} onCopy={() => console.log('copyed')}>
+              <StateChip icon={<Copy className={styles.buttonIcon} />} title='복사하기' size='large' />
+            </CopyToClipboard>
           </Box>
         </CardActions>
       </Card>

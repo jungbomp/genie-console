@@ -17,6 +17,7 @@ const StateChip: React.FC<StateChipProps> = ({
   extra,
   icon,
   size = 'medium',
+  active = false,
   onClick = () => {},
 }) => {
   const label = useMemo(
@@ -34,7 +35,7 @@ const StateChip: React.FC<StateChipProps> = ({
 
   return (
     <Chip
-      className={Classnames(styles.stateChip, [styles[size]], className)}
+      className={Classnames(styles.stateChip, [styles[size]], { [styles.active]: active }, className)}
       size={size === 'large' ? undefined : size}
       icon={icon}
       label={label}
