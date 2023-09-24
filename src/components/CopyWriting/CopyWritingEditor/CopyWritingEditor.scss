@@ -45,6 +45,10 @@ $copy-writing-space: 32px;
         :global(.MuiButton-startIcon) {
           margin: unset;
         }
+
+        &:global(.Mui-disabled) {
+          background: #F5F5F8;
+        }
       }
 
       .resetWrapper {

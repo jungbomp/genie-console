@@ -5,12 +5,29 @@ import SynopsisGenerateOptionEditor from './SynopsisGenerateOptionEditor/Synopsi
 
 import { GenerateOptionEditorProps } from './GenerateOptionEditor.types';
 
-const GenerateOptionEditor: React.FC<GenerateOptionEditorProps> = ({ className, value }) => {
-  if (value === 'HEAD' || value === 'BODY') {
-    return <CopyGenerateOptionEditor className={className} />;
+const GenerateOptionEditor: React.FC<GenerateOptionEditorProps> = ({
+  className,
+  copyType,
+  wordCount,
+  promotionType,
+  onWordCountChange,
+  onPromotionTypeChange,
+}) => {
+  if (copyType === 'HEAD' || copyType === 'BODY') {
+    return (
+      <CopyGenerateOptionEditor
+        className={className}
+        wordCount={wordCount}
+        promotionType={promotionType}
+        onWordCountChange={onWordCountChange}
+        onPromotionTypeChange={onPromotionTypeChange}
+      />
+    );
   }
 
-  return value ? 'SYNOPSIS' && <SynopsisGenerateOptionEditor className={className} /> : null;
+  return copyType === 'SYNOPSIS' ? (
+    <SynopsisGenerateOptionEditor className={className} wordCount={wordCount} onWordCountChange={onWordCountChange} />
+  ) : null;
 };
 
 export default GenerateOptionEditor;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import Classnames from 'classnames';
 
 import Box from '@mui/material/Box';
@@ -14,7 +14,7 @@ import type { ContentTitleEditorProps } from './ContentTitleEditor.types';
 
 import styles from './ContentTitleEditor.scss';
 
-const ContentTitleEditor: React.FC<ContentTitleEditorProps> = ({ className }) => {
+const ContentTitleEditor: React.FC<ContentTitleEditorProps> = ({ className, value, onChange = () => {} }) => {
   const mockOptions = ['아바타', '아바타: 물의 길 (소장용 아바타)', '아바타: 물의 길'];
   const getAutocompleteRenderInput = (params: AutocompleteRenderInputParams) => (
     <TextField
@@ -42,6 +42,8 @@ const ContentTitleEditor: React.FC<ContentTitleEditorProps> = ({ className }) =>
         disableClearable={true}
         options={mockOptions}
         renderInput={getAutocompleteRenderInput}
+        inputValue={value}
+        onInputChange={(_: SyntheticEvent, inputValue: string) => onChange(inputValue)}
       />
     </Box>
   );

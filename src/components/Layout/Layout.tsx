@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Classnames from 'classnames';
+import { SnackbarProvider } from 'notistack';
 
 import { createTheme, Theme, ThemeProvider } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -29,17 +30,19 @@ const Layout: React.FC<LayoutProps> = ({ className }) => {
   return (
     <ThemeProvider theme={outerTheme}>
       {isLoaded && (
-        <Box className={styles.wrapper}>
-          <Box className={Classnames(styles.layout, className)}>
-            <CssBaseline />
-            <Box className={styles.sider}>
-              <SideMenu open={menuOpen} menuItems={MENU_ITEMS} closeSideMenu={() => setMenuOpen(false)} />
-            </Box>
-            <Box className={Classnames(styles.content, { [styles.mainOpenMenu]: menuOpen })}>
-              <Content menuItems={MENU_ITEMS} />
+        <SnackbarProvider maxSnack={3}>
+          <Box className={styles.wrapper}>
+            <Box className={Classnames(styles.layout, className)}>
+              <CssBaseline />
+              <Box className={styles.sider}>
+                <SideMenu open={menuOpen} menuItems={MENU_ITEMS} closeSideMenu={() => setMenuOpen(false)} />
+              </Box>
+              <Box className={Classnames(styles.content, { [styles.mainOpenMenu]: menuOpen })}>
+                <Content menuItems={MENU_ITEMS} />
+              </Box>
             </Box>
           </Box>
-        </Box>
+        </SnackbarProvider>
       )}
     </ThemeProvider>
   );

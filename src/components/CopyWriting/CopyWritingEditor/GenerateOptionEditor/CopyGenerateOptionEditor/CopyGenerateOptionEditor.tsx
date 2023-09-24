@@ -7,16 +7,22 @@ import FormLabel from '@mui/material/FormLabel';
 import CopyWordCountEditor from './CopyWordCountEditor/CopyWordCountEditor';
 import CopyPromotionEditor from './CopyPromotionEditor/CopyPromotionEditor';
 
-import { CopyGenerateOptionEditorProps } from './CopyGenerateOptionEditor.types';
+import type { CopyGenerateOptionEditorProps } from './CopyGenerateOptionEditor.types';
 
 import styles from './CopyGenerateOptionEditor.scss';
 
-const CopyGenerateOptionEditor: React.FC<CopyGenerateOptionEditorProps> = ({ className }) => {
+const CopyGenerateOptionEditor: React.FC<CopyGenerateOptionEditorProps> = ({
+  className,
+  wordCount,
+  promotionType,
+  onWordCountChange,
+  onPromotionTypeChange,
+}) => {
   return (
     <Box className={Classnames(styles.copyGenerateOptionEditor, className)}>
       <FormLabel className={styles.label}>생성 옵션</FormLabel>
-      <CopyWordCountEditor />
-      <CopyPromotionEditor />
+      <CopyWordCountEditor wordCount={wordCount} onWordCountChange={onWordCountChange} />
+      <CopyPromotionEditor promotionType={promotionType} onPromotionTypeChange={onPromotionTypeChange} />
     </Box>
   );
 };

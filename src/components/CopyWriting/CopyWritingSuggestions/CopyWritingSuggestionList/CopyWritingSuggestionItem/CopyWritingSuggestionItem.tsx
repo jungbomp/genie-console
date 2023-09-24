@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useMemo, useState } from 'react';
 import Classnames from 'classnames';
-import _ from 'lodash';
+import { useSnackbar } from 'notistack';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -24,6 +25,8 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
   genieSuggestion = false,
   copyWrite,
 }) => {
+  const { enqueueSnackbar } = useSnackbar();
+
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [suggestionCopyWrite, setSuggestionCopyWrite] = useState<string>(copyWrite);
   const cardHeader = useMemo(
@@ -34,8 +37,6 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSuggestionCopyWrite(event.target.value);
   };
-
-  console.log('length: ', _.toLength(copyWrite));
 
   return (
     <Box className={Classnames(styles.copyWritingSuggestionItem, className)}>
@@ -68,7 +69,12 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
               size='large'
               onClick={() => setIsEditing(true)}
             />
-            <StateChip icon={<Copy className={styles.buttonIcon} />} title='복사하기' size='large' />
+            <CopyToClipboard
+              text={suggestionCopyWrite}
+              onCopy={() => enqueueSnackbar('클립보드에 복사되었습니다.', { variant: 'success' })}
+            >
+              <StateChip icon={<Copy className={styles.buttonIcon} />} title='복사하기' size='large' />
+            </CopyToClipboard>
           </Box>
         </CardActions>
       </Card>
