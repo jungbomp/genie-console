@@ -91,6 +91,7 @@
     "history": "^4.10.1",
     "http-server": "^13.0.2",
     "lodash": "^4.17.21",
+    "notistack": "^3.0.1",
     "react": "^17.0.2",
     "react-copy-to-clipboard": "^5.1.0",
     "react-csv": "^2.0.3",

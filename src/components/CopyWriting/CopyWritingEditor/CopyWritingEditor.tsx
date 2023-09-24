@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Classnames from 'classnames';
+import _ from 'lodash';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -20,6 +21,7 @@ import { CopyWritingEditorProps } from './CopyWritingEditor.types';
 import styles from './CopyWritingEditor.scss';
 
 const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({ className }) => {
+  const [contentTitle, setContentTitle] = useState<string>();
   const [copyType, setCopyType] = useState<CopyType>();
   const [wordCount, setWordCount] = useState<number>();
   const [promotionType, setPromotionType] = useState<PromotionType>();
@@ -38,7 +40,7 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({ className }) => {
         AI 지니와 함께 고객을 사로잡을 수 있는 매력적인 문구를 만들어 보세요.
       </Typography>
       <FormControl>
-        <ContentTitleEditor />
+        <ContentTitleEditor value={contentTitle} onChange={setContentTitle} />
       </FormControl>
       <FormControl>
         <CopyTypeEditor value={copyType} onChange={setCopyType} />
@@ -60,13 +62,19 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({ className }) => {
       </FormControl>
       <FormControl className={styles.buttonFlexBox}>
         <Box className={styles.buttonWrapper}>
-          <Button className={styles.submitButton} variant='contained' startIcon={<SendAlt />}>
+          <Button
+            className={styles.submitButton}
+            variant='contained'
+            startIcon={<SendAlt />}
+            disabled={_.isEmpty(contentTitle) || _.isEmpty(copyType)}
+          >
             문구 생성하기
           </Button>
           <Button
             className={styles.resetWrapper}
             startIcon={<Rotate className={styles.resetIcon} />}
             onClick={onResetButtonClick}
+            disabled={_.isEmpty(contentTitle) || _.isEmpty(copyType)}
           >
             다시시작
           </Button>
