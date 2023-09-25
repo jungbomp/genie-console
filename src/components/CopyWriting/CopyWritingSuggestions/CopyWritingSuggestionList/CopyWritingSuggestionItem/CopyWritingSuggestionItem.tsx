@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useMemo, useState } from 'react';
+import React, { ChangeEvent, MouseEvent, useMemo, useState } from 'react';
 import Classnames from 'classnames';
 import { useSnackbar } from 'notistack';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -16,6 +16,8 @@ import Typography from '@mui/material/Typography';
 import StateChip from 'src/components/common/StateChip/StateChip';
 import { Edit, Copy, ThumbsDown, ThumbsUp } from 'src/Icon';
 
+import FeedbackPopover from './FeedbackPopover/FeedbackPopover';
+
 import type { CopyWritingSuggestionItemProps } from './CopyWritingSuggestionItem.types';
 
 import styles from './CopyWritingSuggestionItem.scss';
@@ -29,6 +31,7 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [suggestionCopyWrite, setSuggestionCopyWrite] = useState<string>(copyWrite);
+  const [feedbackAnchorEl, setFeedbackAnchorEl] = useState<HTMLButtonElement | undefined>();
   const cardHeader = useMemo(
     () => (genieSuggestion ? <Chip className={styles.chip} label='지니의 추천' size='small' /> : null),
     [genieSuggestion],
@@ -85,7 +88,7 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
           disableElevation={true}
           startIcon={<ThumbsUp className={styles.voteButtonIcon} />}
           onClick={() => {
-            console.log('clicked');
+            console.log('clicked thumbUp');
           }}
         />
         <Button
@@ -93,10 +96,11 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
           variant='contained'
           disableElevation={true}
           startIcon={<ThumbsDown className={styles.voteButtonIcon} />}
-          onClick={() => {
-            console.log('clicked');
+          onClick={(event: MouseEvent<HTMLButtonElement>) => {
+            setFeedbackAnchorEl(event.currentTarget);
           }}
         />
+        <FeedbackPopover anchorElement={feedbackAnchorEl} onClose={() => setFeedbackAnchorEl(undefined)} />
       </Box>
     </Box>
   );
