@@ -15,14 +15,21 @@ const CopyGenerateOptionEditor: React.FC<CopyGenerateOptionEditorProps> = ({
   className,
   wordCount,
   promotionType,
+  promotionDetails,
   onWordCountChange,
   onPromotionTypeChange,
+  onPromotionDetailsChange,
 }) => {
   return (
     <Box className={Classnames(styles.copyGenerateOptionEditor, className)}>
       <FormLabel className={styles.label}>생성 옵션</FormLabel>
       <CopyWordCountEditor wordCount={wordCount} onWordCountChange={onWordCountChange} />
-      <CopyPromotionEditor promotionType={promotionType} onPromotionTypeChange={onPromotionTypeChange} />
+      <CopyPromotionEditor
+        promotionType={promotionType}
+        promotionDetails={promotionDetails}
+        onPromotionTypeChange={onPromotionTypeChange}
+        onPromotionDetailsChange={onPromotionDetailsChange}
+      />
     </Box>
   );
 };

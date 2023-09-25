@@ -25,6 +25,7 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({ className }) => {
   const [copyType, setCopyType] = useState<CopyType>();
   const [wordCount, setWordCount] = useState<number>();
   const [promotionType, setPromotionType] = useState<PromotionType>();
+  const [promotionDetails, setPromotionDetails] = useState<string>();
   const [additionalRequest, setAdditionalRequest] = useState<string>();
 
   const onResetButtonClick = () => {
@@ -50,8 +51,10 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({ className }) => {
           copyType={copyType}
           wordCount={wordCount}
           promotionType={promotionType}
+          promotionDetails={promotionDetails}
           onWordCountChange={setWordCount}
           onPromotionTypeChange={setPromotionType}
+          onPromotionDetailsChange={setPromotionDetails}
         />
       </FormControl>
       <FormControl>

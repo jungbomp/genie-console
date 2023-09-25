@@ -6,6 +6,7 @@ import Copy from './Copy';
 import Edit from './Edit';
 import Home from './Home';
 import MagicWandFilled from './MagicWandFilled';
+import Pen from './Pen';
 import Recommended from './Recommended';
 import Rotate from './Rotate';
 import Search from './Search';
@@ -23,6 +24,7 @@ export {
   Edit,
   Home,
   MagicWandFilled,
+  Pen,
   Recommended,
   Rotate,
   Search,
