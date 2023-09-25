@@ -10,8 +10,10 @@ const GenerateOptionEditor: React.FC<GenerateOptionEditorProps> = ({
   copyType,
   wordCount,
   promotionType,
+  promotionDetails,
   onWordCountChange,
   onPromotionTypeChange,
+  onPromotionDetailsChange,
 }) => {
   if (copyType === 'HEAD' || copyType === 'BODY') {
     return (
@@ -19,8 +21,10 @@ const GenerateOptionEditor: React.FC<GenerateOptionEditorProps> = ({
         className={className}
         wordCount={wordCount}
         promotionType={promotionType}
+        promotionDetails={promotionDetails}
         onWordCountChange={onWordCountChange}
         onPromotionTypeChange={onPromotionTypeChange}
+        onPromotionDetailsChange={onPromotionDetailsChange}
       />
     );
   }

@@ -1,26 +1,31 @@
 import React from 'react';
 import Classnames from 'classnames';
+import _ from 'lodash';
 
 import Box from '@mui/material/Box';
 import FormLabel from '@mui/material/FormLabel';
 
 import StateChip from 'src/components/common/StateChip/StateChip';
-import { Add, Edit } from 'src/Icon';
 
-import { PromotionType } from 'src/components/CopyWriting/CopyWriting.types';
-import { CopyPromotionEditorProps } from './CopyPromotionEditor.types';
+import type { PromotionType } from 'src/components/CopyWriting/CopyWriting.types';
+
+import EditableStateChip from '../../EditableStateChip/EditableStateChip';
+
+import type { CopyPromotionEditorProps } from './CopyPromotionEditor.types';
 
 import styles from './CopyPromotionEditor.scss';
 
 const CopyPromotionEditor: React.FC<CopyPromotionEditorProps> = ({
   className,
   promotionType,
+  promotionDetails,
   onPromotionTypeChange = () => {},
+  onPromotionDetailsChange = () => {},
 }) => {
-  const getOnPromotionTypeChangeFunc =
-    (type: PromotionType): (() => void) =>
-    () =>
-      onPromotionTypeChange(promotionType === type ? undefined : type);
+  const getOnPromotionValueChangeFunc = (type: PromotionType) => (value?: string) => {
+    onPromotionTypeChange(_.isEmpty(value) ? undefined : type);
+    onPromotionDetailsChange(value);
+  };
 
   return (
     <Box className={Classnames(styles.copyPromotionEditor, className)}>
@@ -30,28 +35,31 @@ const CopyPromotionEditor: React.FC<CopyPromotionEditorProps> = ({
           title='무료'
           size='large'
           active={promotionType === 'FREE'}
-          onClick={getOnPromotionTypeChangeFunc('FREE')}
+          onClick={() => onPromotionTypeChange(promotionType === 'FREE' ? undefined : 'FREE')}
         />
-        <StateChip
-          icon={<Edit className={styles.icon} />}
-          title='경품・피규어'
-          size='large'
+        <EditableStateChip
+          title='경품'
+          keepTitle={true}
+          placeholder='경품입력'
           active={promotionType === 'GIFT'}
-          onClick={getOnPromotionTypeChangeFunc('GIFT')}
+          value={promotionType === 'GIFT' ? promotionDetails : undefined}
+          onChange={getOnPromotionValueChangeFunc('GIFT')}
         />
-        <StateChip
-          icon={<Add className={styles.icon} />}
+        <EditableStateChip
           title='TV쿠폰'
-          size='large'
+          keepTitle={true}
+          placeholder='TV쿠폰입력'
           active={promotionType === 'TV_COUPON'}
-          onClick={getOnPromotionTypeChangeFunc('TV_COUPON')}
+          value={promotionType === 'TV_COUPON' ? promotionDetails : undefined}
+          onChange={getOnPromotionValueChangeFunc('TV_COUPON')}
         />
-        <StateChip
-          icon={<Add className={styles.icon} />}
+        <EditableStateChip
           title='가격 할인'
-          size='large'
+          keepTitle={true}
+          placeholder='가격 할인 입력'
           active={promotionType === 'DISCOUNT'}
-          onClick={getOnPromotionTypeChangeFunc('DISCOUNT')}
+          value={promotionType === 'DISCOUNT' ? promotionDetails : undefined}
+          onChange={getOnPromotionValueChangeFunc('DISCOUNT')}
         />
       </Box>
     </Box>
