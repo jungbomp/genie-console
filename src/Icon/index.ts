@@ -13,6 +13,7 @@ import Search from './Search';
 import SendAlt from './SendAlt';
 import Settings from './Settings';
 import ThumbsDown from './ThumbsDown';
+import ThumbsDownFilled from './ThumbsDownFilled';
 import ThumbsUp from './ThumbsUp';
 
 export {
@@ -31,5 +32,6 @@ export {
   SendAlt,
   Settings,
   ThumbsDown,
+  ThumbsDownFilled,
   ThumbsUp,
 };
