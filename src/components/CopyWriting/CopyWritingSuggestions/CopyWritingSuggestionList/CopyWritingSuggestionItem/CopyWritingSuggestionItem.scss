@@ -8,6 +8,7 @@
     padding: 20px;
     border-radius: 12px;
     flex: 1 0 0;
+    box-shadow: 0px 4px 30px 0px rgba(102, 101, 116, 0.10);
 
     .cardHeader {
       padding: 0 0 8px;
@@ -97,12 +98,17 @@
       padding: 12px;
       align-items: center;
       border-radius: 50%;
-      background: var(--default-neutral-white, #FFF);
+      background: var(--default-neutral-white, #FFF) !important;
       color: #000;
       min-width: unset;
+      box-shadow: 0px 4px 30px 0px rgba(102, 101, 116, 0.10);
 
       &:hover {
         //background: #EFE7FF;
+        color: #8138FF;
+      }
+
+      &:focus {
         color: #8138FF;
       }
 
