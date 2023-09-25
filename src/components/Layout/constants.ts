@@ -1,1 +1,1 @@
-export const TITLE = 'Octopus Console';
+export const TITLE = 'Ai Genie';

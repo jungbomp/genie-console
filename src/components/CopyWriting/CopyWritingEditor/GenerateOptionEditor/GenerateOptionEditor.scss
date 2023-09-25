@@ -1,4 +1,8 @@
 @import 'src/components/CopyWriting/common';
 
 .generateOptionEditor {
+    & :global(.MuiButtonBase-root){
+        background-color: #F5F5F8;
+        height: unset;
+      }
 }

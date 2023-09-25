@@ -16,6 +16,7 @@ import Settings from './Settings';
 import ThumbsDown from './ThumbsDown';
 import ThumbsDownFilled from './ThumbsDownFilled';
 import ThumbsUp from './ThumbsUp';
+import AddComment from './AddComment';
 
 export {
   Add,
@@ -36,4 +37,5 @@ export {
   ThumbsDown,
   ThumbsDownFilled,
   ThumbsUp,
+  AddComment,
 };

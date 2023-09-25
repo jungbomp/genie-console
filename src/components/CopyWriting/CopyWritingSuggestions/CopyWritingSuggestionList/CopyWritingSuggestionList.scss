@@ -9,6 +9,11 @@
     align-items: flex-start;
     gap: 16px;
     align-self: stretch;
+
+    & :global(.MuiButtonBase-root){
+      background-color: #F5F5F8;
+      height: unset;
+    }
   }
 
   .addButtonWrapper {
@@ -16,9 +21,20 @@
     justify-content: flex-end;
     padding-right: 52px;
 
+    .addCommentButton{
+      background-color: #fff;
+
+      :hover {
+        .MuiChip-icon {
+          fill: #6A30D8;
+        }
+      }
+    }
+
     .icon {
       width: 16px;
       height: 16px;
     }
+
   }
 }

@@ -3,6 +3,16 @@
 .synopsisGenerateOptionEditor {
   @include copyWritingChildComponent;
 
+  & :global(.MuiButtonBase-root){
+    background-color: #F5F5F8;
+    height: unset;
+    width: 318px;    
+  }
+
+  & :global(.MuiButtonBase-root):last-child{
+    width: unset;    
+  }
+
   .label {
     @include copyWritingChildComponentLabel;
   }

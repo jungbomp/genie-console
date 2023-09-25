@@ -24,12 +24,23 @@ $header-margin-bottom: 4px;
       align-items: center;
       justify-content: flex-start;
       margin-bottom: $header-margin-bottom;
+      gap: 8px;
+
+      .logo {
+        img {
+          width: 17.91px;
+          filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(78deg) brightness(103%) contrast(100%);
+          }
+      }
 
       .genieWordMarkWrapper {
-        background: #6941FF;
+        // background: #6941FF;
 
         .genieWordMark {
-          fill: url('images/genie_wordmark_white.png'), lightgray 0px 0px / 144.608% 100% no-repeat;
+          // fill: url('images/genie_wordmark_white.png'), lightgray 0px 0px / 144.608% 100% no-repeat;
+          img {
+            width: 59.43px;
+          }
         }
       }
     }
@@ -68,7 +79,8 @@ $header-margin-bottom: 4px;
       border-style: solid;
       border-radius: unset;
 
-      &:hover {
+      &:hover,
+      &:active {
         background: unset;
         color: #6A30D8;
       }
