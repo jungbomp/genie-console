@@ -4,11 +4,12 @@ import _ from 'lodash';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 
 import StateChip from 'src/components/common/StateChip/StateChip';
-import { Close, MagicWandFilled } from 'src/Icon';
+import { Close, DataEnrichmentAdd, MagicWandFilled } from 'src/Icon';
 
 import { AdditionalRequestEditorProps } from './AdditionalRequestEditor.types';
 
@@ -19,7 +20,7 @@ const AdditionalRequestEditor: React.FC<AdditionalRequestEditorProps> = ({
   additionalRequest,
   onAdditionalRequestChange = () => {},
 }) => {
-  const [displayEdit, setDisplayEdit] = useState(_.isEmpty(additionalRequest));
+  const [displayEdit, setDisplayEdit] = useState(!_.isEmpty(additionalRequest));
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => onAdditionalRequestChange(event.target.value);
 
@@ -42,6 +43,7 @@ const AdditionalRequestEditor: React.FC<AdditionalRequestEditorProps> = ({
           onClick={() => setDisplayEdit(false)}
         />
       </Box>
+      {!displayEdit ? <Divider className={styles.divider} variant='fullWidth' /> : null}
       <Box
         className={Classnames(styles.additionalRequestBodyWrapper, {
           [styles.additionalRequestBodyWrapperVisible]: displayEdit,
@@ -56,6 +58,7 @@ const AdditionalRequestEditor: React.FC<AdditionalRequestEditorProps> = ({
           onChange={onChange}
         />
         <Box className={styles.additionalRequestOptionWrapper}>
+          <DataEnrichmentAdd className={styles.icon} />
           <StateChip
             title='수식어를 풍성하게'
             size='large'

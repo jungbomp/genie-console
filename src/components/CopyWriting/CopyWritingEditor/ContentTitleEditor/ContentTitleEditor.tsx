@@ -42,8 +42,8 @@ const ContentTitleEditor: React.FC<ContentTitleEditorProps> = ({ className, valu
         disableClearable={true}
         options={mockOptions}
         renderInput={getAutocompleteRenderInput}
-        inputValue={value}
-        onInputChange={(_: SyntheticEvent, inputValue: string) => onChange(inputValue)}
+        value={value}
+        onChange={(_: SyntheticEvent, inputValue: string) => onChange(inputValue)}
       />
     </Box>
   );

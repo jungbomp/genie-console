@@ -1,5 +1,6 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import Classnames from 'classnames';
+import _ from 'lodash';
 
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -19,9 +20,11 @@ const FeedbackPopoverItem: React.FC<FeedbackPopoverItemProps> = ({
   etcFeedback,
   onChange = () => {},
 }) => {
-  const [etcText, setEtcText] = useState<string | undefined>(etcFeedback);
   const onCheckboxChanged = (event: ChangeEvent<HTMLInputElement>) =>
-    onChange(event.target.checked ? { type, etcFeedback: type === 'ETC' ? etcText : undefined } : undefined);
+    onChange(event.target.checked ? { type, etcFeedback: type === 'ETC' ? etcFeedback : undefined } : undefined);
+
+  const onEtcFeedbackChange = (event: ChangeEvent<HTMLInputElement>) =>
+    onChange(_.isEmpty(event.target.value) ? undefined : { type, etcFeedback: event.target.value });
 
   return type !== 'ETC' ? (
     <FormControlLabel
@@ -63,9 +66,8 @@ const FeedbackPopoverItem: React.FC<FeedbackPopoverItemProps> = ({
                 </InputAdornment>
               ),
             }}
-            value={etcText}
-            // @ts-ignore
-            onChange={setEtcText}
+            value={etcFeedback}
+            onChange={onEtcFeedbackChange}
           />
         </Box>
       }

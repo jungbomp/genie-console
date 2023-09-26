@@ -61,13 +61,14 @@
 
       :global(.MuiButton-startIcon) {
         margin: unset;
-
-        .icon {
-          width: 16px;
-          height: 16px;
-        }
       }
     }
+  }
+
+  .divider {
+    border-color: #E0E1F3;
+    flex-shrink: 0;
+    padding-top: 20px;
   }
 
   .additionalRequestBodyWrapper {
@@ -103,8 +104,13 @@
     .additionalRequestOptionWrapper {
       display: flex;
       justify-content: flex-end;
-      align-items: flex-end;
+      align-items: center;
       gap: 8px;
     }
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
   }
 }

@@ -14,7 +14,7 @@ $content-width: 1235px;
 
 .wrapper {
   height: $wrapper-height;
-  background: linear-gradient($wrapper-background-gradient-angle, $wrapper-background-gradient-start-color $wrapper-background-gradient-start-color-length, $wrapper-background-gradient-end-color $wrapper-background-gradient-end-color-length);
+  //background: linear-gradient($wrapper-background-gradient-angle, $wrapper-background-gradient-start-color $wrapper-background-gradient-start-color-length, $wrapper-background-gradient-end-color $wrapper-background-gradient-end-color-length);
 
   .layout {
     display: flex;

@@ -11,7 +11,7 @@ import logo from 'images/ai.svg';
 import genieWordMark from 'images/genie_wordmark_white.png';
 
 import { Settings } from 'src/Icon';
-import { userSelector } from 'src/components/redux/selectors';
+import { selectedMenuSelector, userSelector } from 'src/components/redux/selectors';
 import type { MenuItemContext, UserContext } from 'src/types';
 
 import MenuItem from './MenuItem';
@@ -20,6 +20,7 @@ import styles from './SideMenu.scss';
 
 const SideMenu: React.FC<SideMenuProps> = ({ className, menuItems }) => {
   const user: UserContext = useSelector(userSelector);
+  const selectedMenu: MenuItemContext | undefined = useSelector(selectedMenuSelector);
 
   return (
     <Box className={Classnames(styles.sideMenu, className)}>
@@ -36,7 +37,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ className, menuItems }) => {
         </div>
         <MenuList>
           {menuItems.map((menuItem: MenuItemContext) => (
-            <MenuItem key={menuItem.path} menuItemContext={menuItem} />
+            <MenuItem key={menuItem.path} menuItemContext={menuItem} selected={selectedMenu?.path === menuItem.path} />
           ))}
         </MenuList>
       </Box>

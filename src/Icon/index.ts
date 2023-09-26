@@ -3,6 +3,7 @@ import At from './At';
 import ChatBot from './ChatBot';
 import Close from './Close';
 import Copy from './Copy';
+import DataEnrichmentAdd from './DataEnrichmentAdd';
 import Edit from './Edit';
 import Home from './Home';
 import MagicWandFilled from './MagicWandFilled';
@@ -22,6 +23,7 @@ export {
   ChatBot,
   Close,
   Copy,
+  DataEnrichmentAdd,
   Edit,
   Home,
   MagicWandFilled,
