@@ -17,23 +17,15 @@ $menu-item-hover-font-color: #3B13D0;
     font-weight: 400;
   }
 
-  &:global(.MuiMenuItem-root):focus {
-    border-radius: $menu-item-border-radius;
-    background: var(--default-neutral-white, $menu-item-hover-background-color);
-    color: $menu-item-hover-font-color;
-    
-    .icon {
+  &:global(.MuiMenuItem-root) {
+    &.active, &:hover {
+      border-radius: $menu-item-border-radius;
+      background: var(--default-neutral-white, $menu-item-hover-background-color);
       color: $menu-item-hover-font-color;
-    }
-  }
 
-  &:global(.MuiMenuItem-root):hover {
-    border-radius: $menu-item-border-radius;
-    background: var(--default-neutral-white, $menu-item-hover-background-color);
-    color: $menu-item-hover-font-color;
-
-    .icon {
-      color: $menu-item-hover-font-color;
+      .icon {
+        color: $menu-item-hover-font-color;
+      }
     }
   }
 
