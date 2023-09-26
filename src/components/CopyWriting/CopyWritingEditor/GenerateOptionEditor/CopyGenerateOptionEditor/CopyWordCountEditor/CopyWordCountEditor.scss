@@ -2,9 +2,7 @@
 
 .copyWordCountEditor {
   @include copyWritingChildComponent;
-
   
-
   .copyWordChipWrapper {
     display: flex;
     align-items: flex-start;

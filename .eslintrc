@@ -44,13 +44,7 @@
     "no-use-before-define": "off", // note you must disable the base rule as it can report incorrect errors
     "@typescript-eslint/no-use-before-define": ["error"],
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error", { "ignoreTypeValueShadow": true }],
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ]
+    "@typescript-eslint/no-shadow": ["error", { "ignoreTypeValueShadow": true }]
   },
   "overrides": [
     {

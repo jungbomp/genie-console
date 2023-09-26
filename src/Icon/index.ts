@@ -1,4 +1,5 @@
 import Add from './Add';
+import AddComment from './AddComment';
 import At from './At';
 import ChatBot from './ChatBot';
 import Close from './Close';
@@ -16,10 +17,10 @@ import Settings from './Settings';
 import ThumbsDown from './ThumbsDown';
 import ThumbsDownFilled from './ThumbsDownFilled';
 import ThumbsUp from './ThumbsUp';
-import AddComment from './AddComment';
 
 export {
   Add,
+  AddComment,
   At,
   ChatBot,
   Close,
@@ -37,5 +38,4 @@ export {
   ThumbsDown,
   ThumbsDownFilled,
   ThumbsUp,
-  AddComment,
 };

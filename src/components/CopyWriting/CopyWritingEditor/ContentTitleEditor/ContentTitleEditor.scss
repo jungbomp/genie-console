@@ -11,13 +11,10 @@ $copy-writing-focus-color: #6A30D8;
 .contentTitleEditor {
   @include copyWritingChildComponent;
   flex: unset;
-  
 
   .label {
     @include copyWritingChildComponentLabel;
   }
-
-
 
   .autoComplete {
     background-color: $copy-writing-background-color;
@@ -31,7 +28,7 @@ $copy-writing-focus-color: #6A30D8;
       }
       
       :global(.MuiAutocomplete-input) {
-        padding: 0px 4px 0px !important;
+        padding: 0 4px 0;
         line-height: 24px;
       }
       
