@@ -3,8 +3,8 @@ html, body {
   background: linear-gradient(145deg, #522CBB 0%, #833CF5 60.35%);
 }
 
-body > div {
-  height: fit-content;
+body > div:first-child {
+  height: 100%;
 }
 
 :global(.MuiAutocomplete-popper) {
