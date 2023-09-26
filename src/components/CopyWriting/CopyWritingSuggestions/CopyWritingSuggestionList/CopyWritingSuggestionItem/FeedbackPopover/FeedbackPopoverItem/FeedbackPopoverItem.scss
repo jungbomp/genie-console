@@ -1,0 +1,58 @@
+.feedbackPopoverItem {
+  padding: 12px;
+  align-self: stretch;
+
+  &:global(.MuiFormControlLabel-root) {
+    margin: unset;
+  }
+
+  &:hover {
+    background-color: #F5F5F8;
+  }
+
+  .feedbackItemCheckbox {
+    padding: 0 12px 0 0;
+  }
+
+  :global(.MuiFormControlLabel-label) {
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+  }
+
+  .feedbackItemEtcLabelWrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+
+    .textField {
+      display: flex;
+      padding: 0 12px;
+      align-items: center;
+      gap: 8px;
+      flex: 1 0 0;
+      border-radius: 8px;
+      background: #F5F5F8;
+
+      color: #757A9B;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px; /* 142.857% */
+
+      :global(.MuiInputBase-root) {
+        &:before, &:after {
+          border: none;
+        }
+      }
+
+      .icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

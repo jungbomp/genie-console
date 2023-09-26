@@ -73,6 +73,10 @@ $copy-writing-space: 32px;
           margin: unset;
         }
 
+        &:global(.Mui-disabled) {
+          color: #C2C2D2;
+        }
+
         .resetIcon {
           width: 16px;
           height: 16px;

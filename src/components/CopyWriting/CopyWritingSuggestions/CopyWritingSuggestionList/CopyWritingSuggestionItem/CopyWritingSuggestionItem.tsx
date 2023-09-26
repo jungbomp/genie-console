@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, useMemo, useState } from 'react';
+import React, { ChangeEvent, MouseEvent, useEffect, useMemo, useState } from 'react';
 import Classnames from 'classnames';
 import { useSnackbar } from 'notistack';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -18,7 +18,7 @@ import { Edit, Copy, ThumbsDown, ThumbsUp } from 'src/Icon';
 
 import FeedbackPopover from './FeedbackPopover/FeedbackPopover';
 
-import type { CopyWritingSuggestionItemProps } from './CopyWritingSuggestionItem.types';
+import type { CopyWritingSuggestionItemProps, FeedbackItem } from './CopyWritingSuggestionItem.types';
 
 import styles from './CopyWritingSuggestionItem.scss';
 
@@ -32,6 +32,7 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [suggestionCopyWrite, setSuggestionCopyWrite] = useState<string>(copyWrite);
   const [feedbackAnchorEl, setFeedbackAnchorEl] = useState<HTMLButtonElement | undefined>();
+  const [feedbacks, setFeedbacks] = useState<FeedbackItem[]>([]);
   const cardHeader = useMemo(
     () => (genieSuggestion ? <Chip className={styles.chip} label='지니의 추천' size='small' /> : null),
     [genieSuggestion],
@@ -40,6 +41,10 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSuggestionCopyWrite(event.target.value);
   };
+
+  useEffect(() => {
+    console.log('feedbacks: ', feedbacks);
+  }, [feedbacks]);
 
   return (
     <Box className={Classnames(styles.copyWritingSuggestionItem, className)}>
@@ -100,7 +105,12 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
             setFeedbackAnchorEl(event.currentTarget);
           }}
         />
-        <FeedbackPopover anchorElement={feedbackAnchorEl} onClose={() => setFeedbackAnchorEl(undefined)} />
+        <FeedbackPopover
+          anchorElement={feedbackAnchorEl}
+          value={feedbacks}
+          onChange={setFeedbacks}
+          onClose={() => setFeedbackAnchorEl(undefined)}
+        />
       </Box>
     </Box>
   );

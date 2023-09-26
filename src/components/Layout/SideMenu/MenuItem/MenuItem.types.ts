@@ -3,4 +3,5 @@ import type { MenuItemContext } from 'src/types';
 
 export interface MenuItemProps extends CommonProps {
   menuItemContext: MenuItemContext;
+  selected?: boolean;
 }

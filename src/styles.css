@@ -1,9 +1,10 @@
 html, body {
   height: 100%;
+  background: linear-gradient(145deg, #522CBB 0%, #833CF5 60.35%);
 }
 
 body > div {
-  height: 100%;
+  height: fit-content;
 }
 
 :global {
