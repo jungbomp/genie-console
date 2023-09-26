@@ -1,4 +1,5 @@
 import Add from './Add';
+import AddComment from './AddComment';
 import At from './At';
 import ChatBot from './ChatBot';
 import Close from './Close';
@@ -19,6 +20,7 @@ import ThumbsUp from './ThumbsUp';
 
 export {
   Add,
+  AddComment,
   At,
   ChatBot,
   Close,

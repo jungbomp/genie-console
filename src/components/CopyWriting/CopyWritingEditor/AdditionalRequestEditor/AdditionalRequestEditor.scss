@@ -82,6 +82,11 @@
     border-radius: 8px;
     border: 1px solid #E0E1F3;
 
+    & :global(.MuiButtonBase-root){
+      background-color: #F5F5F8;
+      height: unset;
+    }
+
     &.additionalRequestBodyWrapperVisible {
       display: flex;
     }

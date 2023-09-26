@@ -4,7 +4,7 @@ import Classnames from 'classnames';
 import Box from '@mui/material/Box';
 
 import StateChip from 'src/components/common/StateChip/StateChip';
-import { Copy } from 'src/Icon';
+import { AddComment } from 'src/Icon';
 
 import CopyWritingSuggestionItem from './CopyWritingSuggestionItem/CopyWritingSuggestionItem';
 
@@ -22,7 +22,12 @@ const CopyWritingSuggestionList: React.FC<CopyWritingSuggestionListProps> = ({ c
         ))}
       </Box>
       <Box className={styles.addButtonWrapper}>
-        <StateChip icon={<Copy className={styles.icon} />} title='카피 더 생성하기' size='large' />
+        <StateChip
+          className={styles.addCommentButton}
+          icon={<AddComment className={styles.icon} />}
+          title='카피 더 생성하기'
+          size='large'
+        />
       </Box>
     </Box>
   );

@@ -4,6 +4,9 @@ $copy-writing-background-color: #F5F5F8;;
 $copy-writing-border-radius: 8px;
 
 $copy-writing-icon-color: #9093BF;
+$copy-writing-padding: 12px;
+
+$copy-writing-focus-color: #6A30D8;
 
 .contentTitleEditor {
   @include copyWritingChildComponent;
@@ -18,13 +21,30 @@ $copy-writing-icon-color: #9093BF;
     border-radius: $copy-writing-border-radius;
 
     & :global(.MuiAutocomplete-inputRoot) {
+      padding: $copy-writing-padding;
+
       .autoCompleteSearchIcon {
         color: $copy-writing-icon-color;
       }
-
+      
+      :global(.MuiAutocomplete-input) {
+        padding: 0 4px 0;
+        line-height: 24px;
+      }
+      
       :global(.MuiOutlinedInput-notchedOutline) {
         border: none;
       }
+     
+    }
+  }
+
+  .autoComplete:focus-within,
+  .autoComplete:hover
+  {
+    outline: 1px solid $copy-writing-focus-color;
+    .autoCompleteSearchIcon {
+      color: $copy-writing-focus-color;
     }
   }
 }

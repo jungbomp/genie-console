@@ -3,6 +3,11 @@
 .copyGenerateOptionEditor {
    @include copyWritingChildComponent;
 
+   & :global(.MuiButtonBase-root){
+      background-color: #F5F5F8;
+      height: unset;
+    }
+
    .label {
       @include copyWritingChildComponentLabel;
    }

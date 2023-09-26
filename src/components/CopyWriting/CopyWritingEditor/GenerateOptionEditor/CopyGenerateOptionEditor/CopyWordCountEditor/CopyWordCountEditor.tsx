@@ -42,7 +42,7 @@ const CopyWordCountEditor: React.FC<CopyWordCountEditorProps> = ({
           onClick={getOnChangeFunc(60)}
         />
         <EditableStateChip
-          title='적접입력'
+          title='직접입력'
           active={wordCount !== undefined && wordCount > 60}
           value={wordCount !== undefined && wordCount > 60 ? `${wordCount}` : undefined}
           onChange={(value?: string) => onWordCountChange(_.isEmpty(value) ? undefined : Number(value))}
