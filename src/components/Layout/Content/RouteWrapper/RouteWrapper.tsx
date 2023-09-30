@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { setSelectedMenu } from 'src/components/redux/actions';
 
-import { RouteWrapperProps } from './RouteWrapper.types';
+import type { RouteWrapperProps } from './RouteWrapper.types';
 
 const RouteWrapper: React.FC<RouteWrapperProps> = ({ menuItem }) => {
   const dispatch = useDispatch();

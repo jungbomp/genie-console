@@ -1,0 +1,11 @@
+@import 'src/components/common';
+@import 'src/components/GenieTheme/common';
+
+.themeSuggestion {
+  @include componentItem;
+  @include genieThemeChildComponent;
+
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}

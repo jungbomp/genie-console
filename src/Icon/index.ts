@@ -14,6 +14,7 @@ import Rotate from './Rotate';
 import Search from './Search';
 import SendAlt from './SendAlt';
 import Settings from './Settings';
+import StarFilled from './StarFilled';
 import ThumbsDown from './ThumbsDown';
 import ThumbsDownFilled from './ThumbsDownFilled';
 import ThumbsUp from './ThumbsUp';
@@ -35,6 +36,7 @@ export {
   Search,
   SendAlt,
   Settings,
+  StarFilled,
   ThumbsDown,
   ThumbsDownFilled,
   ThumbsUp,

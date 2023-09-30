@@ -1,0 +1,7 @@
+$component-border-radius: 16px;
+$component-background-color: var(--default-neutral-white, #FFF);
+
+@mixin componentItem {
+  border-radius: $component-border-radius;
+  background-color: $component-background-color;
+}
