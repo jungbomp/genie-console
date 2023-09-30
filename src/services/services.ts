@@ -14,10 +14,10 @@ export const getTotalAutoWords = (uquery: string): Promise<string> =>
       spell_type: '1',
     },
   )
-  .then((response: any) => response?.data || '')
-  .then((xmlStr: string) => xml2json(xmlStr, { compact: true, spaces: 2 }))
-  .then(JSON.parse)
-  .catch((error: any) => {
-    console.log(error);
-    throw error;
-  });
+    .then((response: any) => response?.data || '')
+    .then((xmlStr: string) => xml2json(xmlStr, { compact: true, spaces: 2 }))
+    .then(JSON.parse)
+    .catch((error: any) => {
+      console.error(error);
+      throw error;
+    });
