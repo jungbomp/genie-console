@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import Classnames from 'classnames';
 
 import Box from '@mui/material/Box';
@@ -9,13 +9,24 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
 import { Search } from 'src/Icon';
+import { getTotalAutoWords } from 'src/services/services';
 
 import type { ContentTitleEditorProps } from './ContentTitleEditor.types';
+import { getTitleOptionsFromTotalAutoWords } from './ContentTitleEditor.utils';
 
 import styles from './ContentTitleEditor.scss';
 
 const ContentTitleEditor: React.FC<ContentTitleEditorProps> = ({ className, value, onChange = () => {} }) => {
-  const mockOptions = ['아바타', '아바타: 물의 길 (소장용 아바타)', '아바타: 물의 길'];
+  const [options, setOptions] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (value && value.length > 0) {
+      getTotalAutoWords(value).then(getTitleOptionsFromTotalAutoWords).then(setOptions);
+    } else {
+      setOptions([]);
+    }
+  }, [value]);
+
   const getAutocompleteRenderInput = (params: AutocompleteRenderInputParams) => (
     <TextField
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -40,10 +51,10 @@ const ContentTitleEditor: React.FC<ContentTitleEditorProps> = ({ className, valu
         className={styles.autoComplete}
         freeSolo={true}
         disableClearable={true}
-        options={mockOptions}
+        options={options}
         renderInput={getAutocompleteRenderInput}
-        value={value}
-        onChange={(_: SyntheticEvent, inputValue: string) => onChange(inputValue)}
+        inputValue={value}
+        onInputChange={(_: SyntheticEvent, inputValue: string) => onChange(inputValue)}
       />
     </Box>
   );
