@@ -38,6 +38,10 @@ module.exports = (envObj, args) => {
         ...ALIAS.PUBLIC,
         ...ALIAS.IMAGES,
       },
+      fallback: {
+        stream: false,
+        buffer: false,
+      },
     },
     plugins: [
       PLUGINS.DOTENV(env),
