@@ -1,0 +1,155 @@
+@import 'src/components/common';
+@import 'src/components/GenieTheme/common';
+
+.genieThemeHeader {
+  @include componentItem;
+  @include genieThemeChildComponent;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .titleWrapper {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+
+    .title {
+      color: #000;
+    }
+
+    .subtitle {
+      color: #6E7494;
+    }
+  }
+
+  .paramWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+
+    .textField {
+      color: rgba(35, 17, 108, 0.50);
+
+      :global(.MuiFilledInput-root) {
+        background-color: #F5F5F8;
+        border-radius: 8px;
+        padding: 12px;
+        gap: 8px;
+
+        :global(.MuiInputAdornment-positionStart) {
+          margin: unset;
+          padding: unset;
+
+          .bar {
+            color: #6941FF;
+          }
+        }
+
+        :global(.MuiFilledInput-input) {
+          padding: unset;
+        }
+
+        :global(.MuiInputAdornment-positionEnd) {
+          .textFieldButton {
+            color: #757A9B;
+
+            &:hover {
+              background-color: unset;
+            }
+          }
+        }
+      }
+
+      :global(.MuiInputBase-root) {
+        color: #757A9B;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 150% */
+
+        &:before, &:after {
+          border: none;
+        }
+      }
+    }
+
+    .targetWrapper, .keywordWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1 0 0;
+    }
+
+    .keywordWrapper {
+
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+
+    .chipWrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      flex: 1 0 0;
+
+      .chip {
+        display: flex;
+        padding: 8px 12px;
+        align-items: center;
+        gap: 8px;
+        border-radius: 30px;
+        background: #F5F5F8;
+
+        :global(.MuiChip-label) {
+          padding: unset;
+          color: #000;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 24px; /* 150% */
+        }
+
+        :global(.MuiChip-deleteIcon) {
+          margin: unset;
+          color: #000;
+        }
+      }
+    }
+
+    .footerButton {
+      display: flex;
+      padding: 8px 16px;
+      align-items: center;
+      gap: 12px;
+      border-radius: 30px;
+      background: #8138FF;
+
+      :global(.MuiChip-label) {
+        color: var(--default-neutral-white, #FFF);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 150% */
+        padding: unset;
+      }
+    }
+  }
+
+  .label {
+    color: #23116C;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 26px; /* 162.5% */
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}

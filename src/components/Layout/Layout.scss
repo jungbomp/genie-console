@@ -8,8 +8,6 @@ $wrapper-background-gradient-start-color-length: 0%;
 $wrapper-background-gradient-end-color: #833CF5;
 $wrapper-background-gradient-end-color-length: 60.35%;
 
-$content-border-radius: 16px;
-$content-background-color: var(--default-neutral-white, #FFF);
 $content-width: 1235px;
 
 .wrapper {
@@ -32,8 +30,6 @@ $content-width: 1235px;
     }
 
     .content {
-      border-radius: $content-border-radius;
-      background-color: $content-background-color;
       flex: 1 0 0;
       overflow: hidden;
     }

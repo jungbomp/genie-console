@@ -1,4 +1,7 @@
+@import 'src/components/common';
+
 .copyWriting {
+  @include componentItem;
   display: flex;
   flex-wrap: wrap;
 }

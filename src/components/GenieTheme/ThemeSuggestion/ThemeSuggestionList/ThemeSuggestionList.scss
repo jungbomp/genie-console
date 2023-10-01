@@ -1,0 +1,70 @@
+@import '../common';
+
+.themeSuggestionList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1 0 0;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+
+    .label {
+      @include themeSuggestionChildComponentLabel;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 0 0;
+
+    .empty {
+      display: flex;
+      flex: 1 0 0;
+      justify-content: center;
+      align-items: center;
+
+      .logoWrapper {
+        width: 112px;
+        height: 112px;
+        background-color: #EFE7FF;
+        border-radius: 50%;
+        display: flex;
+        padding: 25px;
+
+        .logo {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    .buttonWrapper {
+      display: flex;
+      justify-content: flex-end;
+
+      .submitButton {
+        display: flex;
+        padding: 12px 38px 12px 32px;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+        border-radius: 30px;
+        background: #8138FF;
+
+        :global(.MuiButton-startIcon) {
+          margin: unset;
+        }
+
+        &:global(.Mui-disabled) {
+          background: #F5F5F8;
+        }
+      }
+    }
+
+  }
+}
