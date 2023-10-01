@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import FormLabel from '@mui/material/FormLabel';
 
 import genieTvInitialSymbolWhite from 'images/genie_tv_initial_symbol_white.png';
-import { SendAlt } from 'src/Icon';
+import { Download } from 'src/Icon';
 
 import type { ThemeSuggestionListProps } from './ThemeSuggestionList.types';
 
@@ -25,7 +25,7 @@ const ThemeSuggestionList: React.FC<ThemeSuggestionListProps> = ({ className }) 
           </Box>
         </Box>
         <Box className={styles.buttonWrapper}>
-          <Button className={styles.submitButton} variant='contained' startIcon={<SendAlt />} disabled={true}>
+          <Button className={styles.submitButton} variant='contained' startIcon={<Download />} disabled={true}>
             적용하기
           </Button>
         </Box>
