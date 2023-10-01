@@ -1,0 +1,27 @@
+.themeSuggestionListView {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: stretch;
+
+  .moreGenerationButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-end;
+    border-radius: 30px;
+    border: 1px solid #E0E1F3;
+    padding: 8px 16px;
+
+    color: #23116C;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+
+    :global(.MuiButton-startIcon) {
+      margin: unset;
+    }
+  }
+}
