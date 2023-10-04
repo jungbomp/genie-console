@@ -10,7 +10,7 @@ const request = (url: string, method: Method, headers?: JsonParam, params?: Json
     url: `${url}${queryParam.length > 0 ? `?${queryParam}` : ''}`,
     headers: {
       'Content-Type': 'application/JSON; charset=utf=8',
-      ...headers,
+      ...(headers ?? {}),
     },
     data,
     validateStatus: (status: number): boolean => status >= 200 && status < 501,
