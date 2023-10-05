@@ -1,4 +1,4 @@
-import type { MidmApiRequestBody, MidmGeneratingOption } from 'src/types';
+import type { MidmApiRequestBody, MidmModelParameter } from 'src/types';
 
 import type { JsonParam } from './types';
 
@@ -30,10 +30,7 @@ export const urlEncodeBytes = (buf: Buffer): string => {
   return encoded;
 };
 
-export const buildMidmApiRequestBody = (
-  prompt: string,
-  generatingOption: MidmGeneratingOption,
-): MidmApiRequestBody => ({
+export const buildMidmApiRequestBody = (prompt: string, generatingOption: MidmModelParameter): MidmApiRequestBody => ({
   api_key: '1234567890',
   text: `User; ${prompt} Midm; `,
   gen_option: generatingOption,

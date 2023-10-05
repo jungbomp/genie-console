@@ -1,9 +1,9 @@
 import type { AnyAction } from 'redux';
 
-import { SET_COPY_WRITING_OPTIONS } from './actionType';
+import { SET_AUTO_WORD_ITEMS, SET_COPY_WRITING_OPTIONS } from './actionType';
 import type { CopyWritingState } from './types';
 
-const initialState: CopyWritingState = {};
+const initialState: CopyWritingState = { autoWordItems: [] };
 
 const reducer = (state = initialState, { type, payload }: AnyAction) => {
   switch (type) {
@@ -11,6 +11,11 @@ const reducer = (state = initialState, { type, payload }: AnyAction) => {
       return {
         ...state,
         copyWritingOption: { ...payload.copyWritingOption },
+      };
+    case SET_AUTO_WORD_ITEMS:
+      return {
+        ...state,
+        autoWordItems: [...payload.autoWordItems],
       };
     default:
       return state;

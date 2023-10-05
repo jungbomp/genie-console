@@ -19,7 +19,31 @@ export interface GlobalState {
   user: UserContext;
 }
 
-export interface MidmGeneratingOption {
+export interface AutoWordItem {
+  SEARCH_WORD: string;
+  WORD_TYPE: string;
+  SPELL_EXPAND: string;
+  URL: string;
+  ACTOR: string;
+  DIRECTOR: string;
+  AUTO_ID: string;
+  PARENT_ID: string;
+  SEARCH_QUERY: string;
+  DATA_PATTERN: string;
+  HDR_YN: string;
+  SMART_DVD_YN: string;
+  RATING: string;
+  HD_SD: string;
+  EXPOSURE_DTL_GENRE: string;
+  CCUBE_LEADING_ACTORS: string;
+  CCUBE_META_WHAT: string;
+  CCUBE_META_WHO: string;
+  CCUBE_META_EMOTION: string;
+  CCUBE_META_SUBGENRE: string;
+  SYNOPSIS: string;
+}
+
+export interface MidmModelParameter {
   temperature: number;
   top_k: number;
   top_p: number;
@@ -29,10 +53,18 @@ export interface MidmGeneratingOption {
   num_return_sequences: number;
 }
 
+export interface MidmGeneratingOptionPreset {
+  rule_id: string;
+  essential_meta: string[];
+  additional_meta: string[];
+  model_parameter: MidmModelParameter;
+  comment: string;
+}
+
 export interface MidmApiRequestBody {
   api_key: string;
   text: string;
-  gen_option: MidmGeneratingOption;
+  gen_option: MidmModelParameter;
 }
 
 export interface MidmApiResponse {
