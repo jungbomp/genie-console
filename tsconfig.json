@@ -7,6 +7,7 @@
       "src/*": ["./*"],
       "public/*": ["../public/*"],
       "images/*": ["../public/assets/images/*"],
+      "statics/*": ["../public/assets/statics/*"],
     },
     "sourceMap": true,
     "noImplicitAny": true,

@@ -7,6 +7,7 @@ const DIRECTORIES = {
   PUBLIC: path.resolve('public'),
   SRC: path.resolve('src'),
   IMAGES: path.resolve('public', 'assets', 'images'),
+  STATICS: path.resolve('public', 'assets', 'statics'),
 };
 
 const ENV = {

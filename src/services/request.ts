@@ -2,8 +2,15 @@ import axios, { Method } from 'axios';
 import { JsonParam } from './types';
 import { toQueryParamStr } from './utils';
 
-const request = (url: string, method: Method, headers?: JsonParam, params?: JsonParam, data?: any): Promise<any> => {
-  const queryParam: string = toQueryParamStr(params ?? {});
+const request = (
+  url: string,
+  method: Method,
+  headers?: JsonParam,
+  params?: JsonParam,
+  data?: any,
+  isUrlEncode?: boolean,
+): Promise<any> => {
+  const queryParam: string = toQueryParamStr(params ?? {}, isUrlEncode);
 
   return axios({
     method,

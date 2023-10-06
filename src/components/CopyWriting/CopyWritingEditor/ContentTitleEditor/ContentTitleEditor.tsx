@@ -13,6 +13,7 @@ import { setAutoWordItems } from 'src/components/CopyWriting/redux/actions';
 import { Search } from 'src/Icon';
 import { getTotalAutoWords } from 'src/services/services';
 import type { AutoWordItem } from 'src/types';
+import { euckrEncoder } from 'src/utils';
 
 import type { ContentTitleEditorProps } from './ContentTitleEditor.types';
 import { getTitleOptionsFromAutoWordItems, getTotalAutoWordItemsFromTotalAutoWords } from './ContentTitleEditor.utils';
@@ -25,7 +26,8 @@ const ContentTitleEditor: React.FC<ContentTitleEditorProps> = ({ className, valu
 
   useEffect(() => {
     if (value && value.length > 0) {
-      getTotalAutoWords(value)
+      const eucKrEncoded = euckrEncoder(value).split(' ').join('%');
+      getTotalAutoWords(eucKrEncoded)
         .then(getTotalAutoWordItemsFromTotalAutoWords)
         .then((autoWordItems: AutoWordItem[]) => {
           dispatch(setAutoWordItems(autoWordItems));

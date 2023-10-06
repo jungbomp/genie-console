@@ -2,9 +2,9 @@ import type { MidmApiRequestBody, MidmModelParameter } from 'src/types';
 
 import type { JsonParam } from './types';
 
-export const toQueryParamStr = (param: JsonParam): string => {
+export const toQueryParamStr = (param: JsonParam, isUrlEncode = true): string => {
   const queryParams: string[] = Object.keys(param).map(
-    (key: string): string => `${encodeURIComponent(key)}=${encodeURIComponent(param[key])}`,
+    (key: string): string => `${encodeURIComponent(key)}=${isUrlEncode ? encodeURIComponent(param[key]) : param[key]}`,
   );
 
   return queryParams.length > 0 ? queryParams.join('&') : '';
