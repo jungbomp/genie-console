@@ -13,7 +13,13 @@ export const autoItemToTotalAutoWordItem = (autoItem: any): AutoWordItem => {
 };
 
 export const getTotalAutoWordItemsFromTotalAutoWords = (totalAutoWords: any): AutoWordItem[] => {
-  return totalAutoWords?.ssearch?.output?.AUTO_ITEM?.map(autoItemToTotalAutoWordItem) ?? [];
+  const autoItem = totalAutoWords?.ssearch?.output?.AUTO_ITEM;
+
+  if (_.isEmpty(autoItem)) {
+    return [];
+  }
+
+  return _.isArray(autoItem) ? autoItem.map(autoItemToTotalAutoWordItem) : [autoItemToTotalAutoWordItem(autoItem)];
 };
 
 export const getTitleOptionsFromAutoWordItems = (autoWordItems: AutoWordItem[]): string[] => {

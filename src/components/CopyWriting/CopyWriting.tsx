@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Classnames from 'classnames';
 import _ from 'lodash';
@@ -9,10 +9,15 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import type { AutoWordItem, MidmApiResponse } from 'src/types';
 
+import { MidmGeneratingOptionPreset } from 'src/types';
 import CopyWritingEditor from './CopyWritingEditor/CopyWritingEditor';
 import CopyWritingSuggestions from './CopyWritingSuggestions/CopyWritingSuggestions';
 
-import { marketingMidmGeneratingOptionPresets, synopsisMidmGeneratingOptionPresets } from './CopyWriting.constants';
+import {
+  COPY_WRITING_REQUEST_CNT,
+  marketingMidmGeneratingOptionPresets,
+  synopsisMidmGeneratingOptionPresets,
+} from './CopyWriting.constants';
 import type { CopyWritingOption, CopyWritingProps, CopyWritingSuggestionItem } from './CopyWriting.types';
 import { getCopyWriteAsync, getCopyWritingSuggestionsFromMidmApiResponses } from './CopyWriting.utils';
 
@@ -24,10 +29,19 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
   const autoWordItems: AutoWordItem[] = useSelector(autoWordItemsSelector);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [copyWritingOption, setCopyWritingOption] = useState<CopyWritingOption>();
   const [marketingPresetIndex, setMarketingPresetIndex] = useState<number>(0);
+  const [synopsisPresetIndex, setSynopsisIndex] = useState<number>(0);
   const [suggestions, setSuggestions] = useState<CopyWritingSuggestionItem[]>([]);
+  const [showGenerateMoreButton, setShowGenerateMoreButton] = useState<boolean>(true);
 
-  const onClickGenerateCopyWrite = (option: CopyWritingOption) => {
+  const generateCopyWrites = (
+    option: CopyWritingOption,
+    indices: number[],
+    baseIndex: number,
+    presets: MidmGeneratingOptionPreset[],
+    isAttach: boolean,
+  ) => {
     if (!_.isEmpty(autoWordItems)) {
       const autoWordItem: AutoWordItem | undefined = autoWordItems.find(
         ({ SEARCH_WORD }: AutoWordItem) => SEARCH_WORD === option.contentTitle,
@@ -35,21 +49,26 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
 
       setIsLoading(true);
       Promise.all(
-        [0, 1, 2].map((i: number) =>
-          getCopyWriteAsync(
-            option,
-            // @ts-ignore
-            autoWordItem ?? {},
-            option.copyType === 'SYNOPSIS'
-              ? synopsisMidmGeneratingOptionPresets[i]
-              : marketingMidmGeneratingOptionPresets[marketingPresetIndex + i],
-          ),
+        indices.map((i: number) =>
+          _.isEmpty(presets[baseIndex + i])
+            ? Promise.resolve(undefined)
+            : getCopyWriteAsync(
+                option,
+                // @ts-ignore
+                autoWordItem ?? {},
+                presets[baseIndex + i],
+              ),
         ),
       )
         // @ts-ignore
         .then((rets: MidmApiResponse[]) => {
-          setMarketingPresetIndex(marketingPresetIndex + rets.length);
-          setSuggestions(getCopyWritingSuggestionsFromMidmApiResponses(rets));
+          if (isAttach) {
+            setSuggestions(
+              _.uniqBy([...suggestions, ...getCopyWritingSuggestionsFromMidmApiResponses(rets)], 'copyWrite'),
+            );
+          } else {
+            setSuggestions(getCopyWritingSuggestionsFromMidmApiResponses(rets));
+          }
         })
         .finally(() => {
           setIsLoading(false);
@@ -57,10 +76,53 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
     }
   };
 
+  const onClickGenerateCopyWrite = (option: CopyWritingOption) => {
+    const indices = new Array(COPY_WRITING_REQUEST_CNT).fill(0).map((num: number, i) => i);
+    setCopyWritingOption(option);
+    if (option?.copyType === 'SYNOPSIS') {
+      generateCopyWrites(option, indices, 0, synopsisMidmGeneratingOptionPresets, false);
+      setSynopsisIndex(Math.min(synopsisPresetIndex + indices.length, synopsisMidmGeneratingOptionPresets.length));
+    } else {
+      generateCopyWrites(option, indices, 0, marketingMidmGeneratingOptionPresets, false);
+      setMarketingPresetIndex(
+        Math.min(marketingPresetIndex + indices.length, marketingMidmGeneratingOptionPresets.length),
+      );
+    }
+  };
+
+  const onClickGenerateMoreCopyWrite = () => {
+    if (copyWritingOption) {
+      if (copyWritingOption.copyType === 'SYNOPSIS') {
+        generateCopyWrites(copyWritingOption, [0], synopsisPresetIndex, synopsisMidmGeneratingOptionPresets, true);
+        setSynopsisIndex(Math.min(synopsisPresetIndex + 1, synopsisMidmGeneratingOptionPresets.length));
+      } else {
+        generateCopyWrites(copyWritingOption, [0], marketingPresetIndex, marketingMidmGeneratingOptionPresets, true);
+        setMarketingPresetIndex(Math.min(marketingPresetIndex + 1, marketingMidmGeneratingOptionPresets.length));
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (
+      copyWritingOption?.copyType === 'SYNOPSIS' &&
+      synopsisPresetIndex === synopsisMidmGeneratingOptionPresets.length
+    ) {
+      setShowGenerateMoreButton(false);
+    } else if (copyWritingOption?.copyType && marketingPresetIndex === marketingMidmGeneratingOptionPresets.length) {
+      setShowGenerateMoreButton(false);
+    } else {
+      setShowGenerateMoreButton(true);
+    }
+  }, [synopsisPresetIndex, marketingPresetIndex, copyWritingOption]);
+
   return (
     <Box className={Classnames(styles.copyWriting, className)}>
-      <CopyWritingEditor onClickGenerateCopyWrite={onClickGenerateCopyWrite} />
-      <CopyWritingSuggestions suggestions={suggestions} />
+      <CopyWritingEditor onValuesChange={setCopyWritingOption} onClickGenerateCopyWrite={onClickGenerateCopyWrite} />
+      <CopyWritingSuggestions
+        suggestions={suggestions}
+        onClickGenerateMoreCopyWrite={onClickGenerateMoreCopyWrite}
+        showGenerateMoreButton={showGenerateMoreButton}
+      />
       <Backdrop open={isLoading}>
         <CircularProgress color='inherit' />
       </Backdrop>

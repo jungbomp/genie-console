@@ -102,10 +102,8 @@ export const getCopyWriteAsync = (
 };
 
 export const getCopyWritingSuggestionsFromMidmApiResponses = (midms: MidmApiResponse[]): CopyWritingSuggestionItem[] =>
-  [
-    ...new Set(
-      midms
-        .map((midm: MidmApiResponse) => (midm?.result?.text ?? [])[0])
-        .filter((suggestion?: string) => !_.isEmpty(suggestion)),
-    ),
-  ].map((suggestion: string) => ({ copyWrite: suggestion }));
+  _.uniq(
+    midms
+      .map((midm: MidmApiResponse) => (midm?.result?.text ?? [])[0])
+      .filter((suggestion?: string) => !_.isEmpty(suggestion)),
+  ).map((suggestion: string) => ({ copyWrite: suggestion }));

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Classnames from 'classnames';
 import _ from 'lodash';
 
@@ -19,7 +19,11 @@ import type { CopyWritingEditorProps } from './CopyWritingEditor.types';
 
 import styles from './CopyWritingEditor.scss';
 
-const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({ className, onClickGenerateCopyWrite = () => {} }) => {
+const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({
+  className,
+  onValuesChange = () => {},
+  onClickGenerateCopyWrite = () => {},
+}) => {
   const [contentTitle, setContentTitle] = useState<string>();
   const [copyType, setCopyType] = useState<CopyType>();
   const [wordCount, setWordCount] = useState<number>();
@@ -30,7 +34,9 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({ className, onClic
   const onGenerateCopyWriteButtonClick = () => {
     if (contentTitle && copyType) {
       onClickGenerateCopyWrite({
+        // @ts-ignore
         contentTitle,
+        // @ts-ignore
         copyType,
         wordCount,
         promotionType,
@@ -45,8 +51,22 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({ className, onClic
     setCopyType(undefined);
     setWordCount(undefined);
     setPromotionType(undefined);
+    setPromotionDetails(undefined);
     setAdditionalRequest(undefined);
   };
+
+  useEffect(() => {
+    onValuesChange({
+      // @ts-ignore
+      contentTitle,
+      // @ts-ignore
+      copyType,
+      wordCount,
+      promotionType,
+      promotionDetails,
+      additionalRequest,
+    });
+  }, [contentTitle, copyType, wordCount, promotionType, promotionDetails, additionalRequest]);
 
   return (
     <div className={Classnames(styles.copyWritingEditor, className)}>
