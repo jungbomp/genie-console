@@ -1,6 +1,8 @@
-import request from 'src/services/request';
-import { getTotalAutoWordsUrl } from 'src/services/apis';
 import { xml2json } from 'xml-js';
+import request from 'src/services/request';
+import { getMidmApiUrl, getTotalAutoWordsUrl } from 'src/services/apis';
+import { buildMidmApiRequestBody } from 'src/services/utils';
+import type { MidmApiResponse, MidmModelParameter } from 'src/types';
 
 export const getTotalAutoWords = (uquery: string): Promise<string> =>
   request(
@@ -13,10 +15,20 @@ export const getTotalAutoWords = (uquery: string): Promise<string> =>
       appID: 'WEB',
       spell_type: '1',
     },
+    null,
+    false,
   )
     .then((response: any) => response?.data || '')
     .then((xmlStr: string) => xml2json(xmlStr, { compact: true, spaces: 2 }))
     .then(JSON.parse)
+    .catch((error: any) => {
+      console.error(error);
+      throw error;
+    });
+
+export const getCopyWrites = (prompt: string, generatingOption: MidmModelParameter): Promise<MidmApiResponse> =>
+  request(getMidmApiUrl(), 'POST', undefined, undefined, buildMidmApiRequestBody(prompt, generatingOption))
+    .then((response: any) => response?.data || {})
     .catch((error: any) => {
       console.error(error);
       throw error;

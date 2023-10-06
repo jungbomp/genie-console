@@ -1,4 +1,5 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Classnames from 'classnames';
 
 import Box from '@mui/material/Box';
@@ -8,20 +9,30 @@ import FormLabel from '@mui/material/FormLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
+import { setAutoWordItems } from 'src/components/CopyWriting/redux/actions';
 import { Search } from 'src/Icon';
 import { getTotalAutoWords } from 'src/services/services';
+import type { AutoWordItem } from 'src/types';
+import { euckrEncoder } from 'src/utils';
 
 import type { ContentTitleEditorProps } from './ContentTitleEditor.types';
-import { getTitleOptionsFromTotalAutoWords } from './ContentTitleEditor.utils';
+import { getTitleOptionsFromAutoWordItems, getTotalAutoWordItemsFromTotalAutoWords } from './ContentTitleEditor.utils';
 
 import styles from './ContentTitleEditor.scss';
 
 const ContentTitleEditor: React.FC<ContentTitleEditorProps> = ({ className, value, onChange = () => {} }) => {
+  const dispatch = useDispatch();
   const [options, setOptions] = useState<string[]>([]);
 
   useEffect(() => {
     if (value && value.length > 0) {
-      getTotalAutoWords(value).then(getTitleOptionsFromTotalAutoWords).then(setOptions);
+      const eucKrEncoded = euckrEncoder(value).split(' ').join('%');
+      getTotalAutoWords(eucKrEncoded)
+        .then(getTotalAutoWordItemsFromTotalAutoWords)
+        .then((autoWordItems: AutoWordItem[]) => {
+          dispatch(setAutoWordItems(autoWordItems));
+          setOptions(getTitleOptionsFromAutoWordItems(autoWordItems));
+        });
     } else {
       setOptions([]);
     }

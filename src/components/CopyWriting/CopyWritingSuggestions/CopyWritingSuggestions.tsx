@@ -11,7 +11,12 @@ import type { CopyWritingSuggestionsProps } from './CopyWritingSuggestions.types
 
 import styles from './CopyWritingSuggestions.scss';
 
-const CopyWritingSuggestions: React.FC<CopyWritingSuggestionsProps> = ({ className, suggestions = [] }) => {
+const CopyWritingSuggestions: React.FC<CopyWritingSuggestionsProps> = ({
+  className,
+  suggestions = [],
+  showGenerateMoreButton,
+  onClickGenerateMoreCopyWrite = () => {},
+}) => {
   return (
     <Box
       className={Classnames(
@@ -20,7 +25,15 @@ const CopyWritingSuggestions: React.FC<CopyWritingSuggestionsProps> = ({ classNa
         className,
       )}
     >
-      {_.isEmpty(suggestions) ? <EmptySuggestion /> : <CopyWritingSuggestionList suggestions={suggestions} />}
+      {_.isEmpty(suggestions) ? (
+        <EmptySuggestion />
+      ) : (
+        <CopyWritingSuggestionList
+          suggestions={suggestions}
+          showGenerateMoreButton={showGenerateMoreButton}
+          onClickGenerateMoreCopyWrite={onClickGenerateMoreCopyWrite}
+        />
+      )}
     </Box>
   );
 };

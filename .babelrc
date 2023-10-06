@@ -14,7 +14,8 @@
           "root": ["./src"],
           "alias": {
             "src": "./src",
-            "images": "./public/assets/images"
+            "images": "./public/assets/images",
+            "statics": "./public/assets/statics"
           }
         }]
       ]

@@ -37,6 +37,7 @@ module.exports = (envObj, args) => {
         ...ALIAS.SRC,
         ...ALIAS.PUBLIC,
         ...ALIAS.IMAGES,
+        ...ALIAS.STATICS,
       },
       fallback: {
         stream: false,

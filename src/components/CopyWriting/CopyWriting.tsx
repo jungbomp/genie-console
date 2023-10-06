@@ -1,41 +1,131 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Classnames from 'classnames';
+import _ from 'lodash';
 
+import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 
+import type { AutoWordItem, MidmApiResponse } from 'src/types';
+
+import { MidmGeneratingOptionPreset } from 'src/types';
 import CopyWritingEditor from './CopyWritingEditor/CopyWritingEditor';
 import CopyWritingSuggestions from './CopyWritingSuggestions/CopyWritingSuggestions';
 
-import type { CopyWritingProps } from './CopyWriting.types';
+import {
+  COPY_WRITING_REQUEST_CNT,
+  marketingMidmGeneratingOptionPresets,
+  synopsisMidmGeneratingOptionPresets,
+} from './CopyWriting.constants';
+import type { CopyWritingOption, CopyWritingProps, CopyWritingSuggestionItem } from './CopyWriting.types';
+import { getCopyWriteAsync, getCopyWritingSuggestionsFromMidmApiResponses } from './CopyWriting.utils';
+
+import { autoWordItemsSelector } from './redux/selectors';
 
 import styles from './CopyWriting.scss';
 
 const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
-  const mockSuggestion = [
-    {
-      genieSuggestion: true,
-      copyWrite: `아바타, 전 세계가 기다린 놀라운 경험!
-그 환상의 여정에 당신을 초대합니다.
-피규어 경품 이벤트에도 참여해보세요.`,
-    },
-    {
-      genieSuggestion: false,
-      copyWrite: `자연과 기술의 환상적인 대결,
-미지의 세계 아바타로 당신을 초대합니다.
-TV쿠폰 3000원은 덤으로!`,
-    },
-    {
-      genieSuggestion: false,
-      copyWrite: `자연과 기술의 환상적인 대결,
-미지의 세계 아바타로 당신을 초대합니다.
-TV쿠폰 3000원은 덤으로!`,
-    },
-  ];
+  const autoWordItems: AutoWordItem[] = useSelector(autoWordItemsSelector);
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [copyWritingOption, setCopyWritingOption] = useState<CopyWritingOption>();
+  const [marketingPresetIndex, setMarketingPresetIndex] = useState<number>(0);
+  const [synopsisPresetIndex, setSynopsisIndex] = useState<number>(0);
+  const [suggestions, setSuggestions] = useState<CopyWritingSuggestionItem[]>([]);
+  const [showGenerateMoreButton, setShowGenerateMoreButton] = useState<boolean>(true);
+
+  const generateCopyWrites = (
+    option: CopyWritingOption,
+    indices: number[],
+    baseIndex: number,
+    presets: MidmGeneratingOptionPreset[],
+    isAttach: boolean,
+  ) => {
+    if (!_.isEmpty(autoWordItems)) {
+      const autoWordItem: AutoWordItem | undefined = autoWordItems.find(
+        ({ SEARCH_WORD }: AutoWordItem) => SEARCH_WORD === option.contentTitle,
+      );
+
+      setIsLoading(true);
+      Promise.all(
+        indices.map((i: number) =>
+          _.isEmpty(presets[baseIndex + i])
+            ? Promise.resolve(undefined)
+            : getCopyWriteAsync(
+                option,
+                // @ts-ignore
+                autoWordItem ?? {},
+                presets[baseIndex + i],
+              ),
+        ),
+      )
+        // @ts-ignore
+        .then((rets: MidmApiResponse[]) => {
+          if (isAttach) {
+            setSuggestions(
+              _.uniqBy([...suggestions, ...getCopyWritingSuggestionsFromMidmApiResponses(rets)], 'copyWrite'),
+            );
+          } else {
+            setSuggestions(getCopyWritingSuggestionsFromMidmApiResponses(rets));
+          }
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  };
+
+  const onClickGenerateCopyWrite = (option: CopyWritingOption) => {
+    const indices = new Array(COPY_WRITING_REQUEST_CNT).fill(0).map((num: number, i) => i);
+    setCopyWritingOption(option);
+    if (option?.copyType === 'SYNOPSIS') {
+      generateCopyWrites(option, indices, 0, synopsisMidmGeneratingOptionPresets, false);
+      setSynopsisIndex(Math.min(synopsisPresetIndex + indices.length, synopsisMidmGeneratingOptionPresets.length));
+    } else {
+      generateCopyWrites(option, indices, 0, marketingMidmGeneratingOptionPresets, false);
+      setMarketingPresetIndex(
+        Math.min(marketingPresetIndex + indices.length, marketingMidmGeneratingOptionPresets.length),
+      );
+    }
+  };
+
+  const onClickGenerateMoreCopyWrite = () => {
+    if (copyWritingOption) {
+      if (copyWritingOption.copyType === 'SYNOPSIS') {
+        generateCopyWrites(copyWritingOption, [0], synopsisPresetIndex, synopsisMidmGeneratingOptionPresets, true);
+        setSynopsisIndex(Math.min(synopsisPresetIndex + 1, synopsisMidmGeneratingOptionPresets.length));
+      } else {
+        generateCopyWrites(copyWritingOption, [0], marketingPresetIndex, marketingMidmGeneratingOptionPresets, true);
+        setMarketingPresetIndex(Math.min(marketingPresetIndex + 1, marketingMidmGeneratingOptionPresets.length));
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (
+      copyWritingOption?.copyType === 'SYNOPSIS' &&
+      synopsisPresetIndex === synopsisMidmGeneratingOptionPresets.length
+    ) {
+      setShowGenerateMoreButton(false);
+    } else if (copyWritingOption?.copyType && marketingPresetIndex === marketingMidmGeneratingOptionPresets.length) {
+      setShowGenerateMoreButton(false);
+    } else {
+      setShowGenerateMoreButton(true);
+    }
+  }, [synopsisPresetIndex, marketingPresetIndex, copyWritingOption]);
 
   return (
     <Box className={Classnames(styles.copyWriting, className)}>
-      <CopyWritingEditor />
-      <CopyWritingSuggestions suggestions={mockSuggestion} />
+      <CopyWritingEditor onValuesChange={setCopyWritingOption} onClickGenerateCopyWrite={onClickGenerateCopyWrite} />
+      <CopyWritingSuggestions
+        suggestions={suggestions}
+        onClickGenerateMoreCopyWrite={onClickGenerateMoreCopyWrite}
+        showGenerateMoreButton={showGenerateMoreButton}
+      />
+      <Backdrop open={isLoading}>
+        <CircularProgress color='inherit' />
+      </Backdrop>
     </Box>
   );
 };

@@ -8,7 +8,13 @@ export interface CopyWritingOption {
   copyType: CopyType;
   wordCount?: number;
   promotionType?: PromotionType;
+  promotionDetails?: string;
   additionalRequest?: string;
+}
+
+export interface CopyWritingSuggestionItem {
+  genieSuggestion?: boolean;
+  copyWrite: string;
 }
 
 export interface CopyWritingProps extends CommonProps {}
