@@ -17,7 +17,7 @@ import styles from './Layout.scss';
 
 const outerTheme: Theme = createTheme({
   typography: {
-    fontFamily: 'Outfit Variable',
+    fontFamily: 'Outfit',
   },
 });
 

@@ -14,6 +14,7 @@ import styles from './ThemeSuggestionListView.scss';
 const ThemeSuggestionListView: React.FC<ThemeSuggestionListViewProps> = ({
   className,
   themeSuggestions = [],
+  showGenerateMoreButton = true,
   onClickMoreSuggestions = () => {},
 }) => {
   return (
@@ -21,14 +22,16 @@ const ThemeSuggestionListView: React.FC<ThemeSuggestionListViewProps> = ({
       {themeSuggestions.map((themeSuggestion: string) => (
         <StateChip key={themeSuggestion} title={themeSuggestion} size='large' />
       ))}
-      <Button
-        className={styles.moreGenerationButton}
-        variant='outlined'
-        startIcon={<AddComment className={styles.icon} />}
-        onClick={onClickMoreSuggestions}
-      >
-        적용하기
-      </Button>
+      {showGenerateMoreButton ? (
+        <Button
+          className={styles.moreGenerationButton}
+          variant='outlined'
+          startIcon={<AddComment className={styles.icon} />}
+          onClick={onClickMoreSuggestions}
+        >
+          더 생성하기
+        </Button>
+      ) : null}
     </Box>
   );
 };

@@ -79,3 +79,32 @@ export interface MidmApiResponse {
   };
   text: string[];
 }
+
+export interface DrsGenieRecommendationVodItem {
+  CATEGORY_ID: string;
+  SERIES_YN: string;
+  CONST_ID: string;
+  TITLE: string;
+  HD_SD: string;
+  CATEGORY_PULLNAME: string;
+  WON_YN: string;
+  URL: string;
+  CMB_YN: string;
+  NEW_HOT: string;
+  HDR_YN: string;
+  SMART_DVD_YN: string;
+  ACTOR: string;
+  DIRECTOR: string;
+  RATING: string;
+  OLLEHP: string;
+  RUNTIME: string;
+  WIDE_POSTER_FILE: string;
+  G_WIDE_IMG: string;
+  G_TITLE_WIDE_IMG: string;
+  BROAD_CHANNEL_CD: string;
+  EP_DSTN_DESC: string;
+  GENRE_CODE: string;
+  WATCH_ORD: string;
+  ICON_CD: string;
+  VIRTUAL_DVD_FLAG: string;
+}

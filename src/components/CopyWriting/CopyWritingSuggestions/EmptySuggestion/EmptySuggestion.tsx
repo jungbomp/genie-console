@@ -4,7 +4,7 @@ import Classnames from 'classnames';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-import genieTvInitialSymbolWhite from 'images/genie_tv_initial_symbol_white.png';
+import genieTvInitialSymbolWhite from 'images/Genie_TV_Initial_Symbol_White.png';
 
 import type { EmptySuggestionProps } from './EmptySuggestion.types';
 

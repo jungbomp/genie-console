@@ -81,3 +81,5 @@ export const euckrEncoder = (stream: string) => {
 
   return out;
 };
+
+export const eucKrUrlEncode = (stream: string): string => euckrEncoder(stream).split(' ').join('%');

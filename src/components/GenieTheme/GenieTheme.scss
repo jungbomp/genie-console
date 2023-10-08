@@ -1,6 +1,18 @@
+@import 'src/components/common';
+@import 'src/components/GenieTheme/common';
+
 .genieTheme {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   gap: 20px;
+
+  .genieThemeSuggestionWrapper {
+    @include componentItem;
+    @include genieThemeChildComponent;
+
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
 }

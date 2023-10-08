@@ -2,7 +2,7 @@ import React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import '@fontsource-variable/outfit';
+import '@fontsource/outfit';
 import '@fontsource/noto-sans';
 
 import history from './History';
