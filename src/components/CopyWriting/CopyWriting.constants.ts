@@ -8,8 +8,8 @@ export const COPY_WRITING_REQUEST_CNT = 3;
 
 export const wordMetaKeyMap = {
   SEARCH_WORD: '제목',
-  EXPOSURE_GENRE: '노출형 장르',
-  EXPOSURE_DTL_GENRE: '노출형 세부장르',
+  EXPOSURE_GENRE: '노출 장르',
+  EXPOSURE_DTL_GENRE: '세부장르',
   DIRECTOR: '감독',
   CCUBE_LEADING_ACTORS: '주연배우',
   CCUBE_META_WHAT: '주제소재',
@@ -19,6 +19,13 @@ export const wordMetaKeyMap = {
   SYNOPSIS: '시놉시스',
   G_WIDE_IMG_DESC: '가로형 포스터',
   G_LIST_TITLE_IMG_DESC: '타이틀 이미지',
+};
+
+export const promotionMap = {
+  FREE: '무료',
+  GIFT: '경품',
+  TV_COUPON: 'TV쿠폰',
+  DISCOUNT: '가격할인',
 };
 
 export const marketingMidmGeneratingOptionPresets: MidmGeneratingOptionPreset[] = [

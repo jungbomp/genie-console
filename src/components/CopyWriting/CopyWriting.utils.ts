@@ -3,60 +3,62 @@ import _ from 'lodash';
 import type { AutoWordItem, MidmApiResponse, MidmGeneratingOptionPreset } from 'src/types';
 import { getCopyWrites } from 'src/services/services';
 
-import { wordMetaKeyMap } from './CopyWriting.constants';
-import type { CopyWritingOption, CopyWritingSuggestionItem } from './CopyWriting.types';
+import { promotionMap, wordMetaKeyMap } from './CopyWriting.constants';
+import type { CopyWritingOption, CopyWritingSuggestionItem, PromotionType } from './CopyWriting.types';
 
-export const buildPromotionString = (promotions: string[]) =>
-  promotions.map((promotion: string) => `"${promotion}"`).join(',');
+export const buildTriggerWords = (additionalMeta: string[]): string =>
+  !_.isEmpty(additionalMeta || []) && additionalMeta.some((meta: string) => meta === 'trigger_words')
+    ? `\n이때, "인기","신작","흥행"과 같은 내용이 들어갈 수 있도록 생성해줘`
+    : '';
+
+export const buildMetaWords = (essentialMeta: string[], autoWordItem: AutoWordItem): string =>
+  `\n${[
+    `제목: ${autoWordItem.SEARCH_WORD}`,
+    ...essentialMeta
+      .map((key: string) => key.toUpperCase())
+      // @ts-ignore
+      .filter((key: string) => wordMetaKeyMap[key] && autoWordItem[key])
+      // @ts-ignore
+      .map((key: string) => `${wordMetaKeyMap[key]}: ${autoWordItem[key]}`),
+  ].join('\t')}`;
+
+export const buildPromotionString = (promotionType?: PromotionType, promotionDetails?: string) => {
+  if (!promotionType) {
+    return '';
+  }
+
+  if (promotionType === 'FREE') {
+    return `\n프로모션: ${promotionMap[promotionType]}`;
+  }
+
+  return `\n프로모션: ${promotionMap[promotionType]}${_.isEmpty(promotionDetails) ? '' : `/${promotionDetails}`}`;
+};
 
 export const buildMidmMarketingPrompt = (
   isShort: boolean,
   wordCount: number,
-  promotions: string[],
-  title: string,
   autoWordItem: AutoWordItem,
   optionPreset: MidmGeneratingOptionPreset,
-): string => {
-  return `다음 콘텐츠에 대한 창의적인 ${isShort ? '짧은' : '긴'} 마케팅 문구를 ${wordCount}자 이내로 작성해줘. ${
-    !_.isEmpty(promotions) ? `\n이때, ${buildPromotionString(promotions)}과 같은 내용이 들어갈 수 있도록 생성해줘` : ''
-  }\n제목: ${title}${optionPreset.essential_meta
-    .map((key: string) => key.toUpperCase())
-    // @ts-ignore
-    .filter((key: string) => wordMetaKeyMap[key] && autoWordItem[key])
-    // @ts-ignore
-    .map((key: string) => `\t${wordMetaKeyMap[key]}: ${autoWordItem[key]}`)
-    .join('')}`;
-};
+  promotionType?: PromotionType,
+  promotionDetails?: string,
+): string =>
+  `다음 콘텐츠에 대한 창의적인 ${
+    isShort ? '짧은' : '긴'
+  } 마케팅 문구를 ${wordCount}자 이내로 작성해줘.${buildTriggerWords(
+    optionPreset.additional_meta ?? [],
+  )}${buildMetaWords(optionPreset.essential_meta ?? [], autoWordItem)}${buildPromotionString(
+    promotionType,
+    promotionDetails,
+  )}`;
 
 export const buildMidmSynopsisPrompt = (
   numberOfLine: number,
-  title: string,
   autoWordItem: AutoWordItem,
   optionPreset: MidmGeneratingOptionPreset,
-): string => {
-  return `다음 콘텐츠의 시놉시스를 ${numberOfLine}줄 이내로 요약해줘.\n제목: ${title}${optionPreset.essential_meta
-    .map((key: string) => key.toUpperCase())
-    // @ts-ignore
-    .filter((key: string) => wordMetaKeyMap[key] && autoWordItem[key])
-    // @ts-ignore
-    .map((key: string) => `\t${wordMetaKeyMap[key]}: ${autoWordItem[key]}`)
-    .join('')}`;
-};
-
-export const resolvePromotions = ({ promotionType, promotionDetails }: CopyWritingOption) => {
-  if (!promotionType) {
-    return [];
-  }
-
-  if (promotionType === 'FREE') {
-    return ['무료'];
-  }
-
-  return (promotionDetails ?? '')
-    .split(',')
-    .map((promotion: string) => promotion.trim())
-    .filter((promotion: string) => !_.isEmpty(promotion));
-};
+): string =>
+  `다음 콘텐츠의 시놉시스를 ${numberOfLine}줄 이내로 요약해줘.${buildTriggerWords(
+    optionPreset.additional_meta ?? [],
+  )}${buildMetaWords(optionPreset.essential_meta ?? [], autoWordItem)}`;
 
 export const buildMidmPrompt = (
   copyWritingOption: CopyWritingOption,
@@ -67,20 +69,15 @@ export const buildMidmPrompt = (
     return buildMidmMarketingPrompt(
       copyWritingOption.copyType === 'HEAD',
       copyWritingOption.wordCount ?? 40,
-      resolvePromotions(copyWritingOption),
-      copyWritingOption.contentTitle,
       autoWordItem,
       optionPreset,
+      copyWritingOption.promotionType,
+      copyWritingOption.promotionDetails,
     );
   }
 
   if (copyWritingOption.copyType === 'SYNOPSIS') {
-    return buildMidmSynopsisPrompt(
-      copyWritingOption.wordCount ?? 3,
-      copyWritingOption.contentTitle,
-      autoWordItem,
-      optionPreset,
-    );
+    return buildMidmSynopsisPrompt(copyWritingOption.wordCount ?? 3, autoWordItem, optionPreset);
   }
 
   return undefined;

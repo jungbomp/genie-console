@@ -1,46 +1,137 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Classnames from 'classnames';
+import _ from 'lodash';
 
+import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import Divider from '@mui/material/Divider';
+
+import type { MidmApiResponse, MidmGeneratingOptionPreset } from 'src/types';
 
 import GenieThemeHeader from './GenieThemeHeader/GenieThemeHeader';
-import ThemeSuggestion from './ThemeSuggestion/ThemeSuggestion';
+import ContentSuggestionList from './ContentSuggestionList/ContentSuggestionList';
+import ThemeSuggestionList from './ThemeSuggestionList/ThemeSuggestionList';
 
-import type { GenieThemeProps } from './GenieTheme.types';
+import { GENIE_THEME_REQUEST_CNT, genieThemeMidmGeneratingOptionPresets } from './GenieTheme.constants';
+import type { GenieThemeProps, GenieThemeVodRecommendationItem } from './GenieTheme.types';
+import {
+  getDrsGenieRecommendationVodItems,
+  getGenieThemeSuggestionsFromMidmApiResponses,
+  getGenieThemeVodRecommendationItems,
+  getThemeContentsAsync,
+  getThemeSuggestionAsync,
+} from './GenieTheme.utils';
 
 import styles from './GenieTheme.scss';
 
 const GenieTheme: React.FC<GenieThemeProps> = ({ className }) => {
-  const [targets, setTargets] = useState<string[]>(['타겟1', '타겟2', '타겟3']);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [presetIndex, setPresetIndex] = useState<number>(0);
+  const [target, setTarget] = useState<string>();
   const [keywords, setKeywords] = useState<string[]>([]);
-
-  const onTargetAdd = (target: string) => {
-    setTargets([...new Set([...targets, target]).values()]);
-  };
+  const [vodRecommendationItems, setVodRecommendationItems] = useState<GenieThemeVodRecommendationItem[]>([]);
+  const [selectedTitles, setSelectedTitles] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [showGenerateMoreButton, setShowGenerateMoreButton] = useState<boolean>(true);
 
   const onKeywordAdd = (keyword: string) => {
     setKeywords([...new Set([...keywords, keyword]).values()]);
-  };
-
-  const onTargetDelete = (target: string) => {
-    setTargets(targets.filter((value: string) => value !== target));
   };
 
   const onKeywordDelete = (keyword: string) => {
     setKeywords(keywords.filter((value: string) => value !== keyword));
   };
 
+  const generateContent = () => {
+    if (target) {
+      setIsLoading(true);
+      getThemeContentsAsync(target, keywords)
+        .then(getDrsGenieRecommendationVodItems)
+        .then(getGenieThemeVodRecommendationItems)
+        .then(setVodRecommendationItems)
+        .finally(() => setIsLoading(false));
+    }
+  };
+
+  const onSelectedVodRecommendationItemsChange = (items: GenieThemeVodRecommendationItem[]) =>
+    setSelectedTitles(items.map(({ title }: GenieThemeVodRecommendationItem): string => title));
+
+  const generateThemeSuggestion = (
+    indices: number[],
+    baseIndex: number,
+    titles: string[],
+    presets: MidmGeneratingOptionPreset[],
+    isAttach: boolean,
+  ) => {
+    if (!target) {
+      return;
+    }
+
+    setIsLoading(true);
+    Promise.all(
+      indices.map((i: number) =>
+        _.isEmpty(presets[baseIndex + i])
+          ? Promise.resolve(undefined)
+          : getThemeSuggestionAsync(target, keywords, titles, presets[baseIndex + i]),
+      ),
+    )
+      // @ts-ignore
+      .then((rets: MidmApiResponse[]) => {
+        if (isAttach) {
+          setSuggestions(_.uniq([...suggestions, ...getGenieThemeSuggestionsFromMidmApiResponses(rets)]));
+        } else {
+          setSuggestions(getGenieThemeSuggestionsFromMidmApiResponses(rets));
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const onClickGenerateThemeSuggestion = (titles: string[]) => {
+    const indices = new Array(GENIE_THEME_REQUEST_CNT).fill(0).map((num: number, i) => i);
+    setSelectedTitles(titles);
+    generateThemeSuggestion(indices, 0, titles, genieThemeMidmGeneratingOptionPresets, false);
+    setPresetIndex(Math.min(presetIndex + indices.length, genieThemeMidmGeneratingOptionPresets.length));
+  };
+
+  const onClickGenerateMoreThemeSuggestion = () => {
+    generateThemeSuggestion([0], presetIndex, selectedTitles, genieThemeMidmGeneratingOptionPresets, true);
+    setPresetIndex(Math.min(presetIndex + 1, genieThemeMidmGeneratingOptionPresets.length));
+  };
+
+  useEffect(() => {
+    setShowGenerateMoreButton(presetIndex < genieThemeMidmGeneratingOptionPresets.length);
+  }, [presetIndex]);
+
   return (
     <Box className={Classnames(styles.genieTheme, className)}>
       <GenieThemeHeader
-        targets={targets}
+        target={target}
         keywords={keywords}
-        onTargetAdd={onTargetAdd}
+        onTargetChange={setTarget}
         onKeywordAdd={onKeywordAdd}
-        onTargetDelete={onTargetDelete}
         onKeywordDelete={onKeywordDelete}
+        onGenerateContentClick={generateContent}
       />
-      <ThemeSuggestion />
+      <Box className={styles.genieThemeSuggestionWrapper}>
+        <ContentSuggestionList
+          vodRecommendationItems={vodRecommendationItems}
+          onChangeSelectedItems={onSelectedVodRecommendationItemsChange}
+          onClickGenerateThemeSuggestions={onClickGenerateThemeSuggestion}
+        />
+        <Divider orientation='vertical' flexItem={true} />
+        <ThemeSuggestionList
+          themeSuggestions={suggestions}
+          showGenerateMoreButton={showGenerateMoreButton}
+          onClickGenerateMoreThemeSuggestion={onClickGenerateMoreThemeSuggestion}
+          onClickApply={() => console.log('onClickApply')}
+        />
+      </Box>
+      <Backdrop open={isLoading}>
+        <CircularProgress color='inherit' />
+      </Backdrop>
     </Box>
   );
 };

@@ -18,23 +18,14 @@ import styles from './GenieThemeHeader.scss';
 
 const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
   className,
-  targets,
+  target,
   keywords,
-  onTargetAdd = () => {},
+  onTargetChange = () => {},
   onKeywordAdd = () => {},
-  onTargetDelete = () => {},
   onKeywordDelete = () => {},
   onGenerateContentClick = () => {},
 }) => {
-  const [newTarget, setNewTarget] = useState<string>();
   const [newKeyword, setNewKeyword] = useState<string>();
-
-  const onNewTargetAdd = () => {
-    if (newTarget) {
-      onTargetAdd(newTarget);
-      setNewTarget(undefined);
-    }
-  };
 
   const onNewKeywordAdd = () => {
     if (newKeyword) {
@@ -43,10 +34,6 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
     }
   };
 
-  const getTargetDeleteHandler =
-    (target: string): (() => void) =>
-    () =>
-      onTargetDelete(target);
   const getKeywordDeleteHandler =
     (keyword: string): (() => void) =>
     () =>
@@ -75,14 +62,14 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
               ),
               endAdornment: (
                 <InputAdornment position='end'>
-                  <Button className={styles.textFieldButton} variant='text' onClick={onNewTargetAdd}>
+                  <Button className={styles.textFieldButton} variant='text' onClick={() => onTargetChange(target)}>
                     입력완료
                   </Button>
                 </InputAdornment>
               ),
             }}
-            value={newTarget}
-            onChange={(event: ChangeEvent<HTMLInputElement>) => setNewTarget(event.target.value)}
+            value={target}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => onTargetChange(event.target.value)}
           />
         </FormControl>
         <FormControl className={styles.keywordWrapper}>
@@ -111,15 +98,6 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
       </Box>
       <Box className={styles.footer}>
         <Box className={styles.chipWrapper}>
-          {targets.map((target: string) => (
-            <Chip
-              key={target}
-              className={styles.chip}
-              label={target}
-              onDelete={getTargetDeleteHandler(target)}
-              deleteIcon={<Close className={styles.icon} />}
-            />
-          ))}
           {keywords.map((keyword: string) => (
             <Chip
               key={keyword}
