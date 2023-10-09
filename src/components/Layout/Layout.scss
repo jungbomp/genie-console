@@ -33,7 +33,8 @@ $content-width: 1235px;
 
     .content {
       flex: 1 0 0;
-      overflow: hidden;
+      overflow: auto;
+      height: 100%;
     }
 
     .mainOpenMenu {

@@ -4,5 +4,5 @@
   @include componentItem;
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
+  height: fit-content;
 }
