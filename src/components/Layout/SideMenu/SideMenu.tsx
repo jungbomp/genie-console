@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import MenuList from '@mui/material/MenuList';
 import Typography from '@mui/material/Typography';
 
-import logo from 'images/ai.svg';
 import genieWordMark from 'images/genie_wordmark_white.png';
 
 import { Settings } from 'src/Icon';
@@ -26,9 +25,9 @@ const SideMenu: React.FC<SideMenuProps> = ({ className, menuItems }) => {
     <Box className={Classnames(styles.sideMenu, className)}>
       <Box className={styles.menuWrapper}>
         <div className={Classnames(styles.header)}>
-          <div className={Classnames(styles.logo)}>
+          {/* <div className={Classnames(styles.logo)}>
             <img src={logo} alt='logo' />
-          </div>
+          </div> */}
           <div className={Classnames(styles.genieWordMarkWrapper)}>
             <div className={Classnames(styles.genieWordMark)}>
               <img src={genieWordMark} alt='GENIE' />

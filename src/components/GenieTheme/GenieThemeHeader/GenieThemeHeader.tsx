@@ -69,7 +69,7 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
           <TextField
             className={styles.textField}
             variant='filled'
-            placeholder='타겟 정보를 입력해 주세요'
+            placeholder='20대, 영화 등 타겟 정보를 입력해 주세요'
             InputProps={{
               startAdornment: (
                 <InputAdornment position='start'>

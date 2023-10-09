@@ -100,7 +100,7 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({
           onPromotionDetailsChange={setPromotionDetails}
         />
       </FormControl>
-      <FormControl>
+      <FormControl className={styles.additionalRequestBox}>
         <AdditionalRequestEditor
           additionalRequest={additionalRequest}
           onAdditionalRequestChange={setAdditionalRequest}

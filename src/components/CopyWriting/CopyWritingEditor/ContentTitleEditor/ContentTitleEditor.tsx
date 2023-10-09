@@ -57,7 +57,7 @@ const ContentTitleEditor: React.FC<ContentTitleEditorProps> = ({ className, valu
 
   return (
     <Box className={Classnames(styles.contentTitleEditor, className)}>
-      <FormLabel className={styles.label}>콘텐츠 명</FormLabel>
+      <FormLabel className={styles.label}>콘텐츠명</FormLabel>
       <Autocomplete
         className={styles.autoComplete}
         freeSolo={true}
