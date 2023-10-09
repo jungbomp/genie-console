@@ -8,6 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Divider from '@mui/material/Divider';
 
 import type { MidmApiResponse, MidmGeneratingOptionPreset } from 'src/types';
+import EmptySuggestion from 'src/components/common/EmptySuggestion/EmptySuggestion';
 
 import GenieThemeHeader from './GenieThemeHeader/GenieThemeHeader';
 import ContentSuggestionList from './ContentSuggestionList/ContentSuggestionList';
@@ -116,18 +117,27 @@ const GenieTheme: React.FC<GenieThemeProps> = ({ className }) => {
         onGenerateContentClick={generateContent}
       />
       <Box className={styles.genieThemeSuggestionWrapper}>
-        <ContentSuggestionList
-          vodRecommendationItems={vodRecommendationItems}
-          onChangeSelectedItems={onSelectedVodRecommendationItemsChange}
-          onClickGenerateThemeSuggestions={onClickGenerateThemeSuggestion}
-        />
-        <Divider orientation='vertical' flexItem={true} />
-        <ThemeSuggestionList
-          themeSuggestions={suggestions}
-          showGenerateMoreButton={showGenerateMoreButton}
-          onClickGenerateMoreThemeSuggestion={onClickGenerateMoreThemeSuggestion}
-          onClickApply={() => console.log('onClickApply')}
-        />
+        {_.isEmpty(vodRecommendationItems) ? (
+          <EmptySuggestion
+            title='믿음 주는 AI 지니'
+            subtitle='지니테마 폼을 이용하면 추천 테마명 및 콘텐츠를 제공합니다.'
+          />
+        ) : (
+          <>
+            <ContentSuggestionList
+              vodRecommendationItems={vodRecommendationItems}
+              onChangeSelectedItems={onSelectedVodRecommendationItemsChange}
+              onClickGenerateThemeSuggestions={onClickGenerateThemeSuggestion}
+            />
+            <Divider orientation='vertical' flexItem={true} />
+            <ThemeSuggestionList
+              themeSuggestions={suggestions}
+              showGenerateMoreButton={showGenerateMoreButton}
+              onClickGenerateMoreThemeSuggestion={onClickGenerateMoreThemeSuggestion}
+              onClickApply={() => console.log('onClickApply')}
+            />
+          </>
+        )}
       </Box>
       <Backdrop open={isLoading}>
         <CircularProgress color='inherit' />

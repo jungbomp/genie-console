@@ -10,16 +10,16 @@ import type { EmptySuggestionProps } from './EmptySuggestion.types';
 
 import styles from './EmptySuggestion.scss';
 
-const EmptySuggestion: React.FC<EmptySuggestionProps> = ({ className }) => (
+const EmptySuggestion: React.FC<EmptySuggestionProps> = ({ className, title, subtitle }) => (
   <Box className={Classnames(styles.emptySuggestion, className)}>
     <Box className={styles.titleWrapper}>
       <Box className={styles.logoWrapper}>
         <img className={styles.logo} src={genieTvInitialSymbolWhite} alt='GENIE' />
       </Box>
-      <Typography className={styles.title}>믿음 주는 AI 지니</Typography>
+      <Typography className={styles.title}>{title}</Typography>
     </Box>
     <Box className={styles.subtitleWrapper}>
-      <Typography className={styles.subtitle}>지니카피라이팅 폼을 이용하면 우측에 다양한 문구가 생성됩니다.</Typography>
+      <Typography className={styles.subtitle}>{subtitle}</Typography>
     </Box>
   </Box>
 );
