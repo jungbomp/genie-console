@@ -1,8 +1,30 @@
-import React from 'react';
-import { GenieChatProps } from './GenieChat.types';
+import React, { useState } from 'react';
+import Box from '@mui/material/Box';
 
-const GenieChat: React.FC<GenieChatProps> = ({ className }) => {
-  return <div className={className} />;
+import styles from './GenieChat.scss';
+import { GenieChatProps } from './GenieChat.types';
+import genieChat from '../../../public/assets/images/genieChat.png';
+import onHold from '../../../public/assets/images/onhold.png';
+
+const GenieChat: React.FC<GenieChatProps> = () => {
+  const [showChatModal, setShowChatModal] = useState<boolean>(false);
+  const toggleModal = () => {
+    console.log('toggle');
+    setShowChatModal(!showChatModal);
+  };
+  return (
+    <Box className={styles.genieChat} onClick={toggleModal}>
+      <img src={genieChat} alt='geniechat' />
+      {showChatModal && (
+        <div className={styles.modal}>
+          <div className={styles.overlay} />
+          <div className={styles.modalcontent}>
+            <img src={onHold} alt='onhold' />
+          </div>
+        </div>
+      )}
+    </Box>
+  );
 };
 
 export default GenieChat;

@@ -9,6 +9,16 @@
     gap: 8px;
     line-height: 24px;
 
+    div {
+      pointer-events: none;
+      
+      p,
+      :global(.MuiChip-icon) {
+        color: rgba(0, 0, 0, 0.26) !important;
+      }
+    }
+
+
     .icon {
       width: 16px;
       height: 16px;

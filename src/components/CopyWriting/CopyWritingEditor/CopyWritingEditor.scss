@@ -10,6 +10,8 @@ $copy-writing-space: 32px;
   flex: 1 0 0;
   max-width: 660px;
   min-width: 600px;
+  height: 100%;
+  overflow: auto;
 
   .headTitle {
     color: #6E7494;
@@ -23,8 +25,12 @@ $copy-writing-space: 32px;
     display: none;
   }
 
-  .buttonFlexBox {
+  .additionalRequestBox {
     flex: 1 0 0;
+  }
+
+  .buttonFlexBox {
+    // flex: 1 0 0;
     justify-content: flex-end;
 
     .buttonWrapper {
