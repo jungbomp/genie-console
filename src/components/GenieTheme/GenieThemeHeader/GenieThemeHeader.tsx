@@ -25,7 +25,19 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
   onKeywordDelete = () => {},
   onGenerateContentClick = () => {},
 }) => {
+  const [showTargetChip, setShowTargetChip] = useState<boolean>();
   const [newKeyword, setNewKeyword] = useState<string>();
+
+  const onTargetAdd = () => {
+    if (target) {
+      setShowTargetChip(true);
+    }
+  };
+
+  const onDeleteTarget = () => {
+    onTargetChange(undefined);
+    setShowTargetChip(false);
+  };
 
   const onNewKeywordAdd = () => {
     if (newKeyword) {
@@ -62,7 +74,7 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
               ),
               endAdornment: (
                 <InputAdornment position='end'>
-                  <Button className={styles.textFieldButton} variant='text' onClick={() => onTargetChange(target)}>
+                  <Button className={styles.textFieldButton} variant='text' onClick={onTargetAdd}>
                     입력완료
                   </Button>
                 </InputAdornment>
@@ -98,6 +110,15 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
       </Box>
       <Box className={styles.footer}>
         <Box className={styles.chipWrapper}>
+          {showTargetChip ? (
+            <Chip
+              key={target}
+              className={styles.chip}
+              label={target}
+              onDelete={onDeleteTarget}
+              deleteIcon={<Close className={styles.icon} />}
+            />
+          ) : null}
           {keywords.map((keyword: string) => (
             <Chip
               key={keyword}
