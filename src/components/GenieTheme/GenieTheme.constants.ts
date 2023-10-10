@@ -6,7 +6,7 @@ export const GENIE_THEME_PATH_ID = 'GENIE_THEME';
 export const GENIE_THEME_PATH_PREFIX = 'genie-theme';
 export const GENIE_THEME_TITLE = '지니테마';
 
-export const GENIE_THEME_REQUEST_CNT = 3;
+export const GENIE_THEME_REQUEST_CNT = 1;
 
 export const TargetTypes = {
   TODDLER: 'TODDLER',
@@ -159,7 +159,7 @@ export const defaultDrsOption = {
   PRODUCT_LIST: '2P01',
   STB_VER: '0.6',
   STB_mode: '',
-  ITEM_CNT: 6,
+  ITEM_CNT: 12,
   TYPE: '',
   QUERY: '',
   GENRE_FILTER: '',
