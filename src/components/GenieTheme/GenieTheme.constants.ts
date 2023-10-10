@@ -155,22 +155,21 @@ export const drsThemeOptionPresets = {
 export const defaultDrsOption = {
   USER_ID: '10972481410',
   SVC_CODE: 'OTV',
-  APPID: 'UHD3',
+  APPID: 'OTV',
   PRODUCT_LIST: '2P01',
   STB_VER: '0.6',
   STB_mode: '',
-  ITEM_CNT: 12,
+  ITEM_CNT: '12',
   TYPE: '',
   QUERY: '',
   GENRE_FILTER: '',
-  SORTING: 'R',
+  SORTING: '',
   ASC_YN: 'Y',
-  DEFAULT_YN: 'Y',
+  DEFAULT_YN: 'N',
   GENRE_CODE: '',
   RECOM_OPT: '',
   RECOM_OPT_YN: '',
-  DTL_GENRE: eucKrUrlEncode('자연/동물'),
-  GROUP_SCREEN_CODE: '001',
+  DTL_GENRE: '',
 };
 
 export const genieThemeMidmGeneratingOptionPresets: MidmGeneratingOptionPreset[] = [
