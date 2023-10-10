@@ -153,7 +153,7 @@ export const drsThemeOptionPresets = {
 };
 
 export const defaultDrsOption = {
-  USER_ID: 'Ryjx5q7wwW7oRi37eZNREA==',
+  USER_ID: '10972481410',
   SVC_CODE: 'OTV',
   APPID: 'UHD3',
   PRODUCT_LIST: '2P01',
