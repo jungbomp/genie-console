@@ -32,9 +32,10 @@ export const getThemeContentsAsync = (target: string, keywords: string[]): Promi
 
   const preset = _.isEmpty(keywords)
     ? // @ts-ignore
-      drsThemeOptionPresets[targetType].NO_KEYWORD
+      drsThemeOptionPresets[targetType]?.NO_KEYWORD
     : // @ts-ignore
-      drsThemeOptionPresets[targetType][buildKeyFromKeywords(keywords)];
+      (drsThemeOptionPresets[targetType] && drsThemeOptionPresets[targetType][buildKeyFromKeywords(keywords)]) ||
+      undefined;
 
   if (!preset) {
     return Promise.resolve();
@@ -79,16 +80,18 @@ export const getGenieThemeVodRecommendationItems = (
     rating: parseFloat(OLLEHP),
   }));
 
-export const buildMetaWords = (target: string, keywords: string[]): string =>
-  `대상: ${target}\t키워드: ${keywords
-    .map((keyword: string) => `"${keyword}"`)
-    .join(', ')}는 앞선 콘텐츠들의 공통점이야.`;
+export const buildTriggerWords = (additionalMeta: string[]): string =>
+  !_.isEmpty(additionalMeta || []) && additionalMeta.some((meta: string) => meta === 'trigger_words')
+    ? `\n이때, "인기","신작","흥행"과 같은 내용이 들어갈 수 있도록 생성해줘`
+    : '';
 
-export const buildMidmPrompt = (target: string, keywords: string[], titles: string[]): string =>
+export const buildMetaWords = (keywords: string[]): string =>
+  _.isEmpty(keywords) ? '' : `키워드는 ${keywords.map((keyword: string) => `"${keyword}"`).join(', ')}를 넣어줘.`;
+
+export const buildMidmPrompt = (keywords: string[], titles: string[], additionalMeta: string[]): string =>
   `다음 콘텐츠를 한 화면에 보여줄 때, 해당 화면의 제목으로 사용할만한 짧은 구문을 기본 특수기호를 포함해서 30자 이내로 작성해줘. ${buildMetaWords(
-    target,
     keywords,
-  )} 구문을 구성할 때 참조해.\n${titles.join(',')}`;
+  )} 구문을 구성할 때 참조해.\n${titles.join(',')}${buildTriggerWords(additionalMeta)}`;
 
 export const getThemeSuggestionAsync = (
   target: string,
@@ -96,7 +99,7 @@ export const getThemeSuggestionAsync = (
   titles: string[],
   optionPreset: MidmGeneratingOptionPreset,
 ): Promise<MidmApiResponse> => {
-  const midmPrompt = buildMidmPrompt(target, keywords, titles);
+  const midmPrompt = buildMidmPrompt(keywords, titles, optionPreset.additional_meta);
 
   if (!midmPrompt) {
     // @ts-ignore
