@@ -11,7 +11,7 @@ import styles from './GenieThemeDialog.scss';
 
 const GenieThemeDialog: React.FC<GenieThemeDialogProps> = ({ className, isOpen = false, themeTitle, themeItems }) => {
   return (
-    <Dialog open={isOpen} className={Classnames(styles.genieThemeDialog, className)}>
+    <Dialog className={Classnames(styles.genieThemeDialog, className)} open={isOpen} maxWidth='xl'>
       <GenieThemeWidget themeWidgetTitle={themeTitle} themeWidgetItems={themeItems} />
     </Dialog>
   );

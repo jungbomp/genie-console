@@ -10,6 +10,7 @@ import Divider from '@mui/material/Divider';
 import type { MidmApiResponse, MidmGeneratingOptionPreset } from 'src/types';
 import EmptySuggestion from 'src/components/common/EmptySuggestion/EmptySuggestion';
 
+import GenieThemeDialog from 'src/components/GenieTheme/GenieThemeDialog/GenieThemeDialog';
 import GenieThemeHeader from './GenieThemeHeader/GenieThemeHeader';
 import ContentSuggestionList from './ContentSuggestionList/ContentSuggestionList';
 import ThemeSuggestionList from './ThemeSuggestionList/ThemeSuggestionList';
@@ -149,6 +150,11 @@ const GenieTheme: React.FC<GenieThemeProps> = ({ className }) => {
       <Backdrop open={isLoading}>
         <CircularProgress color='inherit' />
       </Backdrop>
+      <GenieThemeDialog
+        isOpen={vodRecommendationItems.length > 0}
+        themeTitle='슈퍼히어로의 세계를 만나보세요'
+        themeItems={vodRecommendationItems.filter((item, i) => i < 4)}
+      />
     </Box>
   );
 };

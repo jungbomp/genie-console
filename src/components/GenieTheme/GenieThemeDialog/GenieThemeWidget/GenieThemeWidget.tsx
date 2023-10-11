@@ -15,10 +15,12 @@ import styles from './GenieThemeWidget.scss';
 const GenieThemeWidget: React.FC<GenieThemeWidgetProps> = ({ className, themeWidgetTitle, themeWidgetItems }) => {
   return (
     <Box className={Classnames(styles.genieThemeWidget, className)}>
-      <Typography>{themeWidgetTitle}</Typography>
       <Box>
-        {themeWidgetItems.map(({ imgUrl, titleImgUrl }: GenieThemeVodRecommendationItem) => (
-          <GenieThemeWidgetItem key={imgUrl} itemImgUrl={imgUrl} titleImgUrl={titleImgUrl} />
+        <Typography className={styles.title}>{themeWidgetTitle}</Typography>
+      </Box>
+      <Box className={styles.itemsWrapper}>
+        {themeWidgetItems.map(({ imgUrl, titleImgUrl, title }: GenieThemeVodRecommendationItem) => (
+          <GenieThemeWidgetItem key={imgUrl} itemImgUrl={imgUrl} titleImgUrl={titleImgUrl} itemTitle={title} />
         ))}
       </Box>
     </Box>
