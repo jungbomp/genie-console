@@ -7,6 +7,7 @@ export type TargetType = typeof TargetTypes[keyof typeof TargetTypes];
 export interface GenieThemeVodRecommendationItem {
   title: string;
   imgUrl: string;
+  titleImgUrl: string;
   rating: number;
 }
 

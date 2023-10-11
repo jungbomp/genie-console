@@ -36,6 +36,11 @@ const GenieTheme: React.FC<GenieThemeProps> = ({ className }) => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showGenerateMoreButton, setShowGenerateMoreButton] = useState<boolean>(true);
 
+  const onTargetChange = (value?: string) => {
+    setTarget(value);
+    setKeywords([]);
+  };
+
   const onKeywordAdd = (keyword: string) => {
     setKeywords([...new Set([...keywords, keyword]).values()]);
   };
@@ -51,7 +56,9 @@ const GenieTheme: React.FC<GenieThemeProps> = ({ className }) => {
         .then(getDrsGenieRecommendationVodItems)
         .then(getGenieThemeVodRecommendationItems)
         .then(setVodRecommendationItems)
-        .finally(() => setIsLoading(false));
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
   };
 
@@ -111,7 +118,7 @@ const GenieTheme: React.FC<GenieThemeProps> = ({ className }) => {
       <GenieThemeHeader
         target={target}
         keywords={keywords}
-        onTargetChange={setTarget}
+        onTargetChange={onTargetChange}
         onKeywordAdd={onKeywordAdd}
         onKeywordDelete={onKeywordDelete}
         onGenerateContentClick={generateContent}
