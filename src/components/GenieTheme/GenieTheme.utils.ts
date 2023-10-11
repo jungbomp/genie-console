@@ -76,7 +76,7 @@ export const getGenieThemeVodRecommendationItems = (
 ): GenieThemeVodRecommendationItem[] =>
   drsGenieRecommendationVodItems.map(({ TITLE, G_WIDE_IMG, OLLEHP }: DrsGenieRecommendationVodItem) => ({
     title: TITLE,
-    imgUrl: resolveImageUrl(G_WIDE_IMG),
+    imgUrl: G_WIDE_IMG ? resolveImageUrl(G_WIDE_IMG) : '',
     rating: parseFloat(OLLEHP),
   }));
 
