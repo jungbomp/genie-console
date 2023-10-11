@@ -74,11 +74,14 @@ export const resolveImageUrl = (url: string) => `${getKtPocImageCdnUrl()}/${url.
 export const getGenieThemeVodRecommendationItems = (
   drsGenieRecommendationVodItems: DrsGenieRecommendationVodItem[],
 ): GenieThemeVodRecommendationItem[] =>
-  drsGenieRecommendationVodItems.map(({ TITLE, G_WIDE_IMG, OLLEHP }: DrsGenieRecommendationVodItem) => ({
-    title: TITLE,
-    imgUrl: G_WIDE_IMG ? resolveImageUrl(G_WIDE_IMG) : '',
-    rating: parseFloat(OLLEHP),
-  }));
+  drsGenieRecommendationVodItems.map(
+    ({ TITLE, G_WIDE_IMG, G_TITLE_WIDE_IMG, OLLEHP }: DrsGenieRecommendationVodItem) => ({
+      title: TITLE,
+      imgUrl: G_WIDE_IMG ? resolveImageUrl(G_WIDE_IMG) : '',
+      titleImgUrl: G_TITLE_WIDE_IMG ? resolveImageUrl(G_TITLE_WIDE_IMG) : '',
+      rating: parseFloat(OLLEHP),
+    }),
+  );
 
 export const buildTriggerWords = (additionalMeta: string[]): string =>
   !_.isEmpty(additionalMeta || []) && additionalMeta.some((meta: string) => meta === 'trigger_words')

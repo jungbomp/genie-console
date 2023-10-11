@@ -47,12 +47,12 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({
   };
 
   const onResetButtonClick = () => {
-    setContentTitle(undefined);
+    setContentTitle('');
     setCopyType(undefined);
     setWordCount(undefined);
     setPromotionType(undefined);
-    setPromotionDetails(undefined);
-    setAdditionalRequest(undefined);
+    setPromotionDetails('');
+    setAdditionalRequest('');
   };
 
   useEffect(() => {

@@ -19,7 +19,12 @@ const ContentSuggestionList: React.FC<ContentSuggestionListProps> = ({
   onChangeSelectedItems = () => {},
   onClickGenerateThemeSuggestions = () => {},
 }) => {
-  const [selectedItems, setSelectedItems] = useState<{ [key: string]: boolean }>({});
+  const [selectedItems, setSelectedItems] = useState<{ [key: string]: boolean }>(
+    vodRecommendationItems.reduce(
+      (accu: { [key: string]: boolean }, { imgUrl }: GenieThemeVodRecommendationItem) => ({ ...accu, [imgUrl]: true }),
+      {},
+    ),
+  );
 
   const onClickContentSuggestionItem = (key: string, selected: boolean) => {
     setSelectedItems({ ...selectedItems, [key]: selected });
@@ -45,7 +50,7 @@ const ContentSuggestionList: React.FC<ContentSuggestionListProps> = ({
         .map((url: string) => vodRecommendationItems.find(({ imgUrl }) => imgUrl === url))
         .filter((item?: GenieThemeVodRecommendationItem) => item !== undefined),
     );
-  }, []);
+  }, [selectedItems]);
 
   return (
     <Box className={Classnames(styles.contentSuggestionList, className)}>

@@ -25,7 +25,9 @@ const ContentSuggestionItem: React.FC<ContentSuggestionItemProps> = ({
       key={imgUrl}
       onClick={() => onClick(imgUrl, !selected)}
     >
-      <img className={styles.img} src={imgUrl} alt={title} loading='lazy' />
+      <Box className={styles.imageWrapper}>
+        <img className={styles.img} src={imgUrl} alt={title} loading='lazy' />
+      </Box>
       <ImageListItemBar
         className={styles.barItem}
         title={title}

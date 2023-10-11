@@ -25,11 +25,14 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
   onKeywordDelete = () => {},
   onGenerateContentClick = () => {},
 }) => {
+  const [newTarget, setNewTarget] = useState<string>();
   const [showTargetChip, setShowTargetChip] = useState<boolean>();
   const [newKeyword, setNewKeyword] = useState<string>();
 
   const onTargetAdd = () => {
-    if (target) {
+    if (newTarget) {
+      onTargetChange(newTarget);
+      setNewTarget('');
       setShowTargetChip(true);
     }
   };
@@ -42,7 +45,7 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
   const onNewKeywordAdd = () => {
     if (newKeyword) {
       onKeywordAdd(newKeyword);
-      setNewKeyword(undefined);
+      setNewKeyword('');
     }
   };
 
@@ -80,8 +83,8 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
                 </InputAdornment>
               ),
             }}
-            value={target}
-            onChange={(event: ChangeEvent<HTMLInputElement>) => onTargetChange(event.target.value)}
+            value={newTarget}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => setNewTarget(event.target.value)}
           />
         </FormControl>
         <FormControl className={styles.keywordWrapper}>
@@ -104,13 +107,14 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
                 </InputAdornment>
               ),
             }}
+            value={newKeyword}
             onChange={(event: ChangeEvent<HTMLInputElement>) => setNewKeyword(event.target.value)}
           />
         </FormControl>
       </Box>
       <Box className={styles.footer}>
         <Box className={styles.chipWrapper}>
-          {showTargetChip ? (
+          {showTargetChip && target ? (
             <Chip
               key={target}
               className={styles.chip}
