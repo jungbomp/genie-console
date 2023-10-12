@@ -44,10 +44,11 @@ export interface AutoWordItem {
 }
 
 export interface MidmModelParameter {
+  do_sample: boolean;
   temperature: number;
   top_k: number;
   top_p: number;
-  repetition_penalty: number;
+  repeatition_penalty: number;
   presence_penalty: number;
   beam_width: number;
   num_return_sequences: number;

@@ -10,6 +10,7 @@ import Divider from '@mui/material/Divider';
 import type { MidmApiResponse, MidmGeneratingOptionPreset } from 'src/types';
 import EmptySuggestion from 'src/components/common/EmptySuggestion/EmptySuggestion';
 
+import GenieThemeDialog from 'src/components/GenieTheme/GenieThemeDialog/GenieThemeDialog';
 import GenieThemeHeader from './GenieThemeHeader/GenieThemeHeader';
 import ContentSuggestionList from './ContentSuggestionList/ContentSuggestionList';
 import ThemeSuggestionList from './ThemeSuggestionList/ThemeSuggestionList';
@@ -35,6 +36,8 @@ const GenieTheme: React.FC<GenieThemeProps> = ({ className }) => {
   const [selectedTitles, setSelectedTitles] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showGenerateMoreButton, setShowGenerateMoreButton] = useState<boolean>(true);
+  const [selectedSuggestion, setSelectedSuggestion] = useState<string>();
+  const [showGenieThemeDialog, setShowGenieThemeDialog] = useState<boolean>(false);
 
   const onTargetChange = (value?: string) => {
     setTarget(value);
@@ -141,7 +144,10 @@ const GenieTheme: React.FC<GenieThemeProps> = ({ className }) => {
               themeSuggestions={suggestions}
               showGenerateMoreButton={showGenerateMoreButton}
               onClickGenerateMoreThemeSuggestion={onClickGenerateMoreThemeSuggestion}
-              onClickApply={() => console.log('onClickApply')}
+              onClickApply={(suggestion: string) => {
+                setSelectedSuggestion(suggestion);
+                setShowGenieThemeDialog(true);
+              }}
             />
           </>
         )}
@@ -149,6 +155,12 @@ const GenieTheme: React.FC<GenieThemeProps> = ({ className }) => {
       <Backdrop open={isLoading}>
         <CircularProgress color='inherit' />
       </Backdrop>
+      <GenieThemeDialog
+        isOpen={showGenieThemeDialog}
+        themeTitle={selectedSuggestion ?? ''}
+        themeItems={vodRecommendationItems.filter((item, i) => i < 4)}
+        onBackdropClick={() => setShowGenieThemeDialog(false)}
+      />
     </Box>
   );
 };
