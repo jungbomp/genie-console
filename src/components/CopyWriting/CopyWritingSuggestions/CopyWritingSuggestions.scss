@@ -22,4 +22,29 @@
   &.emptySuggestion {
     justify-content: center;
   }
+
+  .buttonWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-self: stretch;
+
+    .submitButton {
+      display: flex;
+      padding: 12px 38px 12px 32px;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      border-radius: 30px;
+      background: #8138FF;
+
+      :global(.MuiButton-startIcon) {
+        margin: unset;
+      }
+
+      &:global(.Mui-disabled) {
+        background: #F5F5F8;
+      }
+    }
+  }
 }

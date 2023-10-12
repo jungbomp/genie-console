@@ -10,4 +10,5 @@ export interface FeedbackItem {
 export interface CopyWritingSuggestionItemProps extends CommonProps {
   genieSuggestion?: boolean;
   copyWrite: string;
+  onClick?: () => void;
 }

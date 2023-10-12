@@ -26,6 +26,7 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
   className,
   genieSuggestion = false,
   copyWrite,
+  onClick = () => {},
 }) => {
   const { enqueueSnackbar } = useSnackbar();
 
@@ -47,7 +48,7 @@ const CopyWritingSuggestionItem: React.FC<CopyWritingSuggestionItemProps> = ({
   }, [feedbacks]);
 
   return (
-    <Box className={Classnames(styles.copyWritingSuggestionItem, className)}>
+    <Box className={Classnames(styles.copyWritingSuggestionItem, className)} onClick={onClick}>
       <Card className={styles.copyWritingSuggestionCardWrapper} elevation={0}>
         <CardHeader className={styles.cardHeader} avatar={cardHeader} />
         <CardContent className={styles.cardContent}>
