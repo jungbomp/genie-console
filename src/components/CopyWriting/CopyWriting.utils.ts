@@ -52,11 +52,11 @@ export const buildMidmMarketingPrompt = (
   )}`;
 
 export const buildMidmSynopsisPrompt = (
-  numberOfLine: number,
+  wordCount: number,
   autoWordItem: AutoWordItem,
   optionPreset: MidmGeneratingOptionPreset,
 ): string =>
-  `다음 콘텐츠의 시놉시스를 ${numberOfLine}줄 이내로 요약해줘.${buildTriggerWords(
+  `다음 콘텐츠의 시놉시스를 ${wordCount}자 이내로 요약해줘.${buildTriggerWords(
     optionPreset.additional_meta ?? [],
   )}${buildMetaWords(optionPreset.essential_meta ?? [], autoWordItem)}`;
 
@@ -68,7 +68,7 @@ export const buildMidmPrompt = (
   if (copyWritingOption.copyType === 'HEAD' || copyWritingOption.copyType === 'BODY') {
     return buildMidmMarketingPrompt(
       copyWritingOption.copyType === 'HEAD',
-      copyWritingOption.wordCount ?? 40,
+      copyWritingOption.wordCount ?? (copyWritingOption.copyType === 'HEAD' ? 40 : 100),
       autoWordItem,
       optionPreset,
       copyWritingOption.promotionType,
@@ -77,7 +77,7 @@ export const buildMidmPrompt = (
   }
 
   if (copyWritingOption.copyType === 'SYNOPSIS') {
-    return buildMidmSynopsisPrompt(copyWritingOption.wordCount ?? 3, autoWordItem, optionPreset);
+    return buildMidmSynopsisPrompt(copyWritingOption.wordCount ?? 100, autoWordItem, optionPreset);
   }
 
   return undefined;
