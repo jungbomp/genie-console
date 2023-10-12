@@ -158,7 +158,11 @@ const GenieTheme: React.FC<GenieThemeProps> = ({ className }) => {
       <GenieThemeDialog
         isOpen={showGenieThemeDialog}
         themeTitle={selectedSuggestion ?? ''}
-        themeItems={vodRecommendationItems.filter((item, i) => i < 4)}
+        themeItems={vodRecommendationItems
+          .filter(({ title }: GenieThemeVodRecommendationItem) =>
+            selectedTitles.some((value: string) => value === title),
+          )
+          .filter((item, i) => i < 4)}
         onBackdropClick={() => setShowGenieThemeDialog(false)}
       />
     </Box>
