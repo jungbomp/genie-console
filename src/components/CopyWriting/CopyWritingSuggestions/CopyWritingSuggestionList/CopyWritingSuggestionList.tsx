@@ -17,14 +17,19 @@ const CopyWritingSuggestionList: React.FC<CopyWritingSuggestionListProps> = ({
   className,
   suggestions,
   showGenerateMoreButton = true,
+  onClickCopyWritingSuggestion = () => {},
   onClickGenerateMoreCopyWrite = () => {},
 }) => {
   return (
     <Box className={Classnames(styles.copyWritingSuggestionList, className)}>
       <Box className={styles.copyWritingSuggestionListWrapper}>
-        {suggestions.map(({ genieSuggestion, copyWrite }: CopyWritingSuggestionItemType) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <CopyWritingSuggestionItem key={copyWrite} genieSuggestion={genieSuggestion} copyWrite={copyWrite} />
+        {suggestions.map((item: CopyWritingSuggestionItemType) => (
+          <CopyWritingSuggestionItem
+            key={item.copyWrite}
+            genieSuggestion={item.genieSuggestion}
+            copyWrite={item.copyWrite}
+            onClick={() => onClickCopyWritingSuggestion(item)}
+          />
         ))}
       </Box>
       {showGenerateMoreButton ? (

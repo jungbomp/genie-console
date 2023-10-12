@@ -4,5 +4,6 @@ import type { CopyWritingSuggestionItem } from 'src/components/CopyWriting/CopyW
 export interface CopyWritingSuggestionListProps extends CommonProps {
   suggestions: CopyWritingSuggestionItem[];
   showGenerateMoreButton?: boolean;
+  onClickCopyWritingSuggestion?: (item: CopyWritingSuggestionItem) => void;
   onClickGenerateMoreCopyWrite?: () => void;
 }
