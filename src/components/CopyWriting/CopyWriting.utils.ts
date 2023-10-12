@@ -35,16 +35,13 @@ export const buildPromotionString = (promotionType?: PromotionType, promotionDet
 };
 
 export const buildMidmMarketingPrompt = (
-  isShort: boolean,
   wordCount: number,
   autoWordItem: AutoWordItem,
   optionPreset: MidmGeneratingOptionPreset,
   promotionType?: PromotionType,
   promotionDetails?: string,
 ): string =>
-  `다음 콘텐츠에 대한 창의적인 ${
-    isShort ? '짧은' : '긴'
-  } 마케팅 문구를 ${wordCount}자 이내로 작성해줘.${buildTriggerWords(
+  `다음 콘텐츠에 대한 창의적인 마케팅 문구를 ${wordCount}자 이내로 작성해줘.${buildTriggerWords(
     optionPreset.additional_meta ?? [],
   )}${buildMetaWords(optionPreset.essential_meta ?? [], autoWordItem)}${buildPromotionString(
     promotionType,
@@ -67,7 +64,6 @@ export const buildMidmPrompt = (
 ): string | undefined => {
   if (copyWritingOption.copyType === 'HEAD' || copyWritingOption.copyType === 'BODY') {
     return buildMidmMarketingPrompt(
-      copyWritingOption.copyType === 'HEAD',
       copyWritingOption.wordCount ?? (copyWritingOption.copyType === 'HEAD' ? 40 : 100),
       autoWordItem,
       optionPreset,
