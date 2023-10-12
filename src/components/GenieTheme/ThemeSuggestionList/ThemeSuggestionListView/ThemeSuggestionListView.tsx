@@ -14,13 +14,21 @@ import styles from './ThemeSuggestionListView.scss';
 const ThemeSuggestionListView: React.FC<ThemeSuggestionListViewProps> = ({
   className,
   themeSuggestions = [],
+  selectedSuggestion,
   showGenerateMoreButton = true,
+  onClickSuggestion = () => {},
   onClickMoreSuggestions = () => {},
 }) => {
   return (
     <Box className={Classnames(styles.themeSuggestionListView, className)}>
       {themeSuggestions.map((themeSuggestion: string) => (
-        <StateChip key={themeSuggestion} title={themeSuggestion} size='large' />
+        <StateChip
+          key={themeSuggestion}
+          title={themeSuggestion}
+          size='large'
+          active={selectedSuggestion === themeSuggestion}
+          onClick={() => onClickSuggestion(themeSuggestion)}
+        />
       ))}
       {showGenerateMoreButton ? (
         <Button

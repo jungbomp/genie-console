@@ -9,9 +9,20 @@ import type { GenieThemeDialogProps } from './GenieThemeDialog.types';
 
 import styles from './GenieThemeDialog.scss';
 
-const GenieThemeDialog: React.FC<GenieThemeDialogProps> = ({ className, isOpen = false, themeTitle, themeItems }) => {
+const GenieThemeDialog: React.FC<GenieThemeDialogProps> = ({
+  className,
+  isOpen = false,
+  themeTitle,
+  themeItems,
+  onBackdropClick = () => {},
+}) => {
   return (
-    <Dialog className={Classnames(styles.genieThemeDialog, className)} open={isOpen} maxWidth='xl'>
+    <Dialog
+      className={Classnames(styles.genieThemeDialog, className)}
+      open={isOpen}
+      maxWidth='xl'
+      onBackdropClick={onBackdropClick}
+    >
       <GenieThemeWidget themeWidgetTitle={themeTitle} themeWidgetItems={themeItems} />
     </Dialog>
   );

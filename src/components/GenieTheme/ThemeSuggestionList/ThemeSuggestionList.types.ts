@@ -4,5 +4,5 @@ export interface ThemeSuggestionListProps extends CommonProps {
   themeSuggestions?: string[];
   showGenerateMoreButton?: boolean;
   onClickGenerateMoreThemeSuggestion?: () => void;
-  onClickApply?: () => void;
+  onClickApply?: (suggestion: string) => void;
 }

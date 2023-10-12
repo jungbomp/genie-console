@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Classnames from 'classnames';
 import _ from 'lodash';
 
@@ -22,6 +22,20 @@ const ThemeSuggestionList: React.FC<ThemeSuggestionListProps> = ({
   onClickGenerateMoreThemeSuggestion = () => {},
   onClickApply = () => {},
 }) => {
+  const [selectedSuggestion, setSelectedSuggestion] = useState<string>();
+
+  const onClickSuggestion = (value: string) => {
+    setSelectedSuggestion(selectedSuggestion === value ? '' : value);
+  };
+
+  const onClickApplyBtn = () => {
+    if (selectedSuggestion) {
+      onClickApply(selectedSuggestion);
+    }
+
+    setSelectedSuggestion('');
+  };
+
   return (
     <Box className={Classnames(styles.themeSuggestionList, className)}>
       <Box className={styles.header}>
@@ -37,7 +51,9 @@ const ThemeSuggestionList: React.FC<ThemeSuggestionListProps> = ({
         ) : (
           <ThemeSuggestionListView
             themeSuggestions={themeSuggestions}
+            selectedSuggestion={selectedSuggestion}
             showGenerateMoreButton={showGenerateMoreButton}
+            onClickSuggestion={onClickSuggestion}
             onClickMoreSuggestions={onClickGenerateMoreThemeSuggestion}
           />
         )}
@@ -46,8 +62,8 @@ const ThemeSuggestionList: React.FC<ThemeSuggestionListProps> = ({
             className={styles.submitButton}
             variant='contained'
             startIcon={<Download />}
-            disabled={_.isEmpty(themeSuggestions)}
-            onClick={onClickApply}
+            disabled={_.isEmpty(themeSuggestions) || !selectedSuggestion}
+            onClick={onClickApplyBtn}
           >
             적용하기
           </Button>

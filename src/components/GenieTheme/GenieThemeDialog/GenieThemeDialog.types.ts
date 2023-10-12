@@ -5,4 +5,5 @@ export interface GenieThemeDialogProps extends CommonProps {
   isOpen: boolean;
   themeTitle: string;
   themeItems: GenieThemeVodRecommendationItem[];
+  onBackdropClick?: () => void;
 }
