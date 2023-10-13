@@ -1,6 +1,6 @@
 import React from 'react';
 import Classnames from 'classnames';
-// import _ from 'lodash';
+import _ from 'lodash';
 
 import Box from '@mui/material/Box';
 import FormLabel from '@mui/material/FormLabel';
@@ -40,14 +40,14 @@ const CopyWordCountEditor: React.FC<CopyWordCountEditorProps> = ({
       <Box className={styles.copyWordChipWrapper}>
         <StateChip
           title={`${smallWordCountOption}자 내외`}
-          subtitle={`${smallWordCountOption * 2} bytes`}
+          // subtitle={`${smallWordCountOption * 2} bytes`}
           size='large'
           active={wordCount !== undefined && wordCount <= smallWordCountOption}
           onClick={() => onWordCountChange(wordCount === smallWordCountOption ? undefined : smallWordCountOption)}
         />
         <StateChip
           title={`${largeWordCountOption}자 내외`}
-          subtitle={`${largeWordCountOption * 2} bytes`}
+          // subtitle={`${largeWordCountOption * 2} bytes`}
           size='large'
           active={wordCount !== undefined && wordCount > smallWordCountOption && wordCount <= largeWordCountOption}
           onClick={() => onWordCountChange(wordCount === largeWordCountOption ? undefined : largeWordCountOption)}
