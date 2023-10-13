@@ -19,12 +19,7 @@ const ContentSuggestionList: React.FC<ContentSuggestionListProps> = ({
   onChangeSelectedItems = () => {},
   onClickGenerateThemeSuggestions = () => {},
 }) => {
-  const [selectedItems, setSelectedItems] = useState<{ [key: string]: boolean }>(
-    vodRecommendationItems.reduce(
-      (accu: { [key: string]: boolean }, { imgUrl }: GenieThemeVodRecommendationItem) => ({ ...accu, [imgUrl]: true }),
-      {},
-    ),
-  );
+  const [selectedItems, setSelectedItems] = useState<{ [key: string]: boolean }>({});
 
   const onClickContentSuggestionItem = (key: string, selected: boolean) => {
     setSelectedItems({ ...selectedItems, [key]: selected });

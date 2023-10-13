@@ -28,26 +28,26 @@ const SynopsisGenerateOptionEditor: React.FC<SynopsisGenerateOptionEditorProps> 
       <FormLabel className={styles.label}>생성 옵션</FormLabel>
       <StateChip
         title='30자 내외'
-        subtitle='100 bytes'
+        subtitle='60 bytes'
         extra='시놉시스 키즈'
         size='large'
         active={wordCount !== undefined && wordCount <= 30}
         onClick={getOnChangeFunc(30)}
       />
       <StateChip
-        title='100자 이내'
-        subtitle='300 bytes'
+        title='100자 내외'
+        subtitle='200 bytes'
         extra='시놉시스 일반'
         size='large'
         active={wordCount !== undefined && wordCount > 30 && wordCount <= 100}
         onClick={getOnChangeFunc(100)}
       />
       <StateChip
-        title='200자 이내'
-        subtitle='600 bytes'
+        title='200자 내외'
+        subtitle='400 bytes'
         extra='시놉시스 더 보기'
         size='large'
-        active={wordCount !== undefined && wordCount > 100 && wordCount < 200}
+        active={wordCount !== undefined && wordCount > 100 && wordCount <= 200}
         onClick={getOnChangeFunc(200)}
       />
       <EditableStateChip

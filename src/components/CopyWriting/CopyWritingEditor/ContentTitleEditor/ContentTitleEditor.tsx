@@ -45,6 +45,7 @@ const ContentTitleEditor: React.FC<ContentTitleEditorProps> = ({ className, valu
         ...params.InputProps,
         type: 'search',
         placeholder: '콘텐츠 제목을 입력해주세요.',
+        value,
         startAdornment: (
           <InputAdornment position='start'>
             <Search className={styles.autoCompleteSearchIcon} />
@@ -63,6 +64,7 @@ const ContentTitleEditor: React.FC<ContentTitleEditorProps> = ({ className, valu
         disableClearable={true}
         options={options}
         renderInput={getAutocompleteRenderInput}
+        value={value}
         inputValue={value}
         onInputChange={(_: SyntheticEvent, inputValue: string) => onChange(inputValue)}
       />

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import Classnames from 'classnames';
 
 import Box from '@mui/material/Box';
@@ -30,6 +30,7 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
   const [newKeyword, setNewKeyword] = useState<string>();
 
   const onTargetAdd = () => {
+    console.log('newTarget: ', newTarget);
     if (newTarget) {
       onTargetChange(newTarget);
       setNewTarget('');
@@ -85,6 +86,7 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
             }}
             value={newTarget}
             onChange={(event: ChangeEvent<HTMLInputElement>) => setNewTarget(event.target.value)}
+            onKeyUp={(event: KeyboardEvent<HTMLInputElement>) => event.key === 'Enter' && onTargetAdd()}
           />
         </FormControl>
         <FormControl className={styles.keywordWrapper}>
@@ -109,6 +111,7 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
             }}
             value={newKeyword}
             onChange={(event: ChangeEvent<HTMLInputElement>) => setNewKeyword(event.target.value)}
+            onKeyUp={(event: KeyboardEvent<HTMLInputElement>) => event.key === 'Enter' && onNewKeywordAdd()}
           />
         </FormControl>
       </Box>

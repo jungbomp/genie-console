@@ -8,6 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Typography from '@mui/material/Typography';
 
 import { Rotate, SendAlt } from 'src/Icon';
+import { defaultWordCountsByType } from '../CopyWriting.constants';
 import type { CopyType, PromotionType } from '../CopyWriting.types';
 
 import ContentTitleEditor from './ContentTitleEditor/ContentTitleEditor';
@@ -23,6 +24,7 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({
   className,
   onValuesChange = () => {},
   onClickGenerateCopyWrite = () => {},
+  onReset = () => {},
 }) => {
   const [contentTitle, setContentTitle] = useState<string>();
   const [copyType, setCopyType] = useState<CopyType>();
@@ -30,6 +32,14 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({
   const [promotionType, setPromotionType] = useState<PromotionType>();
   const [promotionDetails, setPromotionDetails] = useState<string>();
   const [additionalRequest, setAdditionalRequest] = useState<string>();
+
+  const onCopyTypeValueChange = (type: CopyType) => {
+    setWordCount(defaultWordCountsByType[type]);
+    setPromotionType(undefined);
+    setPromotionDetails('');
+    setCopyType(type);
+    onReset();
+  };
 
   const onGenerateCopyWriteButtonClick = () => {
     if (contentTitle && copyType) {
@@ -53,6 +63,7 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({
     setPromotionType(undefined);
     setPromotionDetails('');
     setAdditionalRequest('');
+    onReset();
   };
 
   useEffect(() => {
@@ -77,7 +88,7 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({
         <ContentTitleEditor value={contentTitle} onChange={setContentTitle} />
       </FormControl>
       <FormControl>
-        <CopyTypeEditor value={copyType} onChange={setCopyType} />
+        <CopyTypeEditor value={copyType} onChange={onCopyTypeValueChange} />
       </FormControl>
       <FormControl className={Classnames({ [styles.hideGenerateOptionEditor]: copyType === undefined })}>
         <GenerateOptionEditor
