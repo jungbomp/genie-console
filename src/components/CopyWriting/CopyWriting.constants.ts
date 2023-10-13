@@ -6,6 +6,12 @@ export const COPY_WRITING_TITLE = '지니카피라이팅';
 
 export const COPY_WRITING_REQUEST_CNT = 1;
 
+export const defaultWordCountsByType = {
+  HEAD: 40,
+  BODY: 100,
+  SYNOPSIS: 100,
+};
+
 export const wordMetaKeyMap = {
   SEARCH_WORD: '제목',
   EXPOSURE_GENRE: '노출 장르',

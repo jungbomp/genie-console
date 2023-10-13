@@ -1,4 +1,4 @@
-import type { ReactElement } from 'react';
+import type { ReactElement, MouseEvent } from 'react';
 import type { CommonProps } from 'src/components/types';
 
 export interface StateChipProps extends CommonProps {
@@ -8,5 +8,5 @@ export interface StateChipProps extends CommonProps {
   icon?: ReactElement;
   size?: 'small' | 'medium' | 'large';
   active?: boolean;
-  onClick?: () => void;
+  onClick?: (event?: MouseEvent<HTMLDivElement>) => void;
 }

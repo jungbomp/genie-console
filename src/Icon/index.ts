@@ -19,6 +19,7 @@ import StarFilled from './StarFilled';
 import ThumbsDown from './ThumbsDown';
 import ThumbsDownFilled from './ThumbsDownFilled';
 import ThumbsUp from './ThumbsUp';
+import ThumbsUpFilled from './ThumbsUpFilled';
 
 export {
   Add,
@@ -42,4 +43,5 @@ export {
   ThumbsDown,
   ThumbsDownFilled,
   ThumbsUp,
+  ThumbsUpFilled,
 };

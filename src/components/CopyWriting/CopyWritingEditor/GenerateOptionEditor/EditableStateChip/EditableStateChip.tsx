@@ -1,8 +1,9 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
 import _ from 'lodash';
 
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -69,7 +70,9 @@ const EditableStateChip: React.FC<EditableStateChipProps> = ({
                 ),
                 endAdornment: (
                   <InputAdornment position='end'>
-                    <Pen className={styles.icon} />
+                    <IconButton className={styles.inputButton} aria-label='입력' onClick={onBlur}>
+                      <Pen className={styles.icon} />
+                    </IconButton>
                   </InputAdornment>
                 ),
               }}
@@ -77,6 +80,7 @@ const EditableStateChip: React.FC<EditableStateChipProps> = ({
                 setTextValue(event.target.value);
               }}
               onBlur={onBlur}
+              onKeyUp={(event: KeyboardEvent<HTMLInputElement>) => event.key === 'Enter' && onBlur()}
             />
           </Box>
         ) : null}

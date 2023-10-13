@@ -115,6 +115,14 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
     }
   };
 
+  const onReset = () => {
+    setSuggestions([]);
+    setMarketingPresetIndex(0);
+    setSynopsisIndex(0);
+    setShowGenerateMoreButton(true);
+    setShowCopyWritingModal(false);
+  };
+
   useEffect(() => {
     if (
       copyWritingOption?.copyType === 'SYNOPSIS' &&
@@ -130,7 +138,11 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
 
   return (
     <Box className={Classnames(styles.copyWriting, className)}>
-      <CopyWritingEditor onValuesChange={setCopyWritingOption} onClickGenerateCopyWrite={onClickGenerateCopyWrite} />
+      <CopyWritingEditor
+        onValuesChange={setCopyWritingOption}
+        onClickGenerateCopyWrite={onClickGenerateCopyWrite}
+        onReset={onReset}
+      />
       <CopyWritingSuggestions
         suggestions={suggestions}
         showGenerateMoreButton={showGenerateMoreButton}

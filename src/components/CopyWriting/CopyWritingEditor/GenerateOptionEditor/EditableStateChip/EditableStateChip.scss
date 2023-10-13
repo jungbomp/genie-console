@@ -31,6 +31,16 @@
         }
       }
 
+      :global(.MuiInputAdornment-positionEnd) {
+        .inputButton {
+          background-color: unset;
+
+          &:hover {
+            color: #6941FF;
+          }
+        }
+      }
+
       :global(.MuiInputBase-root) {
         font-family: 'Noto Sans', sans-serif;
         font-size: 16px;

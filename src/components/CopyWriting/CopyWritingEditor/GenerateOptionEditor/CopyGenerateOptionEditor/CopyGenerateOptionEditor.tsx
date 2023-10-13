@@ -14,6 +14,8 @@ import styles from './CopyGenerateOptionEditor.scss';
 const CopyGenerateOptionEditor: React.FC<CopyGenerateOptionEditorProps> = ({
   className,
   wordCount,
+  smallWordCountOption = 40,
+  largeWordCountOption = 60,
   promotionType,
   promotionDetails,
   onWordCountChange,
@@ -23,7 +25,12 @@ const CopyGenerateOptionEditor: React.FC<CopyGenerateOptionEditorProps> = ({
   return (
     <Box className={Classnames(styles.copyGenerateOptionEditor, className)}>
       <FormLabel className={styles.label}>생성 옵션</FormLabel>
-      <CopyWordCountEditor wordCount={wordCount} onWordCountChange={onWordCountChange} />
+      <CopyWordCountEditor
+        wordCount={wordCount}
+        smallWordCountOption={smallWordCountOption}
+        largeWordCountOption={largeWordCountOption}
+        onWordCountChange={onWordCountChange}
+      />
       <CopyPromotionEditor
         promotionType={promotionType}
         promotionDetails={promotionDetails}

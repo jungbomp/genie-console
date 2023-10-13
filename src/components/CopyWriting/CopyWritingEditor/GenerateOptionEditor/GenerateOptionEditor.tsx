@@ -20,6 +20,8 @@ const GenerateOptionEditor: React.FC<GenerateOptionEditorProps> = ({
       <CopyGenerateOptionEditor
         className={className}
         wordCount={wordCount}
+        smallWordCountOption={copyType === 'HEAD' ? 40 : 60}
+        largeWordCountOption={copyType === 'HEAD' ? 60 : 100}
         promotionType={promotionType}
         promotionDetails={promotionDetails}
         onWordCountChange={onWordCountChange}

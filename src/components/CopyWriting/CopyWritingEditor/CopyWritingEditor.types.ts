@@ -4,4 +4,5 @@ import type { CopyWritingOption } from '../CopyWriting.types';
 export interface CopyWritingEditorProps extends CommonProps {
   onValuesChange?: (values: CopyWritingOption) => void;
   onClickGenerateCopyWrite?: (option: CopyWritingOption) => void;
+  onReset?: () => void;
 }
