@@ -28,10 +28,10 @@ export const wordMetaKeyMap = {
 };
 
 export const promotionMap = {
-  FREE: '무료',
+  FREE: '무료시청',
   GIFT: '경품',
   TV_COUPON: 'TV쿠폰',
-  DISCOUNT: '가격할인',
+  DISCOUNT: '할인',
 };
 
 export const marketingMidmGeneratingOptionPresets: MidmGeneratingOptionPreset[] = [

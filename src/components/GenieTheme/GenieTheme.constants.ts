@@ -84,6 +84,10 @@ export const drsThemeOptionPresets = {
       TYPE: 'KTHA',
       QUERY: `character${eucKrUrlEncode(':영어동요')}`,
     },
+    ['인기']: {
+      TYPE: 'KTHA',
+      QUERY: `basic_emotion${eucKrUrlEncode(':트렌드')}`,
+    },
   },
   [TargetTypes.KID]: {
     ['애니메이션']: {
@@ -98,17 +102,23 @@ export const drsThemeOptionPresets = {
     },
     ['애니메이션|인기영화|판타지']: {
       TYPE: 'THA',
-      QUERY: `genre${eucKrUrlEncode(':판타지|')}genre${eucKrUrlEncode(':코믹|')}type${eucKrUrlEncode(':애니영화')}`,
+      QUERY: `genre${eucKrUrlEncode(':판타지|')}type${eucKrUrlEncode(':애니영화|')}genre${eucKrUrlEncode(':')}SF`,
     },
   },
   [TargetTypes['20S_MALE']]: {
     NO_KEYWORD: {
       TYPE: 'THA',
-      QUERY: `basic_emotion${eucKrUrlEncode(':인기있는|')}type${eucKrUrlEncode(':TV 다시보기')}`,
+      QUERY: `uigenre${eucKrUrlEncode(':')}TV${eucKrUrlEncode('다시보기|')}trend${eucKrUrlEncode(':일간트렌드')}`,
+    },
+    ['판타지']: {
+      TYPE: 'THA',
+      QUERY: `genre${eucKrUrlEncode(':')}SF${eucKrUrlEncode('|')}genre${eucKrUrlEncode(':판타지|')}type${eucKrUrlEncode(
+        ':애니영화',
+      )}`,
     },
     ['영화|판타지']: {
       TYPE: 'THA',
-      QUERY: `type${eucKrUrlEncode(':실사영화|')}uigenre${eucKrUrlEncode(':영화|')}topic${eucKrUrlEncode(':로봇')}`,
+      QUERY: `type${eucKrUrlEncode(':실사영화|')}topic${eucKrUrlEncode(':로봇')}`,
     },
     ['어린시절|영화|판타지']: {
       TYPE: 'THA',
@@ -116,22 +126,33 @@ export const drsThemeOptionPresets = {
         '|',
       )}creation_year_max${eucKrUrlEncode(':')}2100${eucKrUrlEncode('|')}type${eucKrUrlEncode(':실사영화')}`,
     },
+    ['소설원작|영화|판타지']: {
+      TYPE: 'THA',
+      QUERY: `type${eucKrUrlEncode(':실사영화|')}topic${eucKrUrlEncode(':소설원작|')}genre${eucKrUrlEncode(':판타지')}`,
+    },
   },
   [TargetTypes['30S']]: {
-    ['추천']: {
-      USER_ID: '10972481410',
-      TYPE: 'VREL',
-      NDAY: '1000',
-    },
-    ['영화|추천']: {
-      USER_ID: '10972481410',
-      TYPE: 'VREL',
-      NDAY: '1000',
-      DTL_GENRE: eucKrUrlEncode('영화'),
-    },
-    ['영화|작품성|추천']: {
+    NO_KEYWORD: {
       TYPE: 'THA',
-      Meta_award: `${eucKrUrlEncode('오스카|')}type${eucKrUrlEncode(':실사영화')}`,
+      QUERY: `basic_emotion${eucKrUrlEncode(':구매주간인기|')}uigenre${eucKrUrlEncode(':')}TV${eucKrUrlEncode(
+        '다시보기|',
+      )}uisubgenre${eucKrUrlEncode(':시사교양')}`,
+    },
+    ['감동적인']: {
+      TYPE: 'THA',
+      QUERY: `emotion${eucKrUrlEncode(':유쾌한|')}emotion${eucKrUrlEncode(':감동적인|')}genre${eucKrUrlEncode(
+        ':가족이 볼만한',
+      )}`,
+    },
+    ['감동적인|작품성']: {
+      TYPE: 'THA',
+      QUERY: `Meta_award${eucKrUrlEncode(':오스카|')}type${eucKrUrlEncode(':실사영화')}`,
+    },
+    ['TV다시보기']: {
+      TYPE: 'THA',
+      QUERY: `basic_emotion${eucKrUrlEncode(':구매주간인기|')}uigenre${eucKrUrlEncode(':')}TV${eucKrUrlEncode(
+        '다시보기|',
+      )}uisubgenre${eucKrUrlEncode(':시사교양')}`,
     },
   },
   [TargetTypes['40S_FEMALE']]: {
@@ -148,6 +169,12 @@ export const drsThemeOptionPresets = {
       QUERY: `genre${eucKrUrlEncode(':로맨스|')}creation_year_min${eucKrUrlEncode(':')}1999${eucKrUrlEncode(
         '|',
       )}creation_year_max${eucKrUrlEncode(':')}2003${eucKrUrlEncode('|')}type${eucKrUrlEncode(':실사영화')}`,
+    },
+    ['감동적인|로맨스|솔로']: {
+      TYPE: 'THA',
+      QUERY: `emotion${eucKrUrlEncode(':느린|')}emotion${eucKrUrlEncode(':조용한|')}emotion${eucKrUrlEncode(
+        ':감동적인',
+      )}`,
     },
   },
 };

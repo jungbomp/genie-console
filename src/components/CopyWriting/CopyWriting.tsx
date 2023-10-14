@@ -12,7 +12,6 @@ import type { AutoWordItem, MidmApiResponse } from 'src/types';
 import { MidmGeneratingOptionPreset } from 'src/types';
 import CopyWritingEditor from './CopyWritingEditor/CopyWritingEditor';
 import CopyWritingSuggestions from './CopyWritingSuggestions/CopyWritingSuggestions';
-import CopyWritingModal from './CopyWritingDialog/CopyWritingModal';
 
 import {
   COPY_WRITING_REQUEST_CNT,
@@ -35,7 +34,6 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
   const [synopsisPresetIndex, setSynopsisIndex] = useState<number>(0);
   const [suggestions, setSuggestions] = useState<CopyWritingSuggestionItem[]>([]);
   const [showGenerateMoreButton, setShowGenerateMoreButton] = useState<boolean>(true);
-  const [showCopyWritingModal, setShowCopyWritingModal] = useState<boolean>(false);
 
   const generateCopyWrites = (
     option: CopyWritingOption,
@@ -120,7 +118,6 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
     setMarketingPresetIndex(0);
     setSynopsisIndex(0);
     setShowGenerateMoreButton(true);
-    setShowCopyWritingModal(false);
   };
 
   useEffect(() => {
@@ -148,18 +145,11 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
         showGenerateMoreButton={showGenerateMoreButton}
         onClickCopyWritingSuggestion={onClickCopyWritingSuggestion}
         onClickGenerateMoreCopyWrite={onClickGenerateMoreCopyWrite}
-        onClickApply={() => setShowCopyWritingModal(true)}
+        onClickApply={() => console.log('CopyWrite Apply')}
       />
       <Backdrop open={isLoading}>
         <CircularProgress color='inherit' />
       </Backdrop>
-      <CopyWritingModal
-        open={showCopyWritingModal}
-        copyWrite={
-          suggestions.find(({ genieSuggestion }: CopyWritingSuggestionItem) => genieSuggestion)?.copyWrite ?? ''
-        }
-        onBackdropClick={() => setShowCopyWritingModal(false)}
-      />
     </Box>
   );
 };
