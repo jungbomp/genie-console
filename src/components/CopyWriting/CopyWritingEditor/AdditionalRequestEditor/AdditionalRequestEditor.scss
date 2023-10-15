@@ -2,6 +2,7 @@
 
 .additionalRequestEditor {
   @include copyWritingChildComponent;
+  gap:unset;
   justify-content: flex-end;
   flex: 1;
 
@@ -34,7 +35,7 @@
         color: rgba(0, 0, 0, 0.26);
         font-size: 16px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 700;
         line-height: 24px; /* 150% */
         
         &:hover {

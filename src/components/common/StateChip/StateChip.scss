@@ -4,7 +4,8 @@
     display: inline-flex;
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
+    box-shadow: unset;
 
     :global(.MuiChip-icon) {
       margin: unset;
@@ -13,6 +14,7 @@
 
     &.large {
       padding: 8px 16px;
+      color:#6A30D8 !important;
     }
 
     :global(.MuiChip-label) {
@@ -26,6 +28,7 @@
       .titleWrapper {
         .title {
           color: #6A30D8;
+          font-weight: 700;
         }
 
         .subtitle {
@@ -66,7 +69,7 @@
         color: #000;
         font-size: 16px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 700;
         line-height: 24px; /* 150% */
       }
 

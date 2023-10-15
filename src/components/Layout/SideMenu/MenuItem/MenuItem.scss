@@ -2,7 +2,7 @@ $menu-item-padding: 8px 12px;
 $menu-item-gap: 8px;
 $menu-item-border-radius: 8px;
 $menu-item-hover-background-color: #FFF;
-$menu-item-icon-size: 20px;
+$menu-item-icon-size: 16px;
 $menu-item-color: white;
 $menu-item-font-size: 14px;
 $menu-item-hover-font-color: #3B13D0;
@@ -23,8 +23,7 @@ $menu-item-hover-font-color: #3B13D0;
     margin-bottom: 6px;
 
     span {
-      font-family: 'dxu30' !important;
-      font-weight: 500 !important;
+      font-size: 14px !important;
     }
   }
 

@@ -79,6 +79,10 @@ $header-margin-bottom: 4px;
       border-style: solid;
       border-radius: unset;
 
+      span svg {
+        width:16px;
+      }
+
       &:hover,
       &:active {
         background: unset;

@@ -10,11 +10,11 @@
     line-height: 24px;
 
     div {
-      pointer-events: none;
+      // pointer-events: none;
       
       p,
       :global(.MuiChip-icon) {
-        color: rgba(0, 0, 0, 0.26) !important;
+        // color: hsla(0, 0%, 0%, 0.26) !important;
       }
     }
 

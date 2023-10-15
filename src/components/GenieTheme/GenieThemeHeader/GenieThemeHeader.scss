@@ -54,6 +54,7 @@
         :global(.MuiInputAdornment-positionEnd) {
           .textFieldButton {
             color: #757A9B;
+            font-weight: 700;
 
             &:hover {
               background-color: unset;
@@ -78,7 +79,7 @@
     .targetWrapper, .keywordWrapper {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
       flex: 1 0 0;
     }
 
@@ -101,9 +102,10 @@
         display: flex;
         padding: 8px 12px;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         border-radius: 30px;
         background: #F5F5F8;
+        height: auto;
 
         :global(.MuiChip-label) {
           padding: unset;
@@ -111,7 +113,7 @@
           font-size: 16px;
           font-style: normal;
           font-weight: 500;
-          line-height: 24px; /* 150% */
+          line-height: 26px; /* 150% */
         }
 
         :global(.MuiChip-deleteIcon) {
@@ -122,18 +124,20 @@
     }
 
     .footerButton {
+      height: auto;
       display: flex;
       padding: 8px 16px;
       align-items: center;
       gap: 12px;
       border-radius: 30px;
       background: #8138FF;
+      box-shadow: unset;
 
       :global(.MuiChip-label) {
         color: var(--default-neutral-white, #FFF);
         font-size: 16px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 700;
         line-height: 24px; /* 150% */
         padding: unset;
       }
@@ -142,14 +146,14 @@
 
   .label {
     color: #23116C;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 600;
     line-height: 26px; /* 162.5% */
   }
 
   .icon {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
   }
 }

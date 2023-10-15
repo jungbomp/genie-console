@@ -11,15 +11,8 @@
     align-items: center;
     gap: 8px;
 
-    .logoWrapper {
-      background-color: #6941FF;
-      border-radius: 50%;
-      display: flex;
-      padding: 8px;
-      max-width: 42px;
-
       .logo {
-        width: 100%;
+        width: 180px;
         height: auto;
       }
     }
@@ -36,12 +29,11 @@
 
   .subtitleWrapper {
     .subtitle {
-      color: #6E7494;
+      color: #c5c5c5;
       text-align: center;
       font-size: 16px;
       font-style: normal;
-      font-weight: 500;
+      font-weight: 700;
       line-height: 28px; /* 175% */
     }
   }
-}

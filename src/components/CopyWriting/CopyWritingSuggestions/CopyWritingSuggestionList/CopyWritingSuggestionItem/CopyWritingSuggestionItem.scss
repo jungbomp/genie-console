@@ -32,7 +32,7 @@
 
       .typography {
         color: #6A30D8;
-        font-size: 18px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 30px; /* 166.667% */
@@ -79,7 +79,7 @@
 
       .buttonWrapper {
         display: flex;
-        gap: 4px;
+        gap: 8px;
 
         .buttonIcon {
           width: 16px;
@@ -93,7 +93,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 4px;
+    gap: 8px;
 
     .voteButton {
       display: inline-flex;
