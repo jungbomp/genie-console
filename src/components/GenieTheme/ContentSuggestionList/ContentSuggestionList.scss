@@ -16,7 +16,8 @@
 
     .headerButton {
       padding: 8px 16px;
-
+      height: auto;
+      border-radius: 25px;
       background: #8138FF;
       color: var(--default-neutral-white, #FFF);
       font-size: 16px;

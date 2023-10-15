@@ -24,7 +24,9 @@ $copy-writing-focus-color: #6A30D8;
       padding: $copy-writing-padding;
 
       .autoCompleteSearchIcon {
+        width: 20px;
         color: $copy-writing-icon-color;
+        margin-right: -2px;
       }
       
       :global(.MuiAutocomplete-input) {

@@ -8,13 +8,38 @@
   src: url(./Font/DXUnigothic-30-KSCpc-EUC-H.woff);
 }
 
-html, body {
+@font-face {
+  font-family: 'paybc';
+  src: url(./Font/paybooc\ Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'paybc';
+  src: url(./Font/paybooc\ Light.ttf);
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'paybc';
+  src: url(./Font/paybooc\ Bold.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'paybc';
+  src: url(./Font/paybooc\ ExtraBold.ttf);
+  font-weight: 800;
+}
+
+html,
+body {
   height: 100%;
   background: linear-gradient(145deg, #522CBB 0%, #833CF5 60.35%);
   margin: unset;
 }
 
-body > div:first-child {
+body>div:first-child {
   height: 100%;
 }
 

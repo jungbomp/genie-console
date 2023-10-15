@@ -1,9 +1,9 @@
 @import '../common';
 
-$copy-writing-space: 32px;
+$copy-writing-space: 24px;
 
 .copyWritingEditor {
-  padding: $copy-writing-space;
+  padding: 32px;
   display: flex;
   flex-direction: column;
   gap: $copy-writing-space;
@@ -15,7 +15,7 @@ $copy-writing-space: 32px;
 
   .headTitle {
     color: #6E7494;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px; /* 150% */
@@ -40,13 +40,16 @@ $copy-writing-space: 32px;
 
       .submitButton {
         display: flex;
-        padding: 12px 38px 12px 32px;
+        padding: 12px 48px 12px 42px;
         justify-content: center;
         align-items: center;
         gap: 12px;
         flex-shrink: 0;
         border-radius: 30px;
         background: #8138FF;
+        font-size: 18px;
+        font-weight: 700;
+        box-shadow: unset;
 
         :global(.MuiButton-startIcon) {
           margin: unset;
@@ -63,10 +66,10 @@ $copy-writing-space: 32px;
         align-items: center;
         gap: 8px;
         position: absolute;
-        right: 0;
+        right: -8px;
         bottom: 0;
 
-        font-size: 16px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 500;
         line-height: 24px; /* 150% */

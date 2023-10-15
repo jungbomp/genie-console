@@ -1,8 +1,13 @@
 .themeSuggestionListView {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   align-self: stretch;
+
+  :global(.StateChip_stateChip_ZuRZd.MuiChip-root.StateChip_large_v5s4u) {
+    padding: 12px 16px;
+    height: auto;
+  }
 
   .moreGenerationButton {
     display: flex;
@@ -11,13 +16,13 @@
     gap: 8px;
     align-self: flex-end;
     border-radius: 30px;
-    border: 1px solid #E0E1F3;
+    border: 1px solid #E0E1F3 !important;
     padding: 8px 16px;
 
     color: #23116C;
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 24px; /* 150% */
 
     :global(.MuiButton-startIcon) {
