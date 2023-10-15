@@ -1,7 +1,6 @@
 import type { CommonProps } from 'src/components/types';
 
-export interface CopyWritingModalProps extends CommonProps {
+export interface CopyWritingDemoProps extends CommonProps {
   open?: boolean;
-  copyWrite: string;
   onBackdropClick?: () => void;
 }

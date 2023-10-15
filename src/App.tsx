@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import '@fontsource/outfit';
 import '@fontsource/noto-sans';
 
-import CopyWriting from 'src/components/CopyWriting/CopyWriting';
+import CopyWritingDemo from 'src/components/CopyWriting/CopyWritingDemo/CopyWritingDemo';
 import history from './History';
 import store from './Redux/store';
 
@@ -16,7 +16,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history} noInitialPop={true}>
       <Switch>
-        <Route exact={true} path='/popup' render={() => <CopyWriting />} />
+        <Route exact={true} path='/demo/copy-writing' render={() => <CopyWritingDemo />} />
         <Route render={() => <Layout />} />
       </Switch>
     </ConnectedRouter>

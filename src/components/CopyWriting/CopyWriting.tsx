@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Classnames from 'classnames';
 import _ from 'lodash';
 
@@ -21,11 +21,13 @@ import {
 import type { CopyWritingOption, CopyWritingProps, CopyWritingSuggestionItem } from './CopyWriting.types';
 import { getCopyWriteAsync, getCopyWritingSuggestionsFromMidmApiResponses } from './CopyWriting.utils';
 
+import { setCopyWritingOption as setCopyWritingOptionAction } from './redux/actions';
 import { autoWordItemsSelector } from './redux/selectors';
 
 import styles from './CopyWriting.scss';
 
 const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
+  const dispatch = useDispatch();
   const autoWordItems: AutoWordItem[] = useSelector(autoWordItemsSelector);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -90,17 +92,6 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
     }
   };
 
-  const onClickCopyWritingSuggestion = (item: CopyWritingSuggestionItem) => {
-    const clonedSuggestions = suggestions.map((suggestion: CopyWritingSuggestionItem) => ({
-      ...suggestion,
-      genieSuggestion: false,
-    }));
-
-    const index = suggestions.findIndex(({ copyWrite }: CopyWritingSuggestionItem) => copyWrite === item.copyWrite);
-    clonedSuggestions[index].genieSuggestion = !item.genieSuggestion;
-    setSuggestions(clonedSuggestions);
-  };
-
   const onClickGenerateMoreCopyWrite = () => {
     if (copyWritingOption) {
       if (copyWritingOption.copyType === 'SYNOPSIS') {
@@ -111,6 +102,18 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
         setMarketingPresetIndex(Math.min(marketingPresetIndex + 1, marketingMidmGeneratingOptionPresets.length));
       }
     }
+  };
+
+  const onClickCopyWritingSuggestion = (item: CopyWritingSuggestionItem) => {
+    const clonedSuggestions = suggestions.map((suggestion: CopyWritingSuggestionItem) => ({
+      ...suggestion,
+      genieSuggestion: false,
+    }));
+
+    const index = suggestions.findIndex(({ copyWrite }: CopyWritingSuggestionItem) => copyWrite === item.copyWrite);
+    clonedSuggestions[index].genieSuggestion = !item.genieSuggestion;
+    setSuggestions(clonedSuggestions);
+    dispatch(setCopyWritingOptionAction(copyWritingOption));
   };
 
   const onReset = () => {
