@@ -1,0 +1,11 @@
+.copyWritingDemo {
+  padding: 100px;
+
+  &Empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: white;
+  }
+}

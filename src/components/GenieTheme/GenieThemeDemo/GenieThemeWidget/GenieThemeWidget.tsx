@@ -15,7 +15,7 @@ import styles from './GenieThemeWidget.scss';
 const GenieThemeWidget: React.FC<GenieThemeWidgetProps> = ({ className, themeWidgetTitle, themeWidgetItems }) => {
   return (
     <Box className={Classnames(styles.genieThemeWidget, className)}>
-      <Box>
+      <Box className={Classnames(styles.titleWrapper)}>
         <Typography className={styles.title}>{themeWidgetTitle}</Typography>
       </Box>
       <Box className={styles.itemsWrapper}>

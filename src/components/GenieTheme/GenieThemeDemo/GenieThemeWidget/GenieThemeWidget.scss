@@ -1,0 +1,23 @@
+.genieThemeWidget {
+  position: absolute;
+  top: 148px;
+  left: 80px;
+
+  .titleWrapper {
+    padding-bottom: 7px;
+
+    .title {
+      font-size: 43px;
+      color: white;
+      background: rgba(255, 255, 255, 0);
+      backdrop-filter: blur(50px);
+    }
+  }
+
+  .itemsWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 36px;
+    padding-left: 2px;
+  }
+}
