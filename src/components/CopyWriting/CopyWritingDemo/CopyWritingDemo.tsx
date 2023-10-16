@@ -32,7 +32,7 @@ const CopyWritingDemo: React.FC<CopyWritingDemoProps> = ({ className }) => {
       ) : (
         <EmptySuggestion
           title='믿음 주는 AI 지니'
-          subtitle='지니카피라이팅 폼을 이용하면 우측에 다양한 문구가 생성됩니다.'
+          subtitle='지니카피라이팅 폼을 이용하면 다양한 문구를 생성할 수 있습니다.'
         />
       )}
     </Box>
