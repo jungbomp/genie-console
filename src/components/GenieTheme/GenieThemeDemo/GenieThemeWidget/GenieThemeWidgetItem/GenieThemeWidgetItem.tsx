@@ -2,6 +2,7 @@ import React from 'react';
 import Classnames from 'classnames';
 
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 import type { GenieThemeWidgetItemProps } from './GenieThemeWidgetItem.types';
 
@@ -16,9 +17,15 @@ const GenieThemeWidgetItem: React.FC<GenieThemeWidgetItemProps> = ({
   return (
     <Box className={Classnames(styles.genieThemeWidgetItem, className)}>
       <img className={styles.img} src={itemImgUrl} alt={itemTitle} loading='lazy' />
-      <Box className={styles.titleImgWrapper}>
-        <img className={styles.titleImg} src={titleImgUrl} alt={itemTitle} loading='lazy' />
-      </Box>
+      {titleImgUrl ? (
+        <Box className={styles.titleImgWrapper}>
+          <img className={styles.titleImg} src={titleImgUrl} alt={itemTitle} loading='lazy' />
+        </Box>
+      ) : (
+        <Box className={styles.titleWrapper}>
+          <Typography className={styles.title}>{itemTitle}</Typography>
+        </Box>
+      )}
     </Box>
   );
 };

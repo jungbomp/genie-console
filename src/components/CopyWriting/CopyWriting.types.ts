@@ -12,6 +12,12 @@ export interface CopyWritingOption {
   additionalRequest?: string;
 }
 
+export interface CopyWritingDemoOption {
+  contentTitle: string;
+  copyType: CopyType;
+  copyWriting: string;
+}
+
 export interface CopyWritingSuggestionItem {
   genieSuggestion?: boolean;
   copyWrite: string;

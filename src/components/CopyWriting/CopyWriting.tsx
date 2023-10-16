@@ -21,7 +21,7 @@ import {
 import type { CopyWritingOption, CopyWritingProps, CopyWritingSuggestionItem } from './CopyWriting.types';
 import { getCopyWriteAsync, getCopyWritingSuggestionsFromMidmApiResponses } from './CopyWriting.utils';
 
-import { setCopyWritingOption as setCopyWritingOptionAction } from './redux/actions';
+import { setCopyWritingDemoOption } from './redux/actions';
 import { autoWordItemsSelector } from './redux/selectors';
 
 import styles from './CopyWriting.scss';
@@ -113,7 +113,6 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
     const index = suggestions.findIndex(({ copyWrite }: CopyWritingSuggestionItem) => copyWrite === item.copyWrite);
     clonedSuggestions[index].genieSuggestion = !item.genieSuggestion;
     setSuggestions(clonedSuggestions);
-    dispatch(setCopyWritingOptionAction(copyWritingOption));
   };
 
   const onReset = () => {
@@ -121,6 +120,19 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
     setMarketingPresetIndex(0);
     setSynopsisIndex(0);
     setShowGenerateMoreButton(true);
+  };
+
+  const onClickApply = () => {
+    const suggestion = suggestions.find(({ genieSuggestion }: CopyWritingSuggestionItem) => genieSuggestion)?.copyWrite;
+    if (copyWritingOption && suggestion) {
+      dispatch(
+        setCopyWritingDemoOption({
+          contentTitle: copyWritingOption.contentTitle,
+          copyType: copyWritingOption.copyType,
+          copyWriting: suggestion,
+        }),
+      );
+    }
   };
 
   useEffect(() => {
@@ -148,7 +160,7 @@ const CopyWriting: React.FC<CopyWritingProps> = ({ className }) => {
         showGenerateMoreButton={showGenerateMoreButton}
         onClickCopyWritingSuggestion={onClickCopyWritingSuggestion}
         onClickGenerateMoreCopyWrite={onClickGenerateMoreCopyWrite}
-        onClickApply={() => console.log('CopyWrite Apply')}
+        onClickApply={onClickApply}
       />
       <Backdrop open={isLoading}>
         <CircularProgress color='inherit' />

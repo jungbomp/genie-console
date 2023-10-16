@@ -1,6 +1,5 @@
 .genieThemeWidgetItem {
-  max-width: 235px;
-  max-height: 132px;
+  width: 412px;
   position: relative;
 
   .img {
@@ -23,5 +22,15 @@
     }
   }
 
+  .titleWrapper {
+    position: absolute;;
+    left: 0;
+    bottom: 0;
+
+    .title {
+      font-size: 60px;
+      color: white;
+    }
+  }
 
 }
