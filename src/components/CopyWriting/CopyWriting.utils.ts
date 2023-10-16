@@ -27,11 +27,18 @@ export const buildPromotionString = (promotionType?: PromotionType, promotionDet
     return '';
   }
 
+  let promotionToken = '';
   if (promotionType === 'FREE') {
-    return `\n프로모션: ${promotionMap[promotionType]}`;
+    promotionToken = `${promotionMap[promotionType]}`;
+  } else {
+    promotionToken = `${promotionMap[promotionType]}${
+      promotionDetails
+        ? ` ${promotionDetails}${promotionType !== 'GIFT' && !promotionDetails.endsWith('원') ? '원' : ''}`
+        : ''
+    }`;
   }
 
-  return `\n프로모션: ${promotionMap[promotionType]}${_.isEmpty(promotionDetails) ? '' : `/${promotionDetails}`}`;
+  return ` 이 때, ${promotionToken} 내용을 문구에 포함해줘.`;
 };
 
 export const buildMidmMarketingPrompt = (
@@ -41,11 +48,12 @@ export const buildMidmMarketingPrompt = (
   promotionType?: PromotionType,
   promotionDetails?: string,
 ): string =>
-  `다음 콘텐츠에 대한 창의적인 마케팅 문구를 ${wordCount}자 이내로 작성해줘.${buildTriggerWords(
-    optionPreset.additional_meta ?? [],
-  )}${buildMetaWords(optionPreset.essential_meta ?? [], autoWordItem)}${buildPromotionString(
+  `다음 콘텐츠에 대한 창의적인 마케팅 문구를 ${wordCount}자 이내로 작성해줘.${buildPromotionString(
     promotionType,
     promotionDetails,
+  )}${buildTriggerWords(optionPreset.additional_meta ?? [])}${buildMetaWords(
+    optionPreset.essential_meta ?? [],
+    autoWordItem,
   )}`;
 
 export const buildMidmSynopsisPrompt = (
