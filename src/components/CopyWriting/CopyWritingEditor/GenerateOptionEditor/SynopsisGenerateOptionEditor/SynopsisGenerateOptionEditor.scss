@@ -7,20 +7,7 @@
     background-color: #F5F5F8;
     height: unset;
     width: 280px;
-    // pointer-events: none;
 
-    p,
-    :global(.MuiChip-icon) {
-      // color: rgba(0, 0, 0, 0.26) !important;
-    }
-  }
-
-  & :global(.MuiButtonBase-root):nth-child(3){
-    background-color: #EFE7FF;
-
-    p {
-      color: #6A30D8 !important;
-    }
   }
 
   & :global(.MuiButtonBase-root):last-child{
