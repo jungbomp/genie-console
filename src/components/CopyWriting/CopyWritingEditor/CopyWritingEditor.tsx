@@ -5,9 +5,10 @@ import _ from 'lodash';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
-import Typography from '@mui/material/Typography';
 
 import { Rotate, SendAlt } from 'src/Icon';
+import copywriteIntro from 'images/copywriting-intro.png';
+
 import { defaultWordCountsByType } from '../CopyWriting.constants';
 import type { CopyType, PromotionType } from '../CopyWriting.types';
 
@@ -80,9 +81,9 @@ const CopyWritingEditor: React.FC<CopyWritingEditorProps> = ({
 
   return (
     <div className={Classnames(styles.copyWritingEditor, className)}>
-      <Typography className={styles.headTitle}>
-        AI 지니와 함께 고객을 사로잡을 수 있는 매력적인 문구를 만들어 보세요.
-      </Typography>
+      <Box className={styles.headTitle}>
+        <img src={copywriteIntro} alt='copywriteIntro' />
+      </Box>
       <FormControl>
         <ContentTitleEditor value={contentTitle} onChange={setContentTitle} />
       </FormControl>

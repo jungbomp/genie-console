@@ -8,9 +8,10 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 
 import { Close, Search } from 'src/Icon';
+
+import themeIntro from 'images/theme-intro.png';
 
 import type { GenieThemeHeaderProps } from './GenieThemeHeader.types';
 
@@ -58,10 +59,7 @@ const GenieThemeHeader: React.FC<GenieThemeHeaderProps> = ({
   return (
     <Box className={Classnames(styles.genieThemeHeader, className)}>
       <Box className={styles.titleWrapper}>
-        <Typography className={styles.title}>AI 지니가 추천 테마명과 콘텐츠 리스트를 제공해 드려요.</Typography>
-        <Typography className={styles.subtitle}>
-          원하시는 고객의 특성, 테마 관련 주요 키워드 정보를 한 개 이상 적어주세요.
-        </Typography>
+        <img src={themeIntro} alt='themeintro' />
       </Box>
       <Box className={styles.paramWrapper}>
         <FormControl className={styles.targetWrapper}>
