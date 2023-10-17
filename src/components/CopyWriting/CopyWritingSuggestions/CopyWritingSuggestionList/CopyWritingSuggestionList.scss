@@ -14,6 +14,10 @@
     & :global(.MuiButtonBase-root){
       background-color: #F5F5F8;
       height: unset;
+
+      p{ //modify,copy button
+        font-size: 14px !important;
+      }
     }
   }
 
