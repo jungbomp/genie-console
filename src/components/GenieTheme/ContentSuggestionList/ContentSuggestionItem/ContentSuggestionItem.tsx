@@ -7,6 +7,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 import noImage from 'images/no_image.jpg';
+import checkIcon from 'images/check-filled.svg';
 
 import { StarFilled } from 'src/Icon';
 
@@ -42,7 +43,13 @@ const ContentSuggestionItem: React.FC<ContentSuggestionItemProps> = ({
         }
         position='below'
       />
-      <Box className={styles.checkWrapper}>{selected ? <Box className={styles.checked} /> : null}</Box>
+      <Box className={styles.checkWrapper}>
+        {selected ? (
+          <Box className={styles.checked}>
+            <img src={checkIcon} alt='checkicon' />
+          </Box>
+        ) : null}
+      </Box>
     </ImageListItem>
   );
 };
