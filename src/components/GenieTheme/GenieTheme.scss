@@ -9,17 +9,16 @@
   // height: fit-content;
   // height: 100vh;
   // height: 100dvh;
-  overflow: hidden;
 
   .genieThemeSuggestionWrapper {
     @include componentItem;
     @include genieThemeChildComponent;
-    overflow: hidden;
 
     display: flex;
     flex-direction: row;
     gap: 20px;
-    // flex: 1 0 0;
+    overflow: auto;
+    flex: 1 0 auto;
 
     justify-content: center;
     align-items: center;

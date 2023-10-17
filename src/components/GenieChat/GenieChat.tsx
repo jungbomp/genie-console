@@ -14,15 +14,17 @@ const GenieChat: React.FC<GenieChatProps> = () => {
   };
   return (
     <Box className={styles.genieChat} onClick={toggleModal}>
-      <img src={genieChat} alt='geniechat' />
-      {showChatModal && (
-        <div className={styles.modal}>
-          <div className={styles.overlay} />
-          <div className={styles.modalcontent}>
-            <img src={onHold} alt='onhold' />
+      <Box className={styles.container}>
+        <img src={genieChat} alt='geniechat' />
+        {showChatModal && (
+          <div className={styles.modal}>
+            <div className={styles.overlay} />
+            <div className={styles.modalcontent}>
+              <img src={onHold} alt='onhold' />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </Box>
     </Box>
   );
 };

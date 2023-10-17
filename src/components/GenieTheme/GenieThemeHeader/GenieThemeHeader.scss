@@ -30,7 +30,7 @@
     gap: 12px;
 
     .textField {
-      color: rgba(35, 17, 108, 0.50);
+      color: rgba(35, 17, 108, 0.50) !important;
 
       :global(.MuiFilledInput-root) {
         background-color: #F5F5F8;
@@ -64,7 +64,7 @@
       }
 
       :global(.MuiInputBase-root) {
-        color: #757A9B;
+        color: rgba(0, 0, 0, 0.87);
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -73,6 +73,15 @@
         &:before, &:after {
           border: none;
         }
+      }
+    }
+
+    .textField:focus-within,
+    .textField:hover{
+      border-radius: 8px;
+      outline: 1px solid #6A30D8;
+      .icon{
+        color: #6A30D8;
       }
     }
 

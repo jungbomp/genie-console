@@ -1,7 +1,14 @@
 .home{
     border-radius: 16px;
     background-color: #ffffff;
+    overflow: hidden;
+    height: 100%;
     cursor: pointer;
+
+    .container{
+        height: 100%;
+        overflow: auto;
+    }
 
     img {
         width: 100%;
