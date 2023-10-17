@@ -32,11 +32,28 @@
   font-weight: 800;
 }
 
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #F5F5F8;
+  border-radius: 16px;
+  border: 1px solid #fff;
+}
+
 html,
 body {
   height: 100%;
   background: linear-gradient(145deg, #522CBB 0%, #833CF5 60.35%);
   margin: unset;
+  scrollbar-width: 8px;
+  /* "auto" or "thin" */
+  scrollbar-color: #F5F5F8 transparent;
 }
 
 body>div:first-child {

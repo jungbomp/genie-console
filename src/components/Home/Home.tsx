@@ -13,15 +13,17 @@ const Home: React.FC<HomeProps> = () => {
   };
   return (
     <Box className={styles.home} onClick={toggleModal}>
-      <img src={genieHome} alt='geniehome' />
-      {showHomeModal && (
-        <div className={styles.modal}>
-          <div className={styles.overlay} />
-          <div className={styles.modalcontent}>
-            <img src={onHold} alt='onhold' />
+      <Box className={styles.container}>
+        <img src={genieHome} alt='geniehome' />
+        {showHomeModal && (
+          <div className={styles.modal}>
+            <div className={styles.overlay} />
+            <div className={styles.modalcontent}>
+              <img src={onHold} alt='onhold' />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </Box>
     </Box>
   );
 };

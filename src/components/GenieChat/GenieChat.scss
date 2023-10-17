@@ -1,6 +1,14 @@
 .genieChat{
     border-radius: 16px;
+    background-color: #F5F5F8;
     cursor: pointer;
+    height: 100%;
+    overflow: hidden;
+
+    .container{
+        height: 100%;
+        overflow: auto;
+    }
 
     img {
         width: 100%;
