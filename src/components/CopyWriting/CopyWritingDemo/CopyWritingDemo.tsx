@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import Classnames from 'classnames';
 import _ from 'lodash';
 
 import Box from '@mui/material/Box';
+
+import genieCopyWriteBackgroundHeadCoco from 'images/genie_copywrite_background_head_coco.jpg';
+import genieCopyWriteBackgroundSynopsisCoco from 'images/genie_copywrite_background_synopsis_coco.jpg';
 
 import EmptySuggestion from 'src/components/common/EmptySuggestion/EmptySuggestion';
 import { copyWritingDemoOptionSelector } from '../redux/selectors';
@@ -17,6 +20,13 @@ import styles from './CopyWritingDemo.scss';
 
 const CopyWritingDemo: React.FC<CopyWritingDemoProps> = ({ className }) => {
   const options = useSelector(copyWritingDemoOptionSelector);
+  const imgUrl = useMemo<string>(() => {
+    if (options && copyWritingDemoPresets[options.copyType][options.contentTitle]?.backgroundImage) {
+      return copyWritingDemoPresets[options.copyType][options.contentTitle]?.backgroundImage;
+    }
+
+    return options?.copyType === 'SYNOPSIS' ? genieCopyWriteBackgroundSynopsisCoco : genieCopyWriteBackgroundHeadCoco;
+  }, [options?.copyType, options?.contentTitle]);
 
   return (
     <Box
@@ -27,7 +37,7 @@ const CopyWritingDemo: React.FC<CopyWritingDemoProps> = ({ className }) => {
           title={options.contentTitle}
           copyType={options.copyType}
           copyWrite={options?.copyWriting ?? ''}
-          imgUrl={copyWritingDemoPresets[options.copyType][options.contentTitle]?.backgroundImage}
+          imgUrl={imgUrl}
         />
       ) : (
         <EmptySuggestion

@@ -20,10 +20,19 @@ const CopyWordCountEditor: React.FC<CopyWordCountEditorProps> = ({
   largeWordCountOption,
   onWordCountChange = () => {},
 }) => {
-  const getOnChangeFunc =
-    (count: number): (() => void) =>
-    () =>
-      onWordCountChange(wordCount === count ? undefined : count);
+  const onValueChange = (value?: string) => {
+    if (_.isEmpty(value)) {
+      onWordCountChange(undefined);
+      return;
+    }
+
+    // @ts-ignore
+    const normalizedValue = value
+      .match(/\d*/g)
+      .filter((v) => !!v)
+      .shift();
+    onWordCountChange(Number(normalizedValue));
+  };
 
   return (
     <Box className={Classnames(styles.copyWordCountEditor, className)}>
@@ -34,20 +43,20 @@ const CopyWordCountEditor: React.FC<CopyWordCountEditorProps> = ({
           subtitle={`${smallWordCountOption * 2} bytes`}
           size='large'
           active={wordCount !== undefined && wordCount <= smallWordCountOption}
-          onClick={getOnChangeFunc(smallWordCountOption)}
+          onClick={() => onWordCountChange(wordCount === smallWordCountOption ? undefined : smallWordCountOption)}
         />
         <StateChip
           title={`${largeWordCountOption}자 내외`}
           subtitle={`${largeWordCountOption * 2} bytes`}
           size='large'
           active={wordCount !== undefined && wordCount > smallWordCountOption && wordCount <= largeWordCountOption}
-          onClick={getOnChangeFunc(largeWordCountOption)}
+          onClick={() => onWordCountChange(wordCount === largeWordCountOption ? undefined : largeWordCountOption)}
         />
         <EditableStateChip
           title='직접입력'
           active={wordCount !== undefined && wordCount > largeWordCountOption}
           value={wordCount !== undefined && wordCount > largeWordCountOption ? `${wordCount}` : undefined}
-          onChange={(value?: string) => onWordCountChange(_.isEmpty(value) ? undefined : Number(value))}
+          onChange={onValueChange}
         />
       </Box>
     </Box>

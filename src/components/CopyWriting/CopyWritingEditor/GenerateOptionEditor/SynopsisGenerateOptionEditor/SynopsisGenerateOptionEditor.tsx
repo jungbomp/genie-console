@@ -18,10 +18,19 @@ const SynopsisGenerateOptionEditor: React.FC<SynopsisGenerateOptionEditorProps> 
   wordCount,
   onWordCountChange = () => {},
 }) => {
-  const getOnChangeFunc =
-    (count: number): (() => void) =>
-    () =>
-      onWordCountChange(wordCount === count ? undefined : count);
+  const onValueChange = (value?: string) => {
+    if (_.isEmpty(value)) {
+      onWordCountChange(undefined);
+      return;
+    }
+
+    // @ts-ignore
+    const normalizedValue = value
+      .match(/\d*/g)
+      .filter((v) => !!v)
+      .shift();
+    onWordCountChange(Number(normalizedValue));
+  };
 
   return (
     <Box className={Classnames(styles.synopsisGenerateOptionEditor, className)}>
@@ -32,7 +41,7 @@ const SynopsisGenerateOptionEditor: React.FC<SynopsisGenerateOptionEditorProps> 
         extra='시놉시스 키즈'
         size='large'
         active={wordCount !== undefined && wordCount <= 30}
-        onClick={getOnChangeFunc(30)}
+        onClick={() => onWordCountChange(wordCount === 30 ? undefined : 30)}
       />
       <StateChip
         title='100자 내외'
@@ -40,7 +49,7 @@ const SynopsisGenerateOptionEditor: React.FC<SynopsisGenerateOptionEditorProps> 
         extra='시놉시스 일반'
         size='large'
         active={wordCount !== undefined && wordCount > 30 && wordCount <= 100}
-        onClick={getOnChangeFunc(100)}
+        onClick={() => onWordCountChange(wordCount === 100 ? undefined : 100)}
       />
       <StateChip
         title='200자 내외'
@@ -48,13 +57,13 @@ const SynopsisGenerateOptionEditor: React.FC<SynopsisGenerateOptionEditorProps> 
         extra='시놉시스 더 보기'
         size='large'
         active={wordCount !== undefined && wordCount > 100 && wordCount <= 200}
-        onClick={getOnChangeFunc(200)}
+        onClick={() => onWordCountChange(wordCount === 200 ? undefined : 200)}
       />
       <EditableStateChip
         title='적접입력'
         active={wordCount !== undefined && wordCount > 200}
         value={wordCount !== undefined && wordCount > 200 ? `${wordCount}` : undefined}
-        onChange={(value?: string) => onWordCountChange(_.isEmpty(value) ? undefined : Number(value))}
+        onChange={onValueChange}
       />
     </Box>
   );
