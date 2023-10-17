@@ -8,7 +8,6 @@ import onHold from '../../../public/assets/images/onhold.png';
 const Home: React.FC<HomeProps> = () => {
   const [showHomeModal, setShowHomeModal] = useState<boolean>(false);
   const toggleModal = () => {
-    console.log('toggle');
     setShowHomeModal(!showHomeModal);
   };
   return (

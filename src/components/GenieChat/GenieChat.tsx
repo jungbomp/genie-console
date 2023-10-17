@@ -9,7 +9,6 @@ import onHold from '../../../public/assets/images/onhold.png';
 const GenieChat: React.FC<GenieChatProps> = () => {
   const [showChatModal, setShowChatModal] = useState<boolean>(false);
   const toggleModal = () => {
-    console.log('toggle');
     setShowChatModal(!showChatModal);
   };
   return (
