@@ -15,6 +15,7 @@ const GenerateOptionEditor: React.FC<GenerateOptionEditorProps> = ({
   onPromotionTypeChange,
   onPromotionDetailsChange,
 }) => {
+  console.log('GenerateOptionEditor: ', wordCount);
   if (copyType === 'HEAD' || copyType === 'BODY') {
     return (
       <CopyGenerateOptionEditor
