@@ -2,6 +2,8 @@
 
 .additionalRequestEditor {
   @include copyWritingChildComponent;
+  justify-content: flex-end;
+  flex: 1;
 
   .titleWrapper {
     display: flex;
@@ -12,6 +14,7 @@
       flex-direction: row;
       gap: 8px;
       align-items: center;
+      pointer-events: none;
 
       .titleIconWrapper {
         display: inline-flex;
@@ -28,12 +31,12 @@
       }
 
       .titleButton {
-        color: #6A30D8;
+        color: rgba(0, 0, 0, 0.26);
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 24px; /* 150% */
-
+        
         &:hover {
           background-color: unset;
           color: #6A30D8;

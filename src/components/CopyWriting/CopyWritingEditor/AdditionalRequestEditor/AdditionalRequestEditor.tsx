@@ -32,7 +32,7 @@ const AdditionalRequestEditor: React.FC<AdditionalRequestEditorProps> = ({
             <MagicWandFilled className={styles.titleIcon} />
           </Box>
           <Button className={styles.titleButton} variant='text' onClick={() => setDisplayEdit(true)}>
-            AI 에게 더 요청하기
+            지니에게 더 요청하기
           </Button>
         </FormLabel>
         <Button
