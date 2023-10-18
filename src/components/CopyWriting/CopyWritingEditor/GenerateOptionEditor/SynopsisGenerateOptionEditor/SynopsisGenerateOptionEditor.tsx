@@ -57,7 +57,7 @@ const SynopsisGenerateOptionEditor: React.FC<SynopsisGenerateOptionEditorProps> 
         onClick={() => onWordCountChange(wordCount === 200 ? undefined : 200)}
       />
       <EditableStateChip
-        title='적접입력'
+        title='직접입력'
         active={wordCount !== undefined && wordCount > 200}
         value={wordCount !== undefined && wordCount > 200 ? `${wordCount}` : undefined}
         onChange={onValueChange}
